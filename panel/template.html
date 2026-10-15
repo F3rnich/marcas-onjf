@@ -1,0 +1,831 @@
+<title>Marcas ONJT/ONJF</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,700;1,800&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: faixa de cabeçalho estilo placar + abas; cada aba é uma ferramenta de consulta com resumo antes do detalhe */
+/* Layout: arena noturna no cabeçalho (placar + pista), pódio como peça central da comparação; resto em painéis claros e sóbrios */
+:root{
+  --bg:#f2f4f8; --surface:#ffffff; --surface-2:#e8ecf3; --line:#d4dbe6;
+  --ink:#0f1b2d; --muted:#55627a;
+  --track:#c2452d; --pool:#1767c2; --accent:#1767c2;
+  --gold:#b8901c; --gold-hi:#f3d36b; --silver:#7f8b99; --silver-hi:#e3e8ee; --bronze:#9c5a2a; --bronze-hi:#e2a06a;
+  --good:#23824f; --warn:#b0611a;
+  --night:#0a1a33; --night-2:#132e5a; --night-ink:#f1f5fb; --night-muted:#a8b6cc;
+  --f-display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-data:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#070f1d; --surface:#0e1a2e; --surface-2:#15243c; --line:#24365294;
+  --ink:#e6edf7; --muted:#97a6bf;
+  --track:#e8775f; --pool:#5ea2ea; --accent:#5ea2ea;
+  --gold:#e0bb4c; --gold-hi:#fbe7a3; --silver:#b4bfcb; --silver-hi:#eef2f6; --bronze:#d08f5a; --bronze-hi:#f0c095;
+  --good:#5cc68d; --warn:#e3a05a;
+  --night:#050c19; --night-2:#0f2447; --night-ink:#eef3fa; --night-muted:#9fb0c9; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#070f1d; --surface:#0e1a2e; --surface-2:#15243c; --line:#24365294;
+  --ink:#e6edf7; --muted:#97a6bf;
+  --track:#e8775f; --pool:#5ea2ea; --accent:#5ea2ea;
+  --gold:#e0bb4c; --gold-hi:#fbe7a3; --silver:#b4bfcb; --silver-hi:#eef2f6; --bronze:#d08f5a; --bronze-hi:#f0c095;
+  --good:#5cc68d; --warn:#e3a05a;
+  --night:#050c19; --night-2:#0f2447; --night-ink:#eef3fa; --night-muted:#9fb0c9; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+.wrap{max-width:1100px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.band{position:relative;overflow:hidden;color:var(--night-ink);background:radial-gradient(120% 140% at 85% -10%,var(--night-2) 0%,var(--night) 60%)}
+header.band .wrap{position:relative;padding-block:26px 0;display:grid;gap:18px}
+.arena{position:absolute;right:-120px;top:-40px;width:620px;max-width:none;height:auto;opacity:.22;pointer-events:none}
+.eyebrow{font:600 12px var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:var(--gold-hi);margin:0}
+h1{font-family:var(--f-display);font-weight:800;font-style:italic;text-transform:uppercase;font-size:clamp(34px,7vw,64px);letter-spacing:.005em;margin:8px 0 0;line-height:.92;text-wrap:balance}
+h1 span{color:var(--gold-hi)}
+.board{display:flex;flex-wrap:wrap;gap:6px 28px}
+.board div{display:grid;line-height:1}
+.board b{font:800 italic clamp(26px,4.6vw,38px) var(--f-display);font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.board span{font:600 11px var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--night-muted);margin-top:4px}
+.ribbon{height:8px;background:linear-gradient(90deg,var(--gold) 0 33.33%,var(--silver) 33.33% 66.66%,var(--bronze) 66.66% 100%)}
+nav.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-top:4px}
+nav.tabs button{font:700 italic 16px/1 var(--f-display);letter-spacing:.06em;text-transform:uppercase;color:var(--night-muted);background:none;border:0;padding:12px 14px 13px;border-bottom:4px solid transparent;cursor:pointer;white-space:nowrap}
+nav.tabs button:hover{color:var(--night-ink)}
+nav.tabs button[aria-selected="true"]{color:var(--night-ink);border-bottom-color:var(--gold-hi)}
+nav.tabs button:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+main .wrap{padding-block:22px 48px;display:grid;gap:20px}
+section.view{display:grid;gap:18px}
+h2{font-family:var(--f-display);font-weight:800;font-style:italic;text-transform:uppercase;font-size:28px;margin:0;letter-spacing:.01em;line-height:1.05;text-wrap:balance}
+section.view > div:first-child h2::before{content:"";display:inline-block;width:22px;height:6px;margin:0 10px 6px 0;background:linear-gradient(90deg,var(--gold) 0 33%,var(--silver) 33% 66%,var(--bronze) 66%);vertical-align:middle;transform:skewX(-20deg)}
+h3{font-family:var(--f-display);font-weight:700;font-style:italic;text-transform:uppercase;font-size:18px;margin:0;letter-spacing:.04em}
+.lede{color:var(--muted);margin:0;max-width:68ch}
+.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px}
+label.f{display:grid;gap:4px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+select,input[type=text],input[type=search]{font:500 15px var(--f-body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:9px 10px;width:100%;min-width:0}
+input.mark{font-family:var(--f-data);font-size:16px}
+.seg{display:flex;border:1px solid var(--line);border-radius:7px;overflow:hidden}
+.seg button{flex:1;font:600 14px var(--f-body);background:var(--bg);color:var(--muted);border:0;padding:9px 6px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--night-2);color:var(--night-ink)}
+.grid2{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:18px}
+@media (max-width:820px){.grid2{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:12px;min-width:0}
+.ref{display:grid;gap:12px}
+
+.ref .t{border-top:3px solid var(--c,var(--line));padding-top:6px;display:grid;gap:2px}
+.ref .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.ref .v{font:500 20px var(--f-data);font-variant-numeric:tabular-nums}
+.ref .n{font-size:12px;color:var(--muted);line-height:1.3}
+.podium{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:end;gap:6px;padding-top:8px}
+.step{display:grid;justify-items:center;gap:6px;text-align:center}
+.step .disc{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:800 italic 22px var(--f-display);color:#1b1407;box-shadow:inset 0 0 0 3px color-mix(in srgb,#000 15%,transparent),0 3px 8px color-mix(in srgb,#000 25%,transparent)}
+.step .mark{font:800 italic clamp(20px,3.6vw,26px)/1 var(--f-display);font-variant-numeric:tabular-nums}
+.step .lab{font:600 11px var(--f-body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.step .block{width:100%;border-radius:6px 6px 0 0;display:grid;place-items:center;font:800 italic 34px var(--f-display);color:color-mix(in srgb,var(--night-ink) 92%,transparent);background:linear-gradient(180deg,var(--night-2),var(--night))}
+.s1 .block{height:96px;border-top:4px solid var(--gold)}.s2 .block{height:68px;border-top:4px solid var(--silver)}.s3 .block{height:48px;border-top:4px solid var(--bronze)}
+.s1 .disc{background:radial-gradient(circle at 35% 30%,var(--gold-hi),var(--gold) 70%)}
+.s2 .disc{background:radial-gradient(circle at 35% 30%,var(--silver-hi),var(--silver) 70%)}
+.s3 .disc{background:radial-gradient(circle at 35% 30%,var(--bronze-hi),var(--bronze) 70%)}
+.recbar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 12px;padding:10px 12px;border-radius:8px;background:linear-gradient(90deg,color-mix(in srgb,var(--gold) 22%,transparent),transparent 70%);border:1px solid color-mix(in srgb,var(--gold) 45%,transparent)}
+.recbar .k{font:700 italic 13px var(--f-display);letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.recbar .v{font:800 italic 28px/1 var(--f-display);font-variant-numeric:tabular-nums}
+.recbar .n{font-size:12px;color:var(--muted);width:100%}
+.linkbtn{padding:2px 4px!important;border:0!important;background:none!important;font-weight:600;color:var(--ink);text-align:left;text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--accent) 45%,transparent);text-underline-offset:3px}
+.linkbtn:hover{color:var(--accent)}
+.linkbtn.mem{display:inline;font-weight:500;font-size:12px;padding:0!important}
+.seg button:disabled{opacity:.35;cursor:not-allowed}
+.sm-inline{display:block}
+.sm-only{display:none}
+@media (max-width:640px){.sm-only{display:block;margin-left:4px}}
+tr.you td{background:color-mix(in srgb,var(--gold) 16%,transparent)}
+tr.sel td{background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.bar{display:inline-block;height:8px;background:linear-gradient(90deg,var(--gold),var(--bronze));border-radius:2px;vertical-align:middle}
+.evo{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.sp{margin:0;border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--bg);min-width:0}
+.sp figcaption{display:flex;justify-content:space-between;gap:8px;font:700 italic 15px var(--f-display);text-transform:uppercase;letter-spacing:.03em}
+.sp svg{width:100%;height:auto;display:block}
+.verdict{border-left:4px solid var(--vc,var(--line));background:var(--surface-2);padding:10px 12px;border-radius:0 8px 8px 0}
+.verdict p{margin:0}
+.verdict strong{font-family:var(--f-display);font-size:19px;font-weight:600;letter-spacing:.01em}
+.tablebox{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:7px 10px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font:600 12px var(--f-body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--surface-2);position:sticky;top:0}
+td.num,th.num{text-align:right;font-family:var(--f-data);font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:0}
+td.wrapc{white-space:normal;min-width:180px}
+.pill{display:inline-block;font:600 11px var(--f-body);letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:99px;border:1px solid currentColor}
+.p-gold{color:var(--gold)} .p-silver{color:var(--silver)} .p-bronze{color:var(--bronze)}
+.p-rec{color:var(--good)} .p-mut{color:var(--muted)} .p-warn{color:var(--warn)}
+.medal{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;font:800 italic 13px var(--f-display);color:#1b1407;box-shadow:inset 0 0 0 2px color-mix(in srgb,#000 18%,transparent),0 1px 2px color-mix(in srgb,#000 25%,transparent)}
+.m1{background:radial-gradient(circle at 35% 30%,var(--gold-hi),var(--gold) 70%)} .m2{background:radial-gradient(circle at 35% 30%,var(--silver-hi),var(--silver) 70%)} .m3{background:radial-gradient(circle at 35% 30%,var(--bronze-hi),var(--bronze) 70%)}
+.mod-a{color:var(--track)} .mod-n{color:var(--pool)}
+.note{font-size:13px;color:var(--muted);margin:0;max-width:80ch}
+.chart svg{width:100%;height:auto;display:block}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:14px;height:3px;vertical-align:middle;margin-right:5px;background:var(--c)}
+.hits{display:grid;gap:4px;max-height:280px;overflow:auto}
+.hit{display:flex;justify-content:space-between;gap:10px;align-items:center;text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:8px 10px;cursor:pointer;color:var(--ink);font:500 15px var(--f-body)}
+.hit:hover{border-color:var(--accent)}
+.hit small{color:var(--muted);font-size:12px}
+.kpis{display:flex;flex-wrap:wrap;gap:18px}
+.kpi{display:grid}
+.kpi b{font:800 italic 34px/1 var(--f-display)}
+.kpi span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.gap{font-family:var(--f-data);font-variant-numeric:tabular-nums}
+.gap.pos{color:var(--good)} .gap.neg{color:var(--warn)}
+.empty{color:var(--muted);font-style:italic;margin:0}
+footer .wrap{padding-block:0 32px}
+footer p{font-size:13px;color:var(--muted);margin:0 0 6px;max-width:90ch}
+@media (max-width:640px){
+  .arena{opacity:.1;right:-260px;top:-20px}
+  .eyebrow{letter-spacing:.1em}
+  nav.tabs{flex-wrap:wrap}
+  nav.tabs button{padding:10px 9px;font-size:14px}
+  .tablebox:not(:has(table.keep)){overflow:visible;border:0;background:none}
+  main table:not(.keep),main table:not(.keep) tbody,main table:not(.keep) tr,main table:not(.keep) td{display:block;width:100%}
+  main table:not(.keep) tr.hrow{display:none}
+  main table:not(.keep) tr.grow{background:none}
+  main table:not(.keep) tr.grow th{display:block;position:static;background:none;border:0;padding:12px 2px 4px;font-size:14px;color:var(--ink)}
+  main table:not(.keep) tr:not(.hrow):not(.grow){background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 0;margin-bottom:8px}
+  main table:not(.keep) td{display:flex;justify-content:space-between;align-items:baseline;gap:12px;white-space:normal;border:0;padding:4px 12px;text-align:right}
+  main table:not(.keep) td::before{content:attr(data-label);font:600 11px var(--f-body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:left;flex:none}
+  main table:not(.keep) td:first-child{font-weight:600}
+  main table:not(.keep) td.wrapc{min-width:0}
+  main table:not(.keep) td[colspan]{justify-content:center}
+  main table:not(.keep) td[colspan]::before{content:none}
+  table.keep th,table.keep td{padding:7px 6px}
+  table.keep .hide-sm{display:none}
+  table.keep td{white-space:normal}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="band">
+  <svg class="arena" viewBox="0 0 620 380" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="40" y="40" width="540" height="300" rx="150"/><rect x="62" y="62" width="496" height="256" rx="128"/>
+      <rect x="84" y="84" width="452" height="212" rx="106"/><rect x="106" y="106" width="408" height="168" rx="84"/>
+      <rect x="128" y="128" width="364" height="124" rx="62"/><rect x="150" y="150" width="320" height="80" rx="40"/>
+      <line x1="310" y1="40" x2="310" y2="150"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Olimpíada Nacional do Judiciário · Atletismo e natação</p>
+      <h1>Marcas <span>ONJT/ONJF</span></h1>
+    </div>
+    <div class="board" id="board"></div>
+    <nav class="tabs" role="tablist" aria-label="Seções">
+      <button role="tab" id="tab-comparar" aria-selected="true" data-view="comparar">Minha marca</button>
+      <button role="tab" id="tab-revez" aria-selected="false" data-view="revez">Revezamentos</button>
+      <button role="tab" id="tab-atletas" aria-selected="false" data-view="atletas">Atletas</button>
+      <button role="tab" id="tab-delegacoes" aria-selected="false" data-view="delegacoes">Delegações</button>
+      <button role="tab" id="tab-recordes" aria-selected="false" data-view="recordes">Recordes</button>
+      <button role="tab" id="tab-edicoes" aria-selected="false" data-view="edicoes">Edições</button>
+    </nav>
+  </div>
+  <div class="ribbon"></div>
+</header>
+
+<main><div class="wrap">
+
+<!-- ================= MINHA MARCA ================= -->
+<section class="view" id="v-comparar">
+  <div>
+    <h2>Quanto falta para a medalha?</h2>
+    <p class="lede">Escolha a prova e a faixa etária e digite sua marca. O painel compara com o recorde e com as marcas que ganharam ouro, prata e bronze em cada edição.</p>
+  </div>
+  <div class="controls">
+    <label class="f">Modalidade<div class="seg" id="c-mod"><button type="button" data-v="Atletismo" aria-pressed="true">Atletismo</button><button type="button" data-v="Natação" aria-pressed="false">Natação</button></div></label>
+    <label class="f" for="c-ev">Prova<select id="c-ev"></select></label>
+    <label class="f">Gênero<div class="seg" id="c-g"><button type="button" data-v="M" aria-pressed="true">Masc.</button><button type="button" data-v="F" aria-pressed="false">Fem.</button></div></label>
+    <label class="f" for="c-age">Faixa etária<select id="c-age"></select></label>
+    <label class="f" for="c-pool" id="c-pool-wrap">Piscina<select id="c-pool"><option value="all">Todas</option><option value="50">50 m</option><option value="25">25 m</option></select></label>
+    <label class="f" for="c-mark"><span id="c-mark-lab">Sua marca</span><input id="c-mark" class="mark" type="text" inputmode="decimal" autocomplete="off"></label>
+  </div>
+  <div class="grid2">
+    <div class="panel">
+      <div class="verdict" id="c-verdict"></div>
+      <div class="ref" id="c-ref"></div>
+      <p class="note" id="c-refnote"></p>
+      <p class="note">Marca típica = mediana das marcas de pódio desde 2017 (ou de todas as edições, quando há poucas).</p>
+    </div>
+    <div class="panel chart">
+      <h3>Pódio por edição</h3>
+      <div id="c-chart"></div>
+      <div class="legend" id="c-legend"></div>
+    </div>
+  </div>
+  <div class="panel">
+    <h3>Edição a edição</h3>
+    <div class="tablebox"><table id="c-table"></table></div>
+    <p class="note">"Sua colocação" simula a sua marca na classificação completa daquela edição. Nas edições com registro só de pódio (2012–2016) o painel indica apenas se a marca entraria no pódio.</p>
+  </div>
+  <div class="panel">
+    <h3>Top 10 de todos os tempos</h3>
+    <p class="note" id="c-rank-note"></p>
+    <div class="tablebox"><table id="c-rank" class="keep"></table></div>
+  </div>
+</section>
+
+<!-- ================= REVEZAMENTOS ================= -->
+<section class="view" id="v-revez" hidden>
+  <div>
+    <h2>Revezamentos</h2>
+    <p class="lede">Escolha a prova e a categoria e digite o tempo da sua equipe. A comparação é por delegação: recorde, tempos que deram pódio em cada edição e o top 10 histórico.</p>
+  </div>
+  <div class="controls">
+    <label class="f">Modalidade<div class="seg" id="v-mod"><button type="button" data-v="Atletismo" aria-pressed="true">Atletismo</button><button type="button" data-v="Natação" aria-pressed="false">Natação</button></div></label>
+    <label class="f" for="v-ev">Prova<select id="v-ev"></select></label>
+    <label class="f">Gênero<div class="seg" id="v-g"><button type="button" data-v="M" aria-pressed="true">Masc.</button><button type="button" data-v="F" aria-pressed="false">Fem.</button><button type="button" data-v="X" aria-pressed="false">Misto</button></div></label>
+    <label class="f" for="v-cat">Categoria<select id="v-cat"></select></label>
+    <label class="f" for="v-pool" id="v-pool-wrap">Piscina<select id="v-pool"><option value="all">Todas</option><option value="50">50 m</option><option value="25">25 m</option></select></label>
+    <label class="f" for="v-mark">Tempo da equipe<input id="v-mark" class="mark" type="text" inputmode="decimal" autocomplete="off" placeholder="ex.: 52.80 ou 4:10.5"></label>
+  </div>
+  <div class="grid2">
+    <div class="panel">
+      <div class="verdict" id="v-verdict"></div>
+      <div class="ref" id="v-ref"></div>
+      <p class="note" id="v-refnote"></p>
+    </div>
+    <div class="panel chart">
+      <h3>Pódio por edição</h3>
+      <div id="v-chart"></div>
+      <div class="legend" id="v-legend"></div>
+    </div>
+  </div>
+  <div class="panel">
+    <h3>Edição a edição</h3>
+    <div class="tablebox"><table id="v-table"></table></div>
+    <p class="note">"Sua equipe" simula o tempo digitado na classificação completa daquela edição. Em 2012–2016 o site guarda só o pódio.</p>
+  </div>
+  <div class="panel">
+    <h3>Top 10 de todos os tempos</h3>
+    <p class="note" id="v-rank-note"></p>
+    <div class="tablebox"><table id="v-rank" class="keep"></table></div>
+  </div>
+</section>
+
+<!-- ================= ATLETAS ================= -->
+<section class="view" id="v-atletas" hidden>
+  <div>
+    <h2>Histórico de atleta</h2>
+    <p class="lede">Busque pelo nome. O painel reúne as participações em atletismo e natação, as melhores marcas e a distância de cada uma até o bronze típico e o recorde da faixa.</p>
+  </div>
+  <div class="controls" style="grid-template-columns:minmax(0,1fr)">
+    <label class="f" for="a-q">Nome do atleta<input id="a-q" type="search" placeholder="Digite ao menos 3 letras" autocomplete="off"></label>
+    <div class="hits" id="a-hits"></div>
+  </div>
+  <div id="a-out" class="view"></div>
+</section>
+
+<!-- ================= DELEGAÇÕES ================= -->
+<section class="view" id="v-delegacoes" hidden>
+  <div>
+    <h2>Desempenho por delegação</h2>
+    <p class="lede">Medalhas e melhores atletas de cada regional no atletismo e na natação.</p>
+  </div>
+  <div class="controls">
+    <label class="f" for="d-mod">Modalidade<select id="d-mod"><option value="">Atletismo e natação</option><option>Atletismo</option><option>Natação</option></select></label>
+    <label class="f" for="d-from">De<select id="d-from"></select></label>
+    <label class="f" for="d-to">Até<select id="d-to"></select></label>
+    <label class="f" for="d-kind">Provas<select id="d-kind"><option value="ind">Individuais</option><option value="all">Individuais e revezamentos</option></select></label>
+  </div>
+  <div class="panel">
+    <h3>Quadro de medalhas histórico</h3>
+    <p class="note" id="d-board-note">Atletismo e natação no período. Toque em uma delegação para ver o detalhe.</p>
+    <div class="tablebox"><table id="d-board" class="keep"></table></div>
+  </div>
+  <div class="controls" style="grid-template-columns:minmax(0,1fr)">
+    <label class="f" for="d-sel">Detalhe da delegação<select id="d-sel"></select></label>
+  </div>
+  <div id="d-out" class="view"></div>
+</section>
+
+<!-- ================= RECORDES ================= -->
+<section class="view" id="v-recordes" hidden>
+  <div>
+    <h2>Recordes por faixa etária</h2>
+    <p class="lede">Lista oficial da Anastra (atualizada até 2024), com as marcas de 2025 e 2026 que superaram o recorde em destaque.</p>
+  </div>
+  <div class="controls">
+    <label class="f">Modalidade<div class="seg" id="r-mod"><button type="button" data-v="Atletismo" aria-pressed="true">Atletismo</button><button type="button" data-v="Natação" aria-pressed="false">Natação</button></div></label>
+    <label class="f">Gênero<div class="seg" id="r-g"><button type="button" data-v="M" aria-pressed="true">Masc.</button><button type="button" data-v="F" aria-pressed="false">Fem.</button></div></label>
+    <label class="f" for="r-pool" id="r-pool-wrap">Piscina<select id="r-pool"><option value="50">50 m</option><option value="25">25 m</option></select></label>
+    <label class="f" for="r-ev">Prova<select id="r-ev"></select></label>
+  </div>
+  <div class="tablebox"><table id="r-table"></table></div>
+  <p class="note" id="r-note"></p>
+</section>
+
+<!-- ================= EDIÇÕES ================= -->
+<section class="view" id="v-edicoes" hidden>
+  <div>
+    <h2>Resultados por edição</h2>
+    <p class="lede">Classificação de cada prova, como publicada pela organização.</p>
+  </div>
+  <div class="controls">
+    <label class="f" for="e-y">Edição<select id="e-y"></select></label>
+    <label class="f" for="e-ev">Prova<select id="e-ev"></select></label>
+    <label class="f">Gênero<div class="seg" id="e-g"><button type="button" data-v="M" aria-pressed="true">Masc.</button><button type="button" data-v="F" aria-pressed="false">Fem.</button></div></label>
+    <label class="f" for="e-age">Faixa etária<select id="e-age"></select></label>
+  </div>
+  <div class="tablebox"><table id="e-table"></table></div>
+  <div class="panel">
+    <h3>Cobertura do arquivo</h3>
+    <div class="tablebox"><table id="e-cov"></table></div>
+  </div>
+</section>
+
+</div></main>
+
+<footer><div class="wrap">
+  <p id="f-src"></p>
+  <p>Fonte: resultados e recordes publicados em anastra.com.br. Nomes, delegações e faixas seguem a grafia de cada edição, com padronização mínima. Faixas etárias mudaram ao longo dos anos (até 2011 eram até 35, 36–40…); as comparações usam sempre a faixa exatamente igual.</p>
+</div></footer>
+
+<script id="data" type="application/json">/*DATA*/</script>
+<script>
+(function(){
+const D=JSON.parse(document.getElementById('data').textContent);
+const EV=D.events, AG=D.ages, NM=D.names, DL=D.dels, ST=D.st;
+const ED={}; D.meta.editions.forEach(e=>ED[e.y]=e);
+const YEARS=D.meta.editions.map(e=>e.y);
+// linhas como objetos
+const R=D.rows.map(r=>({y:r[0],e:r[1],g:r[2],a:r[3],pl:r[4],n:r[5],d:r[6],v:r[7],st:r[8],rec:r[9]}));
+const REC=D.records.map(r=>({e:r[0],g:r[1],a:r[2],pool:r[3],name:r[4],d:r[5],v:r[6],y:r[7],corr:r[8]}));
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const isField=e=>EV[e].field;
+const better=(e,a,b)=>isField(e)?a>b:a<b;           // a melhor que b?
+const sortKey=e=>isField(e)?(r=>-r.v):(r=>r.v);
+const store={get(k){try{return localStorage.getItem(k)}catch(_){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(_){}}};
+
+function fmt(e,v){
+  if(v==null) return '–';
+  if(isField(e)) return v.toFixed(2).replace('.',',')+' m';
+  const m=Math.floor(v/60), s=v-m*60;
+  if(m>=60){const h=Math.floor(m/60);return h+':'+String(m%60).padStart(2,'0')+':'+s.toFixed(2).padStart(5,'0').replace('.',',')}
+  return m? m+':'+s.toFixed(2).padStart(5,'0').replace('.',',') : s.toFixed(2).replace('.',',');
+}
+function fmtGap(e,d){ // d>0 = falta melhorar
+  if(isField(e)) return Math.abs(d).toFixed(2).replace('.',',')+' m';
+  return Math.abs(d)<60? Math.abs(d).toFixed(2).replace('.',',')+' s' : fmt(e,Math.abs(d));
+}
+function parseMark(e,s){
+  s=(s||'').trim().replace(',','.').replace(/[^0-9:.]/g,'');
+  if(!s) return null;
+  if(isField(e)){const v=parseFloat(s);return isFinite(v)?v:null}
+  let p;
+  if(s.includes(':')) p=s.split(':');
+  else{const d=s.split('.');p=d.length>2?[d[0],d[1]+'.'+d.slice(2).join('')]:[s]}  // 2.45.30 = 2:45,30
+  p=p.map(Number); if(p.some(isNaN)) return null;
+  return p.reduce((a,x)=>a*60+x,0);
+}
+const median=a=>{if(!a.length)return null;const s=[...a].sort((x,y)=>x-y),m=s.length>>1;return s.length%2?s[m]:(s[m-1]+s[m])/2};
+const poolOf=y=>ED[y]&&ED[y].pool;
+const genderLab={M:'Masculino',F:'Feminino',X:'Misto'};
+// situação sem marca, em português (DNS e NC são a mesma coisa em softwares diferentes)
+const ST_LAB={DNS:'Ausente',NC:'Ausente',AUS:'Ausente',WO:'Ausente',DNF:'Não concluiu',DQ:'Desclassificado',SM:'Sem marca',NM:'Sem marca válida',NT:'Sem tempo'};
+const stLab=i=>ST_LAB[ST[i]]||ST[i]||'–';
+
+function setSeg(el,v){el.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.v===v)))}
+function segVal(el){const b=el.querySelector('button[aria-pressed="true"]');return b&&b.dataset.v}
+function bindSeg(el,cb){el.addEventListener('click',ev=>{const b=ev.target.closest('button');if(!b)return;setSeg(el,b.dataset.v);cb()})}
+function fillSelect(sel,opts,keep){const cur=keep??sel.value;sel.innerHTML=opts.map(o=>`<option value="${esc(o[0])}">${esc(o[1])}</option>`).join('');if(opts.some(o=>String(o[0])===String(cur)))sel.value=cur}
+
+// índices
+const byKey=new Map(); // e|g|a -> rows
+R.forEach(r=>{const k=r.e+'|'+r.g+'|'+r.a;(byKey.get(k)||byKey.set(k,[]).get(k)).push(r)});
+function rowsFor(e,g,a,pool){const rs=byKey.get(e+'|'+g+'|'+a)||[];return pool&&pool!=='all'&&EV[e].mod==='Natação'?rs.filter(r=>String(poolOf(r.y))===String(pool)):rs}
+function officialRecord(e,g,a,pool){
+  const c=REC.filter(r=>r.e==e&&r.g==g&&r.a==a&&(EV[e].mod!=='Natação'||!pool||pool==='all'||String(r.pool)===String(pool)));
+  if(!c.length)return null; return c.reduce((b,r)=>better(e,r.v,b.v)?r:b);
+}
+function podium(rs,y,e){ // marcas de 1º,2º,3º da edição
+  const ys=rs.filter(r=>r.y==y&&r.v!=null);
+  const out=[null,null,null];
+  [1,2,3].forEach(p=>{const x=ys.find(r=>r.pl==p);if(x)out[p-1]=x});
+  if(out.every(x=>!x)){const s=[...ys].sort((a,b)=>sortKey(e)(a)-sortKey(e)(b));s.slice(0,3).forEach((x,i)=>out[i]=x)}
+  return out;
+}
+
+// ================= MINHA MARCA =================
+const C={mod:$('#c-mod'),ev:$('#c-ev'),g:$('#c-g'),age:$('#c-age'),pool:$('#c-pool'),mark:$('#c-mark')};
+function evOptions(mod){return EV.map((e,i)=>[i,e.label,e]).filter(x=>x[2].mod===mod&&R.some(r=>r.e===x[0])).map(x=>[x[0],x[1]])}
+function ageOptions(e,g){const s=new Set(R.filter(r=>r.e==e&&r.g==g).map(r=>r.a));return AG.map((a,i)=>[i,a]).filter(x=>s.has(x[0])).map(x=>[x[0],x[1]==='livre'?'Livre (sem faixa)':x[1]==='única'?'Faixa única':x[1]])}
+function refreshCompareSelectors(){
+  const mod=segVal(C.mod);
+  fillSelect(C.ev,evOptions(mod));
+  const e=+C.ev.value, g=segVal(C.g);
+  const ao=ageOptions(e,g);
+  // prefere faixas do esquema atual (com edições recentes)
+  const recent=ao.filter(o=>R.some(r=>r.e==e&&r.g==g&&r.a==o[0]&&r.y>=2017));
+  fillSelect(C.age,recent.length?[...recent,...ao.filter(o=>!recent.includes(o))]:ao);
+  $('#c-pool-wrap').hidden=mod!=='Natação';
+  $('#c-mark-lab').textContent=isField(e)?'Sua marca (metros)':'Sua marca (tempo)';
+  C.mark.placeholder=isField(e)?'ex.: 4,85':(EV[e].key.match(/^(\d+)/)[1]>=400?'ex.: 2:45.30':'ex.: 13.42');
+  renderCompare();
+}
+function renderCompare(){
+  const e=+C.ev.value, g=segVal(C.g), a=+C.age.value, pool=EV[e].mod==='Natação'?C.pool.value:'all';
+  const rs=rowsFor(e,g,a,pool);
+  let mine=parseMark(e,C.mark.value);
+  const years=[...new Set(rs.map(r=>r.y))].sort();
+  const pods=years.map(y=>({y,p:podium(rs,y,e)}));
+  const golds=pods.map(x=>x.p[0]&&x.p[0].v).filter(v=>v!=null);
+  const bronzes=pods.map(x=>(x.p[2]||x.p[1]||x.p[0])).filter(Boolean).map(x=>x.v);
+  const recentPods=pods.filter(x=>x.y>=2017);
+  const bronzeRecent=recentPods.map(x=>(x.p[2]||x.p[1]||x.p[0])).filter(Boolean).map(x=>x.v);
+  const rec=officialRecord(e,g,a,pool);
+  const best=rs.filter(r=>r.v!=null).reduce((b,r)=>!b||better(e,r.v,b.v)?r:b,null);
+  const bronzeRef=median(bronzeRecent.length>=2?bronzeRecent:bronzes);
+  const goldRef=median(golds);
+  // cartões de referência
+  const recV=rec&&best&&better(e,best.v,rec.v)?null:rec;
+  const silvers=pods.map(x=>x.p[1]&&x.p[1].v).filter(v=>v!=null);
+  const silverRecent=recentPods.map(x=>x.p[1]&&x.p[1].v).filter(v=>v!=null);
+  const silverRef=median(silverRecent.length>=2?silverRecent:silvers);
+  const goldRecent=recentPods.map(x=>x.p[0]&&x.p[0].v).filter(v=>v!=null);
+  const goldRef2=median(goldRecent.length>=2?goldRecent:golds);
+  const step=(cls,n,lab,v)=>`<div class="step ${cls}"><div class="disc">${n}</div><div class="mark">${v!=null?fmt(e,v):'–'}</div><div class="lab">${lab}</div><div class="block">${n}</div></div>`;
+  $('#c-ref').innerHTML=
+    `<div class="recbar"><span class="k">Recorde da faixa</span><span class="v">${rec?fmt(e,rec.v):'–'}</span><span class="n">${rec?`${esc(rec.name)} · ${esc(rec.d)} · ${rec.y}${EV[e].mod==='Natação'&&rec.pool?' · piscina '+rec.pool+' m':''}`:'sem recorde oficial nesta faixa'}${best&&(!rec||better(e,best.v,rec.v))?` · melhor marca na base: ${fmt(e,best.v)} (${esc(NM[best.n])}, ${best.y})`:''}</span></div>`+
+    `<div class="podium">${step('s2',2,'Prata típica',silverRef)}${step('s1',1,'Ouro típico',goldRef2)}${step('s3',3,'Bronze típico',bronzeRef)}</div>`;
+  $('#c-refnote').textContent=rs.length?`${rs.length} resultados em ${years.length} edição(ões) nesta prova e faixa${EV[e].mod==='Natação'&&pool==='all'?'. Piscinas de 25 m e 50 m estão misturadas; filtre pela piscina para comparar tempos equivalentes':''}.`:'Sem resultados para esta combinação.';
+  // veredito
+  let vc='var(--line)', html='';
+  const allV=R.filter(r=>r.e===e&&r.v!=null).map(r=>r.v);
+  const implaus=mine!=null&&allV.length>5&&(isField(e)?(mine>Math.max(...allV)*1.6||mine<Math.min(...allV)*0.3):(mine<Math.min(...allV)*0.6||mine>Math.max(...allV)*2.5));
+  if(implaus){html=`<p><strong>Confira a marca</strong></p><p class="note">${fmt(e,mine)} está muito fora das marcas já registradas em ${esc(EV[e].label)} (de ${fmt(e,isField(e)?Math.min(...allV):Math.min(...allV))} a ${fmt(e,Math.max(...allV))}). ${isField(e)?'Use metros, como 4,85.':'Use segundos (13.42) ou minutos:segundos (2:45.30).'}</p>`;vc='var(--warn)';const v=$('#c-verdict');v.style.setProperty('--vc',vc);v.innerHTML=html;drawChart(e,pods,null,rec);mine=null}
+  else if(mine==null){html=`<p><strong>Digite sua marca</strong></p><p class="note">Aceita ${isField(e)?'metros com vírgula ou ponto (4,85)':'segundos (13.42) ou minutos:segundos (2:45.30)'}.</p>`}
+  else{
+    const parts=[];
+    const lastY=years[years.length-1];
+    const sim=lastY?simulatePlace(rs,lastY,e,mine):null;
+    if(rec&&better(e,mine,rec.v)||rec&&mine===rec.v){vc='var(--good)';parts.push(`<strong>Marca de recorde.</strong> Supera o recorde oficial (${fmt(e,rec.v)}).`)}
+    else if(goldRef2!=null&&!better(e,goldRef2,mine)){vc='var(--gold)';parts.push(`<strong>Nível de ouro.</strong> Melhor que a mediana dos campeões (${fmt(e,goldRef2)}).`)}
+    else if(bronzeRef!=null&&!better(e,bronzeRef,mine)){vc='var(--bronze)';parts.push(`<strong>Nível de pódio.</strong> Faltam ${fmtGap(e,mine-goldRef2)} para o ouro típico.`)}
+    else if(bronzeRef!=null){vc='var(--warn)';parts.push(`<strong>Faltam ${fmtGap(e,mine-bronzeRef)} para o bronze típico</strong> (${fmt(e,bronzeRef)}).`)}
+    if(rec&&!better(e,mine,rec.v)&&mine!==rec.v) parts.push(`Recorde a ${fmtGap(e,mine-rec.v)}.`);
+    if(sim) parts.push(`Em ${lastY} essa marca daria o ${sim.place}º lugar entre ${sim.n} atletas com marca.`);
+    html='<p>'+parts.join(' ')+'</p>';
+  }
+  const v=$('#c-verdict');v.style.setProperty('--vc',vc);v.innerHTML=html;
+  drawChart(e,pods,mine,rec);
+  // tabela
+  const head=`<tr><th>Edição</th><th class="num">Ouro</th><th class="num">Prata</th><th class="num">Bronze</th><th class="num">Atletas</th><th>Sua colocação</th></tr>`;
+  const body=pods.slice().reverse().map(x=>{
+    const n=rs.filter(r=>r.y==x.y&&r.v!=null).length;
+    const cell=p=>p?`<span title="${esc(NM[p.n])} · ${esc(DL[p.d])}">${fmt(e,p.v)}</span>`:'–';
+    let mine_s='–';
+    if(mine!=null){
+      if(ED[x.y].cov==='completa'){const s=simulatePlace(rs,x.y,e,mine);mine_s=s?placeBadge(s.place)+` de ${s.n}`:'–'}
+      else{const b=x.p.filter(Boolean);const k=b.filter(p=>better(e,p.v,mine)).length;mine_s=k<3&&b.length?placeBadge(k+1)+' (pódio)':'fora do pódio'}
+    }
+    const pl=EV[e].mod==='Natação'?(poolOf(x.y)?` <span class="pill p-mut">${poolOf(x.y)} m</span>`:''):'';
+    return `<tr><td>${x.y}${pl}${ED[x.y].cov==='pódio'?' <span class="pill p-mut">pódio</span>':''}</td><td class="num">${cell(x.p[0])}</td><td class="num">${cell(x.p[1])}</td><td class="num">${cell(x.p[2])}</td><td class="num">${ED[x.y].cov==='completa'?n:'–'}</td><td>${mine_s}</td></tr>`}).join('');
+  $('#c-table').innerHTML=head+(body||`<tr><td colspan="6" class="empty">Sem resultados.</td></tr>`);
+  // ranking histórico: melhor marca de cada atleta nesta prova/faixa
+  const bestBy=new Map();
+  rs.forEach(r=>{if(r.v==null)return;const b=bestBy.get(r.n);if(!b||better(e,r.v,b.v))bestBy.set(r.n,r)});
+  const all=[...bestBy.values()].sort((a,b)=>sortKey(e)(a)-sortKey(e)(b));
+  const myPos=mine!=null?all.filter(r=>better(e,r.v,mine)).length+1:null;
+  let rows=all.slice(0,10).map((r,i)=>`<tr><td>${placeBadge(i+1)}</td><td><button type="button" class="hit linkbtn" data-goto="${r.n}">${esc(NM[r.n])}</button><small class="p-mut sm-only"> ${esc(DL[r.d])}</small></td><td class="hide-sm">${esc(DL[r.d])}</td><td>${r.y}</td><td class="num">${fmt(e,r.v)}</td></tr>`);
+  if(myPos!=null&&myPos<=10){rows.splice(myPos-1,0,`<tr class="you"><td>${placeBadge(myPos)}</td><td><strong>Você</strong></td><td class="hide-sm">–</td><td>–</td><td class="num">${fmt(e,mine)}</td></tr>`);rows=rows.slice(0,11)}
+  $('#c-rank').innerHTML=`<tr><th>#</th><th>Atleta</th><th class="hide-sm">Delegação</th><th>Ano</th><th class="num">Marca</th></tr>`+(rows.join('')||`<tr><td colspan="5" class="empty">Sem marcas nesta combinação.</td></tr>`);
+  $('#c-rank-note').textContent=all.length?`Melhor marca de cada atleta nesta prova e faixa, entre ${all.length} atletas com marca registrada${EV[e].mod==='Natação'&&pool==='all'?' (piscinas misturadas)':''}.`+(myPos!=null?` Sua marca ficaria em ${myPos}º.`:''):'';
+  store.set('onjt.compare',JSON.stringify({mod:segVal(C.mod),ev:C.ev.value,g,a:C.age.value,pool:C.pool.value,mark:C.mark.value}));
+}
+function placeBadge(p){return p<=3?`<span class="medal m${p}">${p}</span>`:`${p}º`}
+function simulatePlace(rs,y,e,mine){const vs=rs.filter(r=>r.y==y&&r.v!=null);if(!vs.length)return null;const k=vs.filter(r=>better(e,r.v,mine)).length;return{place:k+1,n:vs.length+1}}
+
+function drawChart(e,pods,mine,rec,o){
+  o=Object.assign({chart:'#c-chart',legend:'#c-legend',who:p=>NM[p.n],you:'você'},o||{});
+  const W=560,H=260,L=58,Rr=14,T=14,B=30;
+  const vals=[];pods.forEach(x=>x.p.forEach(p=>p&&vals.push(p.v)));if(mine!=null)vals.push(mine);if(rec)vals.push(rec.v);
+  if(!pods.length||!vals.length){$(o.chart).innerHTML='<p class="empty">Sem dados para o gráfico.</p>';$(o.legend).innerHTML='';return}
+  let lo=Math.min(...vals),hi=Math.max(...vals);if(lo===hi){lo-=1;hi+=1}
+  const pad=(hi-lo)*.08;lo-=pad;hi+=pad;
+  const fld=isField(e);
+  const y=v=>fld? T+(hi-v)/(hi-lo)*(H-T-B) : T+(v-lo)/(hi-lo)*(H-T-B); // melhor sempre em cima
+  const n=pods.length, x=i=>n===1?(L+W-Rr)/2:L+i*(W-L-Rr)/(n-1);
+  const ticks=5,tk=[];for(let i=0;i<=ticks;i++)tk.push(lo+(hi-lo)*i/ticks);
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Marcas de pódio por edição">`;
+  tk.forEach(t=>{s+=`<line x1="${L}" x2="${W-Rr}" y1="${y(t)}" y2="${y(t)}" stroke="var(--line)" stroke-width="1"/><text x="${L-6}" y="${y(t)+4}" text-anchor="end" font-size="11" fill="var(--muted)" font-family="var(--f-data)">${fmt(e,t)}</text>`});
+  pods.forEach((p,i)=>{if(n<=12||i%2===0||i===n-1)s+=`<text x="${x(i)}" y="${H-10}" text-anchor="middle" font-size="11" fill="var(--muted)" font-family="var(--f-data)">${String(p.y).slice(2)==='0'?p.y:"'"+String(p.y).slice(2)}</text>`});
+  if(rec)s+=`<line x1="${L}" x2="${W-Rr}" y1="${y(rec.v)}" y2="${y(rec.v)}" stroke="var(--good)" stroke-width="1.5" stroke-dasharray="2 3"/>`;
+  [['var(--bronze)',2],['var(--silver)',1],['var(--gold)',0]].forEach(([c,k])=>{
+    const pts=pods.map((p,i)=>p.p[k]?[x(i),y(p.p[k].v)]:null);
+    let d='';pts.forEach(pt=>{if(pt)d+=(d?'L':'M')+pt[0].toFixed(1)+' '+pt[1].toFixed(1)});
+    if(d)s+=`<path d="${d}" fill="none" stroke="${c}" stroke-width="1.6" opacity=".55"/>`;
+    pts.forEach((pt,i)=>{if(pt)s+=`<circle cx="${pt[0].toFixed(1)}" cy="${pt[1].toFixed(1)}" r="4" fill="${c}" stroke="var(--surface)" stroke-width="1.5"><title>${pods[i].y} · ${k+1}º · ${fmt(e,pods[i].p[k].v)} · ${esc(o.who(pods[i].p[k]))}</title></circle>`});
+  });
+  if(mine!=null)s+=`<line x1="${L}" x2="${W-Rr}" y1="${y(mine)}" y2="${y(mine)}" stroke="var(--ink)" stroke-width="2"/><text x="${W-Rr}" y="${y(mine)-5}" text-anchor="end" font-size="11" font-weight="600" fill="var(--ink)" font-family="var(--f-body)">${o.you} · ${fmt(e,mine)}</text>`;
+  s+='</svg>';
+  $(o.chart).innerHTML=s;
+  $(o.legend).innerHTML=`<span><i style="--c:var(--gold)"></i>Ouro</span><span><i style="--c:var(--silver)"></i>Prata</span><span><i style="--c:var(--bronze)"></i>Bronze</span>${rec?'<span><i style="--c:var(--good)"></i>Recorde</span>':''}${mine!=null?`<span><i style="--c:var(--ink)"></i>${o.you==='você'?'Sua marca':'Sua equipe'}</span>`:''}<span>Melhor marca no alto</span>`;
+}
+bindSeg(C.mod,()=>{C.mark.value='';refreshCompareSelectors()});
+bindSeg(C.g,()=>{refreshCompareSelectors()});
+C.ev.addEventListener('change',()=>{C.mark.value='';const keep=C.age.value;refreshCompareSelectors();if([...C.age.options].some(o=>o.value===keep)){C.age.value=keep;renderCompare()}});
+$('#c-rank').addEventListener('click',ev=>{const b=ev.target.closest('[data-goto]');if(!b)return;go('atletas');$('#a-q').value=NM[+b.dataset.goto];$('#a-q').dispatchEvent(new Event('input'));showAthlete(+b.dataset.goto)});
+C.age.addEventListener('change',renderCompare);C.pool.addEventListener('change',renderCompare);C.mark.addEventListener('input',renderCompare);
+
+
+// ================= REVEZAMENTOS =================
+const REV=D.rel_events, RCAT=D.rel_cats;
+const RL=D.relays.map(r=>({y:r[0],e:r[1],g:r[2],c:r[3],pl:r[4],d:r[5],v:r[6],st:r[7],mem:r[8]}));
+const RREC=D.rel_records.map(r=>({e:r[0],g:r[1],c:r[2],pool:r[3],d:r[4],v:r[5],y:r[6],corr:r[7]}));
+const TEV=EV.findIndex(x=>!x.field);          // índice de prova de tempo, usado só para formatar
+const ft=v=>fmt(TEV,v), fg=d=>fmtGap(TEV,d), bt=(a,b)=>a<b;
+const V={mod:$('#v-mod'),ev:$('#v-ev'),g:$('#v-g'),cat:$('#v-cat'),pool:$('#v-pool'),mark:$('#v-mark')};
+const teamName=r=>DL[r.d]+(r.mem&&r.mem.length?' ('+r.mem.map(i=>NM[i].split(' ')[0]).join(', ')+')':'');
+function relRows(){
+  const e=+V.ev.value,g=segVal(V.g),c=+V.cat.value,pool=REV[e]&&REV[e].mod==='Natação'?V.pool.value:'all';
+  return RL.filter(r=>r.e===e&&r.g===g&&r.c===c&&(pool==='all'||String(poolOf(r.y))===String(pool)));
+}
+function refreshRev(){
+  const mod=segVal(V.mod);
+  fillSelect(V.ev,REV.map((x,i)=>[i,x.label,x]).filter(x=>x[2].mod===mod&&RL.some(r=>r.e===x[0])).map(x=>[x[0],x[1]]));
+  const e=+V.ev.value;
+  // gêneros com dados
+  [...V.g.querySelectorAll('button')].forEach(b=>b.disabled=!RL.some(r=>r.e===e&&r.g===b.dataset.v));
+  if(!RL.some(r=>r.e===e&&r.g===segVal(V.g))){const b=[...V.g.querySelectorAll('button')].find(b=>!b.disabled);if(b)setSeg(V.g,b.dataset.v)}
+  const g=segVal(V.g);
+  fillSelect(V.cat,RCAT.map((c,i)=>[i,c==='livre'?'Livre':c==='misto (categorias)'?'Misto por categorias (2026)':'Soma de idades: '+c]).filter(x=>RL.some(r=>r.e===e&&r.g===g&&r.c===x[0])));
+  $('#v-pool-wrap').hidden=mod!=='Natação';
+  renderRev();
+}
+function renderRev(){
+  const e=+V.ev.value; if(isNaN(e)){return}
+  const g=segVal(V.g),c=+V.cat.value,pool=REV[e].mod==='Natação'?V.pool.value:'all';
+  const rs=relRows(); let mine=parseMark(TEV,V.mark.value);
+  const years=[...new Set(rs.map(r=>r.y))].sort();
+  const pods=years.map(y=>({y,p:podium(rs,y,TEV)}));
+  const med=k=>{const rec=pods.filter(x=>x.y>=2017).map(x=>x.p[k]&&x.p[k].v).filter(v=>v!=null);const all=pods.map(x=>x.p[k]&&x.p[k].v).filter(v=>v!=null);return median(rec.length>=2?rec:all)};
+  const gR=med(0),sR=med(1),bR=med(2)??med(1)??gR;
+  const recs=RREC.filter(r=>r.e===e&&r.g===g&&r.c===c&&(REV[e].mod!=='Natação'||pool==='all'||String(r.pool)===String(pool)));
+  let rec=recs.length?recs.reduce((b,r)=>r.v<b.v?r:b):null;
+  const best=rs.filter(r=>r.v!=null).reduce((b,r)=>!b||r.v<b.v?r:b,null);
+  const step=(cls,n,lab,v)=>`<div class="step ${cls}"><div class="disc">${n}</div><div class="mark">${v!=null?ft(v):'–'}</div><div class="lab">${lab}</div><div class="block">${n}</div></div>`;
+  $('#v-ref').innerHTML=`<div class="recbar"><span class="k">Recorde</span><span class="v">${rec?ft(rec.v):'–'}</span><span class="n">${rec?`${esc(rec.d)} · ${rec.y}${REV[e].mod==='Natação'&&rec.pool?' · piscina '+rec.pool+' m':''}${rec.corr?' · valor da súmula':''}`:'sem recorde oficial nesta categoria'}${best&&(!rec||best.v<rec.v)?` · melhor tempo na base: ${ft(best.v)} (${esc(DL[best.d])}, ${best.y})`:''}</span></div>`+
+    `<div class="podium">${step('s2',2,'Prata típica',sR)}${step('s1',1,'Ouro típico',gR)}${step('s3',3,'Bronze típico',bR)}</div>`;
+  $('#v-refnote').textContent=rs.length?`${rs.length} equipes em ${years.length} edição(ões)${REV[e].mod==='Natação'&&pool==='all'?'. Piscinas de 25 m e 50 m misturadas; filtre pela piscina para comparar':''}.`:'Sem resultados para esta combinação.';
+  // veredito
+  let vc='var(--line)',html;
+  const allV=RL.filter(r=>r.e===e&&r.v!=null).map(r=>r.v);
+  if(mine!=null&&allV.length&&(mine<Math.min(...allV)*0.6||mine>Math.max(...allV)*2.5)){html=`<p><strong>Confira o tempo</strong></p><p class="note">${ft(mine)} está muito fora dos tempos já registrados nesta prova (${ft(Math.min(...allV))} a ${ft(Math.max(...allV))}).</p>`;vc='var(--warn)';mine=null}
+  else if(mine==null){html=`<p><strong>Digite o tempo da equipe</strong></p><p class="note">Aceita segundos (52.80) ou minutos:segundos (4:10.5).</p>`}
+  else{
+    const parts=[];const lastY=years[years.length-1];
+    const sim=y=>{const vs=rs.filter(r=>r.y===y&&r.v!=null);return vs.length?{place:vs.filter(r=>r.v<mine).length+1,n:vs.length+1}:null};
+    if(rec&&mine<=rec.v){vc='var(--good)';parts.push(`<strong>Tempo de recorde.</strong> Supera o recorde (${ft(rec.v)}).`)}
+    else if(gR!=null&&mine<=gR){vc='var(--gold)';parts.push(`<strong>Nível de ouro.</strong> Melhor que o ouro típico (${ft(gR)}).`)}
+    else if(bR!=null&&mine<=bR){vc='var(--bronze)';parts.push(`<strong>Nível de pódio.</strong> Faltam ${fg(mine-gR)} para o ouro típico.`)}
+    else if(bR!=null){vc='var(--warn)';parts.push(`<strong>Faltam ${fg(mine-bR)} para o bronze típico</strong> (${ft(bR)}).`)}
+    if(rec&&mine>rec.v)parts.push(`Recorde a ${fg(mine-rec.v)}.`);
+    const s=lastY&&ED[lastY].cov==='completa'?sim(lastY):null; if(s)parts.push(`Em ${lastY} esse tempo daria o ${s.place}º lugar entre ${s.n} equipes.`);
+    html='<p>'+parts.join(' ')+'</p>';
+  }
+  const vv=$('#v-verdict');vv.style.setProperty('--vc',vc);vv.innerHTML=html;
+  drawChart(TEV,pods,mine,rec,{chart:'#v-chart',legend:'#v-legend',who:p=>teamName(p),you:'sua equipe'});
+  // edição a edição
+  const cell=p=>p&&p.v!=null?`<span title="${esc(teamName(p))}">${ft(p.v)}</span><small class="p-mut sm-inline"> ${esc(DL[p.d])}</small>`:'–';
+  $('#v-table').innerHTML=`<tr><th>Edição</th><th class="num">Ouro</th><th class="num">Prata</th><th class="num">Bronze</th><th class="num">Equipes</th><th>Sua equipe</th></tr>`+
+    (pods.slice().reverse().map(x=>{
+      const n=rs.filter(r=>r.y===x.y&&r.v!=null).length;let ms='–';
+      if(mine!=null){if(ED[x.y].cov==='completa'){const k=rs.filter(r=>r.y===x.y&&r.v!=null&&r.v<mine).length+1;ms=placeBadge(k)+` de ${n+1}`}else{const b=x.p.filter(p=>p&&p.v!=null);const k=b.filter(p=>p.v<mine).length;ms=k<3&&b.length?placeBadge(k+1)+' (pódio)':'fora do pódio'}}
+      const pl=REV[e].mod==='Natação'&&poolOf(x.y)?` <span class="pill p-mut">${poolOf(x.y)} m</span>`:'';
+      return `<tr><td>${x.y}${pl}${ED[x.y].cov==='pódio'?' <span class="pill p-mut">pódio</span>':''}</td><td class="num">${cell(x.p[0])}</td><td class="num">${cell(x.p[1])}</td><td class="num">${cell(x.p[2])}</td><td class="num">${ED[x.y].cov==='completa'?n:'–'}</td><td>${ms}</td></tr>`}).join('')||'<tr><td colspan="6" class="empty">Sem resultados.</td></tr>');
+  // top 10
+  const all=rs.filter(r=>r.v!=null).sort((a,b)=>a.v-b.v);
+  const myPos=mine!=null?all.filter(r=>r.v<mine).length+1:null;
+  let rows=all.slice(0,10).map((r,i)=>`<tr><td>${placeBadge(i+1)}</td><td><strong>${esc(DL[r.d])}</strong><small class="p-mut" style="display:block">${r.mem.map(i=>`<button type="button" class="hit linkbtn mem" data-goto="${i}">${esc(NM[i])}</button>`).join(' · ')||'integrantes não informados'}</small></td><td>${r.y}</td><td class="num">${ft(r.v)}</td></tr>`);
+  if(myPos!=null&&myPos<=10){rows.splice(myPos-1,0,`<tr class="you"><td>${placeBadge(myPos)}</td><td><strong>Sua equipe</strong></td><td>–</td><td class="num">${ft(mine)}</td></tr>`);rows=rows.slice(0,11)}
+  $('#v-rank').innerHTML=`<tr><th>#</th><th>Equipe</th><th>Ano</th><th class="num">Tempo</th></tr>`+(rows.join('')||'<tr><td colspan="4" class="empty">Sem tempos nesta combinação.</td></tr>');
+  $('#v-rank-note').textContent=all.length?`Melhores tempos já registrados nesta prova e categoria, entre ${all.length} equipes.`+(myPos!=null?` Sua equipe ficaria em ${myPos}º.`:''):'';
+}
+bindSeg(V.mod,()=>{V.mark.value='';refreshRev()});bindSeg(V.g,refreshRev);
+V.ev.addEventListener('change',()=>{V.mark.value='';refreshRev()});V.cat.addEventListener('change',renderRev);V.pool.addEventListener('change',renderRev);V.mark.addEventListener('input',renderRev);
+$('#v-rank').addEventListener('click',ev=>{const b=ev.target.closest('[data-goto]');if(!b)return;go('atletas');$('#a-q').value=NM[+b.dataset.goto];$('#a-q').dispatchEvent(new Event('input'));showAthlete(+b.dataset.goto)});
+
+// ================= ATLETAS =================
+const normName=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+const NMN=NM.map(normName);
+const byName=new Map();R.forEach(r=>{(byName.get(r.n)||byName.set(r.n,[]).get(r.n)).push(r)});
+$('#a-q').addEventListener('input',()=>{
+  const q=normName($('#a-q').value.trim());const box=$('#a-hits');
+  if(q.length<3){box.innerHTML='';return}
+  const toks=q.split(/\s+/);
+  const hits=[];NMN.forEach((n,i)=>{if(toks.every(t=>n.includes(t)))hits.push(i)});
+  box.innerHTML=hits.slice(0,40).map(i=>{const rs=byName.get(i)||[];const ys=[...new Set(rs.map(r=>r.y))].sort();const dl=[...new Set(rs.map(r=>DL[r.d]))].join(', ');
+    return `<button type="button" class="hit" data-n="${i}"><span>${esc(NM[i])}<br><small>${esc(dl)}</small></span><small>${ys[0]}${ys.length>1?'–'+ys[ys.length-1]:''} · ${rs.length} prova(s)</small></button>`}).join('')||'<p class="empty">Nenhum atleta encontrado.</p>';
+});
+$('#a-hits').addEventListener('click',ev=>{const b=ev.target.closest('.hit');if(b)showAthlete(+b.dataset.n)});
+$('#a-out').addEventListener('click',ev=>{const b=ev.target.closest('[data-goto]');if(!b)return;const i=+b.dataset.goto;$('#a-q').value=NM[i];$('#a-q').dispatchEvent(new Event('input'));showAthlete(i);window.scrollTo({top:0,behavior:'smooth'})});
+function spark(e,pts){
+  const W=280,H=120,L=8,Rr=8,T=22,B=22;
+  const vs=pts.map(p=>p.v);let lo=Math.min(...vs),hi=Math.max(...vs);if(lo===hi){lo-=1;hi+=1}
+  const y=v=>isField(e)?T+(hi-v)/(hi-lo)*(H-T-B):T+(v-lo)/(hi-lo)*(H-T-B);
+  const x=i=>L+(pts.length===1?0:i*(W-L-Rr)/(pts.length-1));
+  const col=EV[e].mod==='Natação'?'var(--pool)':'var(--track)';
+  const d=pts.map((p,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(p.v).toFixed(1)).join('');
+  const area=d+`L${x(pts.length-1).toFixed(1)} ${H-B}L${x(0).toFixed(1)} ${H-B}Z`;
+  const bestI=pts.reduce((bi,p,i)=>better(e,p.v,pts[bi].v)?i:bi,0);
+  const first=pts[0],last=pts[pts.length-1];
+  const delta=isField(e)?last.v-first.v:first.v-last.v;
+  const trend=Math.abs(delta)<0.005?'estável':(delta>0?'▲ '+fmtGap(e,delta):'▼ '+fmtGap(e,delta));
+  return `<figure class="sp"><figcaption><span>${esc(EV[e].label)}</span><span class="${delta>0?'gap pos':delta<0?'gap neg':'gap'}">${trend}</span></figcaption>
+  <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Evolução em ${esc(EV[e].label)}">
+  <line x1="${L}" x2="${W-Rr}" y1="${H-B}" y2="${H-B}" stroke="var(--line)"/>
+  <path d="${area}" fill="${col}" opacity=".12"/><path d="${d}" fill="none" stroke="${col}" stroke-width="2"/>
+  ${pts.map((p,i)=>`<circle cx="${x(i).toFixed(1)}" cy="${y(p.v).toFixed(1)}" r="${i===bestI?5:3.5}" fill="${i===bestI?'var(--gold)':col}" stroke="var(--surface)" stroke-width="1.5"><title>${p.y} · ${fmt(e,p.v)} · ${esc(AG[p.a])}</title></circle>`).join('')}
+  <text x="${L}" y="${H-6}" font-size="11" fill="var(--muted)" font-family="var(--f-data)">${first.y}</text>
+  <text x="${W-Rr}" y="${H-6}" font-size="11" fill="var(--muted)" font-family="var(--f-data)" text-anchor="end">${last.y}</text>
+  <text x="${L}" y="14" font-size="11" fill="var(--muted)" font-family="var(--f-data)">${fmt(e,first.v)}</text>
+  <text x="${W-Rr}" y="14" font-size="11" fill="var(--ink)" font-weight="600" font-family="var(--f-data)" text-anchor="end">${fmt(e,last.v)}</text>
+  </svg></figure>`;
+}
+function showAthlete(n){
+  const rs=(byName.get(n)||[]).slice().sort((a,b)=>b.y-a.y||a.e-b.e);
+  const relMine=RL.filter(r=>r.mem.includes(n)).sort((a,b)=>b.y-a.y||a.e-b.e);
+  const medals=[1,2,3].map(p=>rs.filter(r=>r.pl===p).length);
+  const relMedals=[1,2,3].map(p=>relMine.filter(r=>r.pl===p).length);
+  const dl=[...new Set(rs.map(r=>DL[r.d]))].join(', ');
+  // melhores por prova (na faixa mais recente)
+  const evs=[...new Set(rs.map(r=>r.e))];
+  const diag=evs.map(e=>{
+    const mine=rs.filter(r=>r.e===e&&r.v!=null);if(!mine.length)return null;
+    const pb=mine.reduce((b,r)=>better(e,r.v,b.v)?r:b);
+    const last=mine.reduce((b,r)=>r.y>b.y?r:b);
+    const pool=EV[e].mod==='Natação'&&poolOf(last.y)?String(poolOf(last.y)):'all';
+    const others=rowsFor(e,last.g,last.a,pool);
+    const ys=[...new Set(others.map(r=>r.y))];
+    const br=ys.filter(y=>y>=2017).map(y=>{const p=podium(others,y,e);return(p[2]||p[1]||p[0])}).filter(Boolean).map(x=>x.v);
+    const bref=median(br.length>=2?br:ys.map(y=>{const p=podium(others,y,e);return(p[2]||p[1]||p[0])}).filter(Boolean).map(x=>x.v));
+    const rec=officialRecord(e,last.g,last.a,pool);
+    return {e,pb,last,bref,rec};
+  }).filter(Boolean);
+  const evo=evs.map(e=>{
+    const byY={};rs.filter(r=>r.e===e&&r.v!=null).forEach(r=>{if(!byY[r.y]||better(e,r.v,byY[r.y].v))byY[r.y]=r});
+    const pts=Object.values(byY).sort((a,b)=>a.y-b.y);return pts.length>=2?{e,pts}:null}).filter(Boolean);
+  const gapCell=(e,v,ref)=>{if(ref==null)return '–';const d=isField(e)?ref-v:v-ref;if(Math.abs(d)<0.005)return '<span class="gap pos">igual</span>';return d<=0?`<span class="gap pos">✓ ${fmtGap(e,d)} à frente</span>`:`<span class="gap neg">faltam ${fmtGap(e,d)}</span>`};
+  $('#a-out').innerHTML=`
+  <div class="panel">
+    <div><h2>${esc(NM[n])}</h2><p class="note">${esc(dl)}</p></div>
+    <div class="kpis"><div class="kpi"><b>${new Set(rs.map(r=>r.y)).size}</b><span>edições</span></div><div class="kpi"><b>${rs.length}</b><span>provas</span></div>
+    <div class="kpi"><b style="color:var(--gold)">${medals[0]}</b><span>ouros</span></div><div class="kpi"><b style="color:var(--silver)">${medals[1]}</b><span>pratas</span></div><div class="kpi"><b style="color:var(--bronze)">${medals[2]}</b><span>bronzes</span></div>${relMine.length?`<div class="kpi"><b>${relMedals.join('·')}</b><span>revezamentos (O·P·B)</span></div>`:''}</div>
+  </div>
+  ${evo.length?`<div class="panel"><h3>Evolução</h3><p class="note">Melhor marca em cada edição. Melhor marca sempre no alto; a faixa etária pode ter mudado entre os anos.</p><div class="evo">${evo.map(x=>spark(x.e,x.pts)).join('')}</div></div>`:''}
+  <div class="panel"><h3>Onde melhorar</h3>
+    <p class="note">Última marca em cada prova comparada com o bronze típico e o recorde da faixa etária daquela participação.</p>
+    <div class="tablebox"><table><tr><th>Prova</th><th>Faixa (última)</th><th class="num">Última marca</th><th class="num">Melhor pessoal</th><th>vs. bronze típico</th><th>vs. recorde</th></tr>
+    ${diag.map(x=>`<tr><td><span class="${EV[x.e].mod==='Natação'?'mod-n':'mod-a'}">●</span> ${esc(EV[x.e].label)}</td><td>${esc(AG[x.last.a])} · ${x.last.y}</td><td class="num">${fmt(x.e,x.last.v)}</td><td class="num">${fmt(x.e,x.pb.v)} <small>(${x.pb.y})</small></td><td>${gapCell(x.e,x.last.v,x.bref)}</td><td>${gapCell(x.e,x.last.v,x.rec&&x.rec.v)}</td></tr>`).join('')||'<tr><td colspan="6" class="empty">Sem marcas válidas.</td></tr>'}
+    </table></div></div>
+  ${relMine.length?`<div class="panel"><h3>Revezamentos</h3><div class="tablebox"><table><tr><th>Ano</th><th>Prova</th><th>Categoria</th><th>Colocação</th><th class="num">Tempo</th><th>Equipe</th></tr>
+    ${relMine.map(r=>`<tr><td>${r.y}</td><td>${esc(REV[r.e].label)} <small class="p-mut">${genderLab[r.g]||''}</small></td><td>${esc(RCAT[r.c])}</td><td>${r.pl?placeBadge(r.pl):(ST[r.st]?`<span class="pill p-mut" title="${ST[r.st]}">${stLab(r.st)}</span>`:'–')}</td><td class="num">${r.v!=null?ft(r.v):'–'}</td><td class="wrapc">${esc(DL[r.d])}: ${r.mem.filter(i=>i!==n).map(i=>`<button type="button" class="hit linkbtn mem" data-goto="${i}">${esc(NM[i])}</button>`).join(', ')}</td></tr>`).join('')}
+    </table></div></div>`:''}
+  <div class="panel"><h3>Todas as participações</h3>
+    <div class="tablebox"><table><tr><th>Ano</th><th>Prova</th><th>Faixa</th><th>Colocação</th><th class="num">Marca</th><th>Delegação</th></tr>
+    ${rs.map(r=>`<tr><td>${r.y}</td><td>${esc(EV[r.e].label)} <small class="p-mut">${genderLab[r.g]||''}</small></td><td>${esc(AG[r.a])}</td><td>${r.pl?placeBadge(r.pl):(ST[r.st]?`<span class="pill p-mut" title="${ST[r.st]}">${stLab(r.st)}</span>`:'–')}${r.rec?' <span class="pill p-rec">recorde</span>':''}</td><td class="num">${fmt(r.e,r.v)}</td><td>${esc(DL[r.d])}</td></tr>`).join('')}
+    </table></div></div>`;
+  store.set('onjt.athlete',String(n));
+}
+
+// ================= DELEGAÇÕES =================
+const dSel=$('#d-sel'), dMod=$('#d-mod');
+fillSelect(dSel,DL.map((d,i)=>[i,d]).filter(x=>x[1]!=='NÃO INFORMADA').sort((a,b)=>a[1].localeCompare(b[1],'pt',{numeric:true})));
+const dFrom=$('#d-from'), dTo=$('#d-to');
+fillSelect(dFrom,YEARS.map(y=>[y,y]));fillSelect(dTo,YEARS.map(y=>[y,y]));dFrom.value=String(YEARS[0]);dTo.value=String(YEARS[YEARS.length-1]);
+const inPeriod=r=>r.y>=+dFrom.value&&r.y<=+dTo.value;
+function renderBoard(){
+  const mod=dMod.value, agg={};
+  R.forEach(r=>{if(!inPeriod(r)||(mod&&EV[r.e].mod!==mod))return;const o=agg[r.d]||(agg[r.d]={m:[0,0,0],ys:new Set()});o.ys.add(r.y);if(r.pl>=1&&r.pl<=3)o.m[r.pl-1]++});
+  if($('#d-kind').value==='all')RL.forEach(r=>{if(!inPeriod(r)||(mod&&REV[r.e].mod!==mod))return;const o=agg[r.d]||(agg[r.d]={m:[0,0,0],ys:new Set()});o.ys.add(r.y);if(r.pl>=1&&r.pl<=3)o.m[r.pl-1]++});
+  $('#d-board-note').textContent=`Atletismo e natação, ${$('#d-kind').value==='all'?'provas individuais e revezamentos (cada revezamento conta uma medalha)':'só provas individuais'}, no período. Toque em uma delegação para ver o detalhe.`;
+  const list=Object.entries(agg).filter(([d,o])=>o.m[0]+o.m[1]+o.m[2]>0&&DL[d]!=='NÃO INFORMADA').sort((a,b)=>b[1].m[0]-a[1].m[0]||b[1].m[1]-a[1].m[1]||b[1].m[2]-a[1].m[2]);
+  const maxT=Math.max(1,...list.map(([d,o])=>o.m[0]+o.m[1]+o.m[2]));
+  $('#d-board').innerHTML=`<tr><th>#</th><th>Delegação</th><th class="num">Ouro</th><th class="num">Prata</th><th class="num">Bronze</th><th class="hide-sm">Total</th><th class="num hide-sm">Edições</th></tr>`+
+    list.map(([d,o],i)=>{const tt=o.m[0]+o.m[1]+o.m[2];return `<tr${+d===+dSel.value?' class="sel"':''}><td>${i+1}º</td><td><button type="button" class="hit linkbtn" data-del="${d}">${esc(DL[d])}</button></td><td class="num">${o.m[0]}</td><td class="num">${o.m[1]}</td><td class="num">${o.m[2]}</td><td class="hide-sm"><span class="bar" style="width:${Math.round(tt/maxT*110)}px"></span> <span class="gap">${tt}</span></td><td class="num hide-sm">${o.ys.size}</td></tr>`}).join('');
+}
+$('#d-board').addEventListener('click',ev=>{const b=ev.target.closest('[data-del]');if(!b)return;dSel.value=b.dataset.del;renderDeleg();renderBoard();$('#d-sel').scrollIntoView({behavior:'smooth',block:'start'})});
+$('#d-kind').addEventListener('change',()=>renderBoard());
+[dFrom,dTo].forEach(s=>s.addEventListener('change',()=>{if(+dFrom.value>+dTo.value){const x=dFrom.value;dFrom.value=dTo.value;dTo.value=x}renderBoard();renderDeleg()}));
+function renderDeleg(){
+  const di=+dSel.value, mod=dMod.value;
+  const rs=R.filter(r=>r.d===di&&inPeriod(r)&&(!mod||EV[r.e].mod===mod));
+  const byY={};rs.forEach(r=>{const o=byY[r.y]||(byY[r.y]={a:0,m:[0,0,0]});o.a++;if(r.pl>=1&&r.pl<=3)o.m[r.pl-1]++});
+  const ys=Object.keys(byY).map(Number).sort((a,b)=>b-a);
+  const tot=[0,1,2].map(k=>ys.reduce((s,y)=>s+byY[y].m[k],0));
+  const ath={};rs.forEach(r=>{const o=ath[r.n]||(ath[r.n]={g:0,s:0,b:0,n:0});o.n++;if(r.pl===1)o.g++;if(r.pl===2)o.s++;if(r.pl===3)o.b++});
+  const top=Object.entries(ath).sort((a,b)=>b[1].g-a[1].g||b[1].s-a[1].s||b[1].b-a[1].b).slice(0,15);
+  const maxM=Math.max(1,...ys.map(y=>byY[y].m.reduce((a,b)=>a+b,0)));
+  $('#d-out').innerHTML=`
+  <div class="panel"><div class="kpis"><div class="kpi"><b style="color:var(--gold)">${tot[0]}</b><span>ouros</span></div><div class="kpi"><b style="color:var(--silver)">${tot[1]}</b><span>pratas</span></div><div class="kpi"><b style="color:var(--bronze)">${tot[2]}</b><span>bronzes</span></div><div class="kpi"><b>${Object.keys(ath).length}</b><span>atletas</span></div></div>
+  <p class="note">Contagem individual (sem revezamentos). Inclui apenas os anos em que a delegação aparece com este nome; até 2011 algumas competiam como associação.</p></div>
+  <div class="grid2">
+    <div class="panel"><h3>Medalhas por edição</h3><div class="tablebox"><table><tr><th>Ano</th><th class="num">Ouro</th><th class="num">Prata</th><th class="num">Bronze</th><th>Total</th></tr>
+    ${ys.map(y=>{const m=byY[y].m,t=m[0]+m[1]+m[2];return `<tr><td>${y}</td><td class="num">${m[0]}</td><td class="num">${m[1]}</td><td class="num">${m[2]}</td><td><span style="display:inline-block;height:8px;width:${Math.round(t/maxM*120)}px;background:var(--accent);border-radius:2px;vertical-align:middle"></span> <span class="gap">${t}</span></td></tr>`}).join('')||'<tr><td colspan="5" class="empty">Sem resultados.</td></tr>'}
+    </table></div></div>
+    <div class="panel"><h3>Atletas mais premiados</h3><div class="tablebox"><table><tr><th>Atleta</th><th class="num">O</th><th class="num">P</th><th class="num">B</th></tr>
+    ${top.map(([n,o])=>`<tr><td><button type="button" class="hit linkbtn" data-goto="${n}">${esc(NM[n])}</button></td><td class="num">${o.g}</td><td class="num">${o.s}</td><td class="num">${o.b}</td></tr>`).join('')}
+    </table></div></div>
+  </div>`;
+  store.set('onjt.deleg',dSel.value);
+}
+$('#d-out').addEventListener('click',ev=>{const b=ev.target.closest('[data-goto]');if(!b)return;go('atletas');$('#a-q').value=NM[+b.dataset.goto];$('#a-q').dispatchEvent(new Event('input'));showAthlete(+b.dataset.goto)});
+dSel.addEventListener('change',()=>{renderDeleg();renderBoard()});dMod.addEventListener('change',()=>{renderDeleg();renderBoard()});
+
+// ================= RECORDES =================
+const RC={mod:$('#r-mod'),g:$('#r-g'),pool:$('#r-pool'),ev:$('#r-ev')};
+function refreshRec(){
+  const mod=segVal(RC.mod);$('#r-pool-wrap').hidden=mod!=='Natação';
+  const opts=[['','Todas as provas'],...EV.map((e,i)=>[i,e.label,e]).filter(x=>x[2].mod===mod&&!x[2].key.endsWith('_pcd')&&REC.some(r=>r.e===x[0])).map(x=>[x[0],x[1]])];
+  fillSelect(RC.ev,opts);renderRec();
+}
+function renderRec(){
+  const mod=segVal(RC.mod),g=segVal(RC.g),pool=mod==='Natação'?+RC.pool.value:0,evf=RC.ev.value;
+  const list=REC.filter(r=>EV[r.e].mod===mod&&r.g===g&&(mod!=='Natação'||r.pool===pool)&&(evf===''||r.e==+evf)).sort((a,b)=>a.e-b.e||a.a-b.a);
+  let rows='',lastE=null,newCount=0;
+  list.forEach(r=>{
+    // marca de 2025 que supera o recorde (mesma faixa; natação só se a piscina de 2025 bater)
+    const cand=R.filter(x=>x.y>=2025&&x.e===r.e&&x.g===g&&x.a===r.a&&x.v!=null&&(mod!=='Natação'||poolOf(x.y)===pool||!poolOf(x.y)));
+    const nb=cand.filter(x=>better(r.e,x.v,r.v)).sort((a,b)=>sortKey(r.e)(a)-sortKey(r.e)(b))[0];
+    if(nb)newCount++;
+    const grp=r.e!==lastE?`<tr><th colspan="5" style="background:var(--bg);color:var(--ink);font-size:13px">${esc(EV[r.e].label)}</th></tr>`:'';lastE=r.e;
+    rows+=grp+`<tr><td>${esc(AG[r.a])}</td><td class="num">${fmt(r.e,r.v)}${r.corr?' <span class="pill p-mut" title="A lista oficial traz este tempo manual em centésimos; valor conforme a súmula da prova">súmula</span>':''}</td><td class="wrapc">${esc(r.name)}</td><td>${esc(r.d)} · ${r.y}</td><td>${nb?`<span class="pill p-rec">${nb.y}: ${fmt(r.e,nb.v)}</span> ${esc(NM[nb.n])}`:''}</td></tr>`;
+  });
+  $('#r-table').innerHTML=`<tr><th>Faixa</th><th class="num">Recorde</th><th>Atleta</th><th>Delegação · ano</th><th>Superado depois?</th></tr>`+(rows||'<tr><td colspan="5" class="empty">Sem recordes cadastrados.</td></tr>');
+  $('#r-note').textContent=(mod==='Natação'?'2025 não informa o tamanho da piscina; marcas de natação de 2025 aparecem como candidatas, a confirmar pela organização. ':'')+(newCount?`${newCount} recorde(s) desta seleção foram superados por marcas de 2025 ou 2026.`:'')+' Marcas com o selo "súmula": a lista oficial transcreve tempos manuais em décimos como centésimos (12.02 em vez de 12.2); o painel usa o valor da súmula da prova.';
+}
+bindSeg(RC.mod,refreshRec);bindSeg(RC.g,renderRec);RC.pool.addEventListener('change',renderRec);RC.ev.addEventListener('change',renderRec);
+
+// ================= EDIÇÕES =================
+const E={y:$('#e-y'),ev:$('#e-ev'),g:$('#e-g'),age:$('#e-age')};
+fillSelect(E.y,YEARS.slice().reverse().map(y=>[y,`${y} · ${ED[y].ed}${ED[y].city?' · '+ED[y].city:''}`]));
+function refreshEd(){
+  const y=+E.y.value;
+  fillSelect(E.ev,EV.map((e,i)=>[i,`${e.mod} · ${e.label}`]).filter(x=>R.some(r=>r.y===y&&r.e===x[0])));
+  const e=+E.ev.value,g=segVal(E.g);
+  fillSelect(E.age,AG.map((a,i)=>[i,a]).filter(x=>R.some(r=>r.y===y&&r.e===e&&r.g===g&&r.a===x[0])));
+  renderEd();
+}
+function renderEd(){
+  const y=+E.y.value,e=+E.ev.value,g=segVal(E.g),a=+E.age.value;
+  const rs=R.filter(r=>r.y===y&&r.e===e&&r.g===g&&r.a===a).sort((p,q)=>(p.pl||999)-(q.pl||999)||(p.v==null)-(q.v==null)||sortKey(e)(p)-sortKey(e)(q));
+  $('#e-table').innerHTML=`<tr><th>Col.</th><th>Atleta</th><th>Delegação</th><th class="num">Marca</th></tr>`+(rs.map(r=>`<tr><td>${r.pl?placeBadge(r.pl):`<span class="pill p-mut" title="${ST[r.st]}">${stLab(r.st)}</span>`}${r.rec?' <span class="pill p-rec">recorde</span>':''}</td><td><button type="button" class="hit linkbtn" data-goto="${r.n}">${esc(NM[r.n])}</button></td><td>${esc(DL[r.d])}</td><td class="num">${fmt(e,r.v)}</td></tr>`).join('')||'<tr><td colspan="4" class="empty">Sem resultados para esta combinação.</td></tr>');
+}
+$('#e-table').addEventListener('click',ev=>{const b=ev.target.closest('[data-goto]');if(!b)return;go('atletas');$('#a-q').value=NM[+b.dataset.goto];$('#a-q').dispatchEvent(new Event('input'));showAthlete(+b.dataset.goto)});
+E.y.addEventListener('change',refreshEd);E.ev.addEventListener('change',refreshEd);bindSeg(E.g,refreshEd);E.age.addEventListener('change',renderEd);
+// cobertura
+$('#e-cov').innerHTML=`<tr><th>Ano</th><th>Edição</th><th>Sede</th><th>Registro</th><th class="num">Resultados</th><th>Piscina</th></tr>`+
+  YEARS.slice().reverse().map(y=>`<tr><td>${y}</td><td>${ED[y].ed}</td><td>${ED[y].city||'–'}</td><td>${ED[y].cov==='completa'?'<span class="pill p-rec">classificação completa</span>':'<span class="pill p-warn">só pódio</span>'}${ED[y].note?` <span class="pill p-warn">${esc(ED[y].note)}</span>`:''}</td><td class="num">${R.filter(r=>r.y===y).length}</td><td>${ED[y].pool?ED[y].pool+' m':'não informada'}</td></tr>`).join('')+
+  D.meta.missing.map(y=>`<tr><td>${y}</td><td colspan="5" class="p-mut">${y===2026?'resultados hospedados em sites externos, ainda não incorporados':'sem resultados individuais publicados no site'}</td></tr>`).join('');
+
+
+// rótulos para o layout de cartões no celular
+function labelize(root){
+  root.querySelectorAll('table').forEach(tb=>{
+    let heads=[];
+    tb.querySelectorAll('tr').forEach(tr=>{
+      const ths=tr.querySelectorAll(':scope > th');
+      if(ths.length&&!tr.querySelector(':scope > td')){
+        if(ths.length===1&&ths[0].colSpan>1){tr.classList.add('grow')}
+        else{tr.classList.add('hrow');heads=[...ths].map(th=>th.textContent.trim())}
+        return;
+      }
+      tr.querySelectorAll(':scope > td').forEach((td,i)=>{
+        if(heads[i]&&!td.hasAttribute('data-label'))td.setAttribute('data-label',heads[i]);
+        if(td.childNodes.length>1&&!td.querySelector(':scope > .cv')){const s=document.createElement('span');s.className='cv';while(td.firstChild)s.appendChild(td.firstChild);td.appendChild(s)}
+      });
+    });
+  });
+}
+new MutationObserver(()=>labelize(document.querySelector('main'))).observe(document.querySelector('main'),{childList:true,subtree:true});
+// ================= navegação =================
+const VIEWS=['comparar','revez','atletas','delegacoes','recordes','edicoes'];
+function go(v){VIEWS.forEach(x=>{$('#v-'+x).hidden=x!==v;$('#tab-'+x).setAttribute('aria-selected',String(x===v))});store.set('onjt.view',v)}
+document.querySelector('nav.tabs').addEventListener('click',ev=>{const b=ev.target.closest('button');if(b)go(b.dataset.view)});
+
+// ================= estado inicial =================
+const totalR=R.length, nAth=new Set(R.map(r=>r.n)).size;
+$('#board').innerHTML=`<div><b>${totalR.toLocaleString('pt-BR')}</b><span>resultados</span></div><div><b>${nAth.toLocaleString('pt-BR')}</b><span>atletas</span></div><div><b>${YEARS.length}</b><span>edições</span></div><div><b>${YEARS[0]}–${String(YEARS[YEARS.length-1]).slice(2)}</b><span>período</span></div>`;
+$('#f-src').textContent=`Base atualizada em ${D.meta.generated.split('-').reverse().join('/')}. Atletismo e natação, provas individuais e revezamentos.`;
+let st={};try{st=JSON.parse(store.get('onjt.compare')||'{}')}catch(_){}
+setSeg(C.mod,st.mod||'Atletismo');
+fillSelect(C.ev,evOptions(segVal(C.mod)));
+const ev100=EV.findIndex(e=>e.key==='100_rasos');
+C.ev.value=st.ev||String(ev100);
+setSeg(C.g,st.g||'M');
+refreshCompareSelectors();
+if(st.a&&[...C.age.options].some(o=>o.value===st.a))C.age.value=st.a;
+else{const i=AG.indexOf('40-44');if([...C.age.options].some(o=>o.value===String(i)))C.age.value=String(i)}
+if(st.pool)C.pool.value=st.pool;
+C.mark.value=st.mark??'13.20';
+renderCompare();
+refreshRev();
+refreshRec();
+const sd=store.get('onjt.deleg');const medalCount={};R.forEach(r=>{if(r.pl>=1&&r.pl<=3)medalCount[r.d]=(medalCount[r.d]||0)+1});const def=+Object.entries(medalCount).sort((a,b)=>b[1]-a[1])[0][0];dSel.value=(sd&&[...dSel.options].some(o=>o.value===sd))?sd:String(def>=0?def:dSel.options[0].value);renderDeleg();renderBoard();
+refreshEd();
+labelize(document.querySelector('main'));
+const ha=location.hash.replace('#','');go(VIEWS.includes(ha)?ha:'comparar');
+})();
+</script>
