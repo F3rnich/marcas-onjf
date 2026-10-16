@@ -197,6 +197,8 @@ age_ix = {a: i for i, a in enumerate(ages)}
 # ---------- revezamentos ----------
 rel_raw = load(f'{D}/relay_raw.json') + load(f'{D}/legacy_relays.json')
 for _f in sorted(glob.glob(f'{D}/y*_relays.json')): rel_raw += load(_f)
+# fontes transcritas à mão (resultados publicados só em telas/app, sem PDF): raw/manual/*revezamentos*.json
+for _f in sorted(glob.glob(os.path.join(ROOT, 'raw/manual/*revezamentos*.json'))): rel_raw += load(_f)
 # mapa de nomes: liga integrantes aos atletas já unificados (mesma chave de nome)
 nk_to_name = {}
 for r in out: nk_to_name.setdefault(r['nk'], r['n'])

@@ -58,6 +58,7 @@ O relatório lista os recordes que não conferiram. Em geral a organização mud
 | `raw/leg/` | Páginas do arquivo antigo do site (2009–2016) |
 | `raw/rec/` | Listas oficiais de recordes |
 | `raw/ext/` | Dados do sistema Gerentrack |
+| `raw/manual/` | Resultados transcritos à mão quando não há arquivo (lidos automaticamente) |
 | `preview.png` | Imagem da prévia do link (WhatsApp, redes) |
 
 As fontes ficam arquivadas porque o site original perde arquivos com o tempo (vários PDFs de 2017–2019 e as páginas de 2007–2008 já estão fora do ar). Com elas, a base pode ser reconstruída a qualquer momento.
@@ -81,7 +82,7 @@ As fontes ficam arquivadas porque o site original perde arquivos com o tempo (v�
 - Faixas etárias mudaram ao longo dos anos; as comparações usam sempre a faixa exatamente igual.
 - Piscina de 25 m e 50 m: tempos não são comparáveis; o painel tem filtro de piscina. 2009–2011, 2013 e 2025 não informam o tamanho.
 - Revezamentos mistos de 2026 vieram como "misto por categorias", sem a regra de soma de idades; ficam numa categoria própria.
-- 2026, natação: os revezamentos e o 50 m livre PCD só foram publicados no site da Federação Aquática de Sergipe, fora do alcance do coletor; ainda não estão no painel.
+- 2026, natação: os revezamentos foram publicados só no app da Federação Aquática de Sergipe, sem PDF; foram transcritos das telas em `raw/manual/2026_natacao_revezamentos.json` (tempos e delegações, sem integrantes). Ainda faltam o 4x100 m livre misto 180 anos e o 50 m livre PCD.
 - A base reproduz as súmulas oficiais, inclusive quando o atleta competiu em faixas etárias diferentes no mesmo ano. Erros evidentes de diagramação das fontes são corrigidos automaticamente em `build_data.py`: colocação repetida ou ausente (refeita pela marca), delegação divergente do mesmo atleta na mesma edição (vale a da maioria) e atleta impresso na lista do gênero oposto (linha descartada).
-- Auditoria de outubro/2026: 98% dos recordes oficiais individuais conferem com a base, e 98% das medalhas de atletismo e natação por delegação (2017–2026) batem com o quadro de medalhas oficial da Anastra.
+- Auditoria de outubro/2026: 98% dos recordes oficiais individuais conferem com a base, e 98,4% das medalhas de atletismo e natação por delegação (2017–2026) batem com o quadro de medalhas oficial da Anastra.
 - Nomes de atletas são unificados por regras (partículas, abreviações, nomes cortados); casos raros podem ficar duplicados ou ser unidos por engano. Use o formulário de correção.
