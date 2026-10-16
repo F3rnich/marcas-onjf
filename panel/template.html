@@ -135,11 +135,38 @@ footer .wrap{padding-block:0 32px}
 footer p{font-size:13px;color:var(--muted);margin:0 0 6px;max-width:90ch}
 footer p.fix{font-size:14px;color:var(--ink)}
 main a,footer a{color:var(--accent);text-underline-offset:3px}
+/* início */
+.find{gap:12px;background:linear-gradient(135deg,color-mix(in srgb,var(--gold) 10%,var(--surface)),var(--surface) 60%)}
+.find input{font-size:18px;padding:14px 14px}
+.shortcuts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.sc{display:grid;gap:4px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 40px 14px 16px;cursor:pointer;color:var(--ink);position:relative;font:inherit}
+.sc::after{content:"→";position:absolute;right:16px;top:50%;transform:translateY(-50%);font:700 20px var(--f-body);color:var(--accent)}
+.sc:hover{border-color:var(--accent)}
+.sc b{font:700 italic 17px/1.15 var(--f-display);text-transform:uppercase;letter-spacing:.03em}
+.sc span{font-size:13px;color:var(--muted);line-height:1.35}
+.hl-head{display:grid;gap:2px;margin-top:6px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;align-items:start}
+.podium.del .mark{font-size:clamp(15px,2.4vw,19px);line-height:1.1;text-align:center;word-break:break-word}
+.podium.del .lab{letter-spacing:.04em;text-transform:none;font-size:12px}
+.podium.del .s1 .block{height:84px}.podium.del .s2 .block{height:60px}.podium.del .s3 .block{height:42px}
+.hl-list{display:grid;gap:0}
+.hl-item{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.hl-item:last-child{border-bottom:0}
+.hl-item .who{min-width:0}
+.hl-item .who small{display:block;color:var(--muted);font-size:12px;line-height:1.3}
+.hl-item .val{font:600 15px var(--f-data);font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+.hl-item .val small{display:block;font:500 11px var(--f-body);color:var(--muted)}
+.more{background:none;border:0;padding:6px 0 0;color:var(--accent);font:600 14px var(--f-body);cursor:pointer;text-align:left}
 @media (max-width:640px){
+  header.band .wrap{padding-block:16px 0;gap:12px}
   .arena{opacity:.1;right:-260px;top:-20px}
-  .eyebrow{letter-spacing:.1em}
-  nav.tabs{flex-wrap:wrap}
-  nav.tabs button{padding:10px 9px;font-size:14px}
+  .eyebrow{letter-spacing:.08em;font-size:11px}
+  .board{flex-wrap:nowrap;gap:16px}
+  .board b{font-size:22px}
+  .board span{font-size:9px;letter-spacing:.08em}
+  nav.tabs{flex-wrap:nowrap;margin-inline:-16px;padding-inline:12px;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 28px),transparent)}
+  nav.tabs::-webkit-scrollbar{display:none}
+  nav.tabs button{padding:10px 10px 11px;font-size:15px;flex:none}
   .tablebox:not(:has(table.keep)){overflow:visible;border:0;background:none}
   main table:not(.keep),main table:not(.keep) tbody,main table:not(.keep) tr,main table:not(.keep) td{display:block;width:100%}
   main table:not(.keep) tr.hrow{display:none}
@@ -175,7 +202,8 @@ main a,footer a{color:var(--accent);text-underline-offset:3px}
     </div>
     <div class="board" id="board"></div>
     <nav class="tabs" role="tablist" aria-label="Seções">
-      <button role="tab" id="tab-comparar" aria-selected="true" data-view="comparar">Minha marca</button>
+      <button role="tab" id="tab-inicio" aria-selected="true" data-view="inicio">Início</button>
+      <button role="tab" id="tab-comparar" aria-selected="false" data-view="comparar">Minha marca</button>
       <button role="tab" id="tab-revez" aria-selected="false" data-view="revez">Revezamentos</button>
       <button role="tab" id="tab-atletas" aria-selected="false" data-view="atletas">Atletas</button>
       <button role="tab" id="tab-delegacoes" aria-selected="false" data-view="delegacoes">Delegações</button>
@@ -188,8 +216,29 @@ main a,footer a{color:var(--accent);text-underline-offset:3px}
 
 <main><div class="wrap">
 
+<!-- ================= INÍCIO ================= -->
+<section class="view" id="v-inicio">
+  <div class="panel find">
+    <h2>Encontre seu histórico</h2>
+    <label class="f" for="h-q">Seu nome ou sua delegação<input id="h-q" type="search" placeholder="Ex.: Maria Souza ou TRT17" autocomplete="off"></label>
+    <div class="hits" id="h-hits"></div>
+  </div>
+  <div class="shortcuts">
+    <button type="button" class="sc" data-go="comparar"><b>Quanto falta para a medalha?</b><span>Digite sua marca e compare com o pódio e o recorde da sua faixa</span></button>
+    <button type="button" class="sc" data-go="revez"><b>Revezamentos</b><span>Tempos da sua equipe contra os que deram pódio</span></button>
+    <button type="button" class="sc" data-go="recordes"><b>Recordes</b><span>Recorde de cada prova e faixa etária</span></button>
+    <button type="button" class="sc" data-go="delegacoes"><b>Quadro de medalhas</b><span>Ranking histórico das delegações</span></button>
+  </div>
+  <div class="hl-head"><h2 id="hl-title">Destaques</h2><p class="lede" id="hl-sub"></p></div>
+  <div class="grid3">
+    <div class="panel"><h3>Delegações no pódio</h3><div class="podium del" id="hl-pod"></div><p class="note" id="hl-pod-note"></p></div>
+    <div class="panel"><h3>Recordes quebrados</h3><div id="hl-rec"></div></div>
+    <div class="panel"><h3>Maiores medalhistas</h3><div id="hl-ath"></div></div>
+  </div>
+</section>
+
 <!-- ================= MINHA MARCA ================= -->
-<section class="view" id="v-comparar">
+<section class="view" id="v-comparar" hidden>
   <div>
     <h2>Quanto falta para a medalha?</h2>
     <p class="lede">Escolha a prova e a faixa etária e digite sua marca. O painel compara com o recorde e com as marcas que ganharam ouro, prata e bronze em cada edição.</p>
@@ -803,9 +852,74 @@ function labelize(root){
   });
 }
 new MutationObserver(()=>labelize(document.querySelector('main'))).observe(document.querySelector('main'),{childList:true,subtree:true});
+
+// ================= INÍCIO =================
+const LASTY=YEARS[YEARS.length-1];
+(function highlights(){
+  const Y=LASTY;
+  $('#hl-title').textContent=`Destaques de ${Y}`;
+  $('#hl-sub').textContent=`${ED[Y].ed}${ED[Y].city?' · '+ED[Y].city:''}. Atletismo e natação, provas individuais e revezamentos.`;
+  // quadro de medalhas da edição
+  const med={};
+  const add=(d,p)=>{if(p<1||p>3)return;(med[d]||(med[d]=[0,0,0]))[p-1]++};
+  R.forEach(r=>{if(r.y===Y)add(r.d,r.pl)});RL.forEach(r=>{if(r.y===Y)add(r.d,r.pl)});
+  const rank=Object.entries(med).filter(([d])=>DL[d]!=='NÃO INFORMADA').sort((a,b)=>b[1][0]-a[1][0]||b[1][1]-a[1][1]||b[1][2]-a[1][2]);
+  const step=(cls,n,x)=>x?`<div class="step ${cls}"><div class="disc">${n}</div><div class="mark">${esc(DL[x[0]])}</div><div class="lab">${x[1][0]} ouros · ${x[1][0]+x[1][1]+x[1][2]} medalhas</div><div class="block">${n}</div></div>`:'<div></div>';
+  $('#hl-pod').innerHTML=step('s2',2,rank[1])+step('s1',1,rank[0])+step('s3',3,rank[2]);
+  $('#hl-pod-note').innerHTML=`Ordem por ouros, depois pratas e bronzes. <button type="button" class="more" data-go="delegacoes">Ver quadro completo →</button>`;
+  // recordes quebrados: melhor marca da edição superando tudo antes (base e lista oficial), mesma prova, gênero, faixa e piscina
+  const byK=new Map();
+  R.forEach(r=>{if(r.v==null)return;const k=r.e+'|'+r.g+'|'+r.a;(byK.get(k)||byK.set(k,[]).get(k)).push(r)});
+  const broken=[];
+  byK.forEach(rs=>{
+    const now=rs.filter(r=>r.y===Y);if(!now.length)return;
+    const e=now[0].e, swim=EV[e].mod==='Natação', pY=poolOf(Y);
+    if(EV[e].key.endsWith('_pcd'))return;   // PCD reúne classes diferentes numa faixa única: não há recorde comparável
+    const best=now.reduce((b,r)=>better(e,r.v,b.v)?r:b);
+    const prev=rs.filter(r=>r.y<Y&&(!swim||!pY||!poolOf(r.y)||poolOf(r.y)===pY)).map(r=>r.v);  // piscina desconhecida conta (critério conservador)
+    REC.filter(x=>x.e===e&&x.g===best.g&&x.a===best.a&&x.y<Y&&(!swim||x.pool===pY)).forEach(x=>prev.push(x.v));
+    if(!prev.length)return;
+    const old=prev.reduce((b,v)=>better(e,v,b)?v:b);
+    if(better(e,best.v,old))broken.push({r:best,old});
+  });
+  broken.sort((a,b)=>a.r.e-b.r.e||a.r.a-b.r.a);
+  const recItem=x=>`<div class="hl-item"><div class="who"><button type="button" class="hit linkbtn" data-goto="${x.r.n}">${esc(NM[x.r.n])}</button><small>${esc(EV[x.r.e].label)} · ${genderLab[x.r.g]||''} · ${esc(AG[x.r.a])} · ${esc(DL[x.r.d])}</small></div><div class="val">${fmt(x.r.e,x.r.v)}<small>antes ${fmt(x.r.e,x.old)}</small></div></div>`;
+  const N=6;
+  $('#hl-rec').innerHTML=broken.length?`<p class="note">${broken.length} marcas de ${Y} melhores que tudo o que já foi registrado na mesma prova, gênero e faixa etária (inclui a lista oficial). Ainda dependem de homologação pela Anastra.</p><div class="hl-list" id="hl-rec-list">${broken.slice(0,N).map(recItem).join('')}</div>${broken.length>N?`<button type="button" class="more" id="hl-rec-more">Ver todos os ${broken.length} →</button>`:''}`:`<p class="empty">Nenhum recorde de faixa superado em ${Y}.</p>`;
+  const mb=$('#hl-rec-more');if(mb)mb.addEventListener('click',()=>{$('#hl-rec-list').innerHTML=broken.map(recItem).join('');mb.remove()});
+  // maiores medalhistas
+  const ath={};
+  const addA=(n,p)=>{if(p<1||p>3)return;(ath[n]||(ath[n]=[0,0,0]))[p-1]++};
+  R.forEach(r=>{if(r.y===Y)addA(r.n,r.pl)});RL.forEach(r=>{if(r.y===Y)r.mem.forEach(n=>addA(n,r.pl))});
+  const top=Object.entries(ath).sort((a,b)=>b[1][0]-a[1][0]||(b[1][0]+b[1][1]+b[1][2])-(a[1][0]+a[1][1]+a[1][2])).slice(0,6);
+  const dOf=n=>{const r=(byName.get(+n)||[]).find(r=>r.y===Y);return r?DL[r.d]:''};
+  $('#hl-ath').innerHTML=`<div class="hl-list">${top.map(([n,m])=>`<div class="hl-item"><div class="who"><button type="button" class="hit linkbtn" data-goto="${n}">${esc(NM[n])}</button><small>${esc(dOf(n))}</small></div><div class="val"><span class="medal m1">${m[0]}</span> <span class="medal m2">${m[1]}</span> <span class="medal m3">${m[2]}</span></div></div>`).join('')}</div><p class="note">Inclui medalhas em revezamentos.</p>`;
+})();
+// busca unificada
+function openAthlete(i){go('atletas');$('#a-q').value=NM[i];$('#a-q').dispatchEvent(new Event('input'));showAthlete(i)}
+function openDeleg(i){go('delegacoes');dSel.value=String(i);renderDeleg();renderBoard()}
+$('#h-q').addEventListener('input',()=>{
+  const raw=$('#h-q').value.trim(), q=normName(raw), box=$('#h-hits');
+  if(q.length<3){box.innerHTML='';return}
+  const qd=q.replace(/[^a-z0-9]/g,'');
+  const dels=DL.map((d,i)=>[d,i]).filter(([d])=>d!=='NÃO INFORMADA'&&normName(d).replace(/[^a-z0-9]/g,'').includes(qd));
+  const toks=q.split(/\s+/);const ath=[];NMN.forEach((n,i)=>{if(byName.has(i)&&toks.every(t=>n.includes(t)))ath.push(i)});
+  box.innerHTML=dels.slice(0,4).map(([d,i])=>`<button type="button" class="hit" data-del="${i}"><span>${esc(d)}<br><small>delegação · quadro de medalhas e atletas</small></span><small>→</small></button>`).join('')+
+    ath.slice(0,30).map(i=>{const rs=byName.get(i);const ys=[...new Set(rs.map(r=>r.y))].sort();const dl=[...new Set(rs.map(r=>DL[r.d]))].join(', ');
+      return `<button type="button" class="hit" data-n="${i}"><span>${esc(NM[i])}<br><small>${esc(dl)}</small></span><small>${ys[0]}${ys.length>1?'–'+ys[ys.length-1]:''} · ${rs.length} prova(s)</small></button>`}).join('')||
+    '<p class="empty">Nada encontrado. Tente só o sobrenome ou o número do TRT.</p>';
+});
+$('#h-hits').addEventListener('click',ev=>{const b=ev.target.closest('.hit');if(!b)return;if(b.dataset.del)openDeleg(+b.dataset.del);else openAthlete(+b.dataset.n)});
+$('#v-inicio').addEventListener('click',ev=>{
+  const g=ev.target.closest('[data-go]');if(g){go(g.dataset.go);return}
+  const a=ev.target.closest('[data-goto]');if(a)openAthlete(+a.dataset.goto);
+});
 // ================= navegação =================
-const VIEWS=['comparar','revez','atletas','delegacoes','recordes','edicoes'];
-function go(v){VIEWS.forEach(x=>{$('#v-'+x).hidden=x!==v;$('#tab-'+x).setAttribute('aria-selected',String(x===v))});store.set('onjt.view',v)}
+const VIEWS=['inicio','comparar','revez','atletas','delegacoes','recordes','edicoes'];
+function go(v,keepScroll){VIEWS.forEach(x=>{$('#v-'+x).hidden=x!==v;$('#tab-'+x).setAttribute('aria-selected',String(x===v))});store.set('onjt.view',v);
+  const t=$('#tab-'+v);if(t&&t.scrollIntoView)t.scrollIntoView({block:'nearest',inline:'nearest'});
+  if(!keepScroll)window.scrollTo(0,0);
+  try{history.replaceState(null,'',v==='inicio'?location.pathname:'#'+v)}catch(_){}}
 document.querySelector('nav.tabs').addEventListener('click',ev=>{const b=ev.target.closest('button');if(b)go(b.dataset.view)});
 
 // ================= estado inicial =================
@@ -822,13 +936,13 @@ refreshCompareSelectors();
 if(st.a&&[...C.age.options].some(o=>o.value===st.a))C.age.value=st.a;
 else{const i=AG.indexOf('40-44');if([...C.age.options].some(o=>o.value===String(i)))C.age.value=String(i)}
 if(st.pool)C.pool.value=st.pool;
-C.mark.value=st.mark??'13.20';
+C.mark.value=st.mark??'';
 renderCompare();
 refreshRev();
 refreshRec();
 const sd=store.get('onjt.deleg');const medalCount={};R.forEach(r=>{if(r.pl>=1&&r.pl<=3)medalCount[r.d]=(medalCount[r.d]||0)+1});const def=+Object.entries(medalCount).sort((a,b)=>b[1]-a[1])[0][0];dSel.value=(sd&&[...dSel.options].some(o=>o.value===sd))?sd:String(def>=0?def:dSel.options[0].value);renderDeleg();renderBoard();
 refreshEd();
 labelize(document.querySelector('main'));
-const ha=location.hash.replace('#','');go(VIEWS.includes(ha)?ha:'comparar');
+const ha=location.hash.replace('#','');go(VIEWS.includes(ha)?ha:'inicio',true);
 })();
 </script>
