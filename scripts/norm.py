@@ -209,6 +209,8 @@ def fmt_time(v):
 def title_name(n):
     n = norm_space(n).strip(' ,.-•')
     n = re.sub(r'^\(est\)\s*', '', n, flags=re.I)
+    n = re.sub(r'^\d+\s+', '', n)          # número de raia/colocação colado ao nome
+
     small = {'da', 'de', 'do', 'das', 'dos', 'e', 'di'}
     out = []
     for i, w in enumerate(n.lower().split()):

@@ -51,7 +51,11 @@ for r in rows:
             issues['descartada_marca_implausivel'] += 1; continue
         st = 'SM'
     dl = canon_deleg(r['deleg_raw'])
-    nm = r['name']
+    nm = re.sub(r'^\d+\s+', '', r['name'] or '')
+    if re.search(r'\s+PCD$', nm, re.I) and not r['event'].endswith('_pcd'):
+        # natação 2026: prova PCD publicada dentro da faixa etária, com 'PCD' colado ao nome
+        nm = re.sub(r'\s+PCD$', '', nm, flags=re.I)
+        r = dict(r, event=r['event'] + '_pcd', event_label=r['event_label'] + ' (PCD)', age='única')
     if not nm or len(nm) < 4 or not re.search('[A-Za-zÀ-ú]{2}', nm):
         issues['nome_invalido'] += 1; continue
     out.append(dict(y=r['year'], mod=r['modality'], ev=r['event'], evl=r['event_label'], g=r['gender'] or '?',
@@ -129,19 +133,56 @@ for r in out:
 dups = len(out) - len(best)
 out = list(best.values())
 
+# erros de diagramação da fonte (auditoria):
+# 1) linha com gênero oposto ao de todas as outras participações do atleta (ex.: atleta masculino
+#    impresso na lista feminina) é descartada
+gcount = defaultdict(Counter)
+for r in out: gcount[r['n']][r['g']] += 1
+def wrong_gender(r):
+    c = gcount[r['n']]; tot = sum(c.values())
+    return c[r['g']] == 1 and tot >= 4 and (tot - 1) / tot >= 0.75
+fixes = Counter()
+kept = []
+for r in out:
+    if wrong_gender(r): fixes['genero_trocado_descartado'] += 1
+    else: kept.append(r)
+out = kept
+# 2) delegação divergente do mesmo atleta na mesma edição: vale a da maioria das provas
+dcount = defaultdict(Counter)
+for r in out: dcount[(r['n'], r['y'])][r['d']] += 1
+for r in out:
+    c = dcount[(r['n'], r['y'])]
+    if len(c) > 1:
+        (top, n1), (_, n2) = c.most_common(2)
+        if n1 > n2 and r['d'] != top: r['d'] = top; fixes['delegacao_unificada'] += 1
+print('correções automáticas', dict(fixes))
+
 # validação: colocação repetida dentro da mesma prova
 grp = defaultdict(list)
 for r in out: grp[(r['y'], r['ev'], r['g'], r['age'])].append(r)
 for k, rs in grp.items():
     pls = [r['pl'] for r in rs if r['pl']]
     if len(pls) != len(set(pls)): issues['colocacao_repetida'] += 1
-    # recalcula colocação nas edições completas quando ausente
+    # edições completas: colocações ausentes ou repetidas pela fonte são refeitas pela marca,
+    # mantendo as colocações únicas publicadas; as refeitas vêm depois da maior colocação mantida
     if EDITIONS[k[0]][2] == 'completa':
         val = [r for r in rs if r['v'] is not None]
         rev = k[1] in FIELD
         val.sort(key=lambda r: -r['v'] if rev else r['v'])
-        if any(r['pl'] is None for r in val):
-            for i, r in enumerate(val): r['pl'] = r['pl'] or i + 1
+        cnt = Counter(r['pl'] for r in val if r['pl'])
+        redo = [r for r in val if not r['pl'] or cnt[r['pl']] > 1]
+        if redo:
+            keep = {r['pl'] for r in val if r['pl'] and cnt[r['pl']] == 1}
+            dup_pl = [p for p in cnt if cnt[p] > 1]
+            nxt = min(dup_pl) if dup_pl else (max(keep) + 1 if keep else 1)
+            if any(not r['pl'] for r in redo) and not dup_pl: nxt = max(keep, default=0) + 1
+            prev = None
+            for r in redo:
+                while nxt in keep: nxt += 1
+                if prev and prev['v'] == r['v']: r['pl'] = prev['pl']
+                else: r['pl'] = nxt; nxt += 1
+                prev = r
+            issues['colocacoes_refeitas'] += 1
 
 print('linhas', len(out), 'duplicatas removidas', dups, dict(issues))
 print('por ano', sorted(Counter(r['y'] for r in out).items()))
@@ -176,6 +217,9 @@ def canon_member(n, deleg):
     if len(hits) == 1: member_links['aproximado'] += 1; return hits[0]
     member_links['sem_par'] += 1
     return n
+def member_ok(m):
+    # descarta lixo de diagramação lido como integrante ('Piscina', 'R', 'Rt')
+    return bool(m) and len(toks(m)) >= 2 and not re.search(r'\d|piscina|revez|equipe', m, re.I)
 rel = []; rel_issues = Counter()
 for r in rel_raw:
     if r['year'] not in EDITIONS or not r.get('event'): continue
@@ -192,7 +236,7 @@ for r in rel_raw:
     dl = canon_deleg(r['deleg_raw']) or norm_space(r['deleg_raw']).upper() or 'NÃO INFORMADA'
     cat = r.get('cat') or 'livre'
     rel.append(dict(y=r['year'], mod=r['modality'], ev=r['event'], evl=r['event_label'], g=r.get('gender') or '?', cat=cat,
-                    pl=r.get('place') if (not st or keep_pl) else None, d=dl, v=v, st=st, mem=[canon_member(m, dl) for m in (r.get('members') or []) if m]))
+                    pl=r.get('place') if (not st or keep_pl) else None, d=dl, v=v, st=st, mem=list(dict.fromkeys(canon_member(m, dl) for m in (r.get('members') or []) if member_ok(m)))))
 seen = {}; 
 for r in rel:
     k = (r['y'], r['ev'], r['g'], r['cat'], r['d'], r['v'], r['st'], tuple(sorted(r['mem'])))

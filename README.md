@@ -81,4 +81,7 @@ As fontes ficam arquivadas porque o site original perde arquivos com o tempo (v�
 - Faixas etárias mudaram ao longo dos anos; as comparações usam sempre a faixa exatamente igual.
 - Piscina de 25 m e 50 m: tempos não são comparáveis; o painel tem filtro de piscina. 2009–2011, 2013 e 2025 não informam o tamanho.
 - Revezamentos mistos de 2026 vieram como "misto por categorias", sem a regra de soma de idades; ficam numa categoria própria.
+- 2026, natação: os revezamentos e o 50 m livre PCD só foram publicados no site da Federação Aquática de Sergipe, fora do alcance do coletor; ainda não estão no painel.
+- A base reproduz as súmulas oficiais, inclusive quando o atleta competiu em faixas etárias diferentes no mesmo ano. Erros evidentes de diagramação das fontes são corrigidos automaticamente em `build_data.py`: colocação repetida ou ausente (refeita pela marca), delegação divergente do mesmo atleta na mesma edição (vale a da maioria) e atleta impresso na lista do gênero oposto (linha descartada).
+- Auditoria de outubro/2026: 98% dos recordes oficiais individuais conferem com a base, e 98% das medalhas de atletismo e natação por delegação (2017–2026) batem com o quadro de medalhas oficial da Anastra.
 - Nomes de atletas são unificados por regras (partículas, abreviações, nomes cortados); casos raros podem ficar duplicados ou ser unidos por engano. Use o formulário de correção.
