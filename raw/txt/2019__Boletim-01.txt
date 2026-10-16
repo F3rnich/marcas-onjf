@@ -1,0 +1,139 @@
+                   NÚMERO 1 - PROGRAMAÇÃO DO DIA 22/09
+
+                         FUTEBOL SOÇAITE LIVRE
+JOGO   DATA     HORA   LOCAL   CHAVE        EQUIPE       X     EQUIPE
+  1              17h   AABB 1     C     TRT11-AM/RR      X    TRT5-BA
+ 2              17h    AABB 2     C        TRT7-CE       X     TRT2-SP
+ 3              18h    AABB 1     B       TRT12-SC       X    TRT13-PB
+ 4     22/set   18h    AABB 2     B        TRT9-PR       X     TRT6-PE
+ 5              19h    AABB 1     A        TRT1-RJ       X    TRT17-ES
+ 6              19h    AABB 2     A      TRT14-RO/AC     X    TRT21-RN
+ 7              20h    AABB 1     D      TRT8-PA/AP      X    TRT3-MG
+ 8              20h    AABB 2     D        TRT4-RS       X   TRT10-DF/TO
+
+
+                        FUTEBOL SOÇAITE MASTER
+JOGO   DATA     HORA   LOCAL   CHAVE       EQUIPE        X      EQUIPE
+  1              15h   AABB 1     A      TRT3-MG         X    TRT16-MA
+  2    22/set    15h   AABB 2     B       TRT5-BA        X   TRT8-PA/AP
+  3              16h   AABB 2     C       TRT1-RJ        X     TRT4-RS
+
+
+
+                             FUTSAL LIVRE
+JOGO   DATA     HORA   LOCAL   CHAVE       EQUIPE        X     EQUIPE
+  1              10h   AABB      A        TRT6-PE        X    TRT2-SP
+  2              10h   UFMG      B      TRT14-RO/AC      X    TRT9-PR
+       22/set
+  3              11h   AABB      C        TRT20-SE       X    TRT5-BA
+  4              11h   UFMG      D        TRT1-RJ        X    TRT3-MG
+
+
+                             FUTSAL MASTER
+JOGO   DATA     HORA   LOCAL    CHAVE       EQUIPE       X      EQUIPE
+  1              8h     AABB      A        TRT1-RJ       X   TRT10-DF/TO
+  2    22/set    8h    UFMG       B        TRT4-RS       X     TRT6-PE
+  3              9h     AABB      B       TRT13-PB       X   TRT11-AM/RR
+                        BASQUETE MASCULINO
+JOGO   DATA     HORA   LOCAL CHAVE    EQUIPE      X    EQUIPE
+  1             18h             B     TRT1-RJ     X    TRT9-PR
+  2    22/set   19h     UFMG   A        TST       X    TRT7-CE
+  3             20h             B     TRT6-PE     X    TRT3-MG
+
+
+                         HANDEBOL FEMININO
+JOGO   DATA     HORA   LOCAL CHAVE     EQUIPE     X     EQUIPE
+  1             13h             A     TRT13-PB    X       TST
+  2    22/set   14h     UFMG    B     TRT3-MG     X     TRT1-RJ
+  3             15h             B      TRT4-RS    X     TRT6-PE
+
+
+                        HANDEBOL MASCULINO
+JOGO   DATA     HORA   LOCAL CHAVE    EQUIPE      X     EQUIPE
+  1             16h                   TRT1-RJ     X    TRT21-RN
+       22/set           UFMG ÚNICA
+  2             17h                  TRT8-PA/AP   X    TRT17-ES
+
+
+                         VOLEIBOL FEMININO
+JOGO   DATA     HORA   LOCAL CHAVE     EQUIPE     X     EQUIPE
+  1             16h             A      TRT3-MG    X       TST
+  2             17h             C      TRT17-ES   X     TRT1-RJ
+       22/set           AABB
+  3             18h             B      TRT6-PE    X   TRT10-DF/TO
+  4             19h             D      TRT4-RS    X   TRT14-RO/AC
+
+
+                        VOLEIBOL MASCULINO
+JOGO   DATA     HORA   LOCAL CHAVE    EQUIPE      X     EQUIPE
+  1             14h             B     TRT6-PE     X    TRT12-SC
+       22/set           AABB
+  2             15h             A     TRT1-RJ     X    TRT20-SE
+                                                        VÔLEI DE AREIA QUARTETO MISTO
+ DATA: 22 E 23/09
+ HORÁRIO DE INÍCIO: 08:00 Horas                                                                 1 TRT4-RS
+ LOCAL: A.A.B.B. (Quadras 1 e 2)
+                                                                                11 Perd. Jg 7   2 TRT18-GO               6
+                                                                  Venc. Jg 11                              1                  Venc. Jg 6
+                                                                                 Perd. Jg 1     3 TRT10-DF/TO    Venc. Jg 1
+                                                                  15                                                                 17
+                                                    Venc. Jg 15                                 4 TRT1-RJ                                  Venc. Jg 17
+                                                    19                                                       2
+                                      Venc. Jg 19                               12 Perd. Jg 2 5 TRT3-MG          Venc. Jg 2
+                                                                  Venc. Jg 12                                            7
+                                                                                 Perd. Jg 6     6 TRT6-PE                     Venc. Jg 7
+                             21                     Perd. Jg 18
+               Venc. Jg 21
+                                      Perd. Jg 17                  Perd. Jg 9                   7 TRT17-ES                             22
+               23                                                 13                                  3                                    Venc. Jg 22
+    Venc. Jg 23                         20          Venc. Jg 13              Perd. Jg 3    8 TRT14-RO/AC Venc. Jg 3
+                            Venc. Jg 20                                     10                                   8
+                                                                Venc. Jg 10                9 TRT12-SC               Venc. Jg 8
+                Perd. Jg 22                         16                                                4
+                                        Venc. Jg 16                          Perd. Jg 4 10 TRT21-RN      Venc.Jg 4
+                                                                                                                            18                     24
+                                                                            14 Perd. Jg 8 11 TRT13-PB                          Venc. Jg 18             Campeão
+                                                                Venc. Jg 14                           5
+                                                                             Perd. Jg 5 12 TRT5-BA       Venc. Jg 5
+                                                                                                                 9
+                                                                                          13 TST-DF                 Venc. Jg 9
+
+
+                                                                                                                                                         Venc. Jg 23
+
+
+
+
+NATAÇÃO
+De 7h15 – Aquecimento e Eventuais Substituições
+7h55 – Chamada para confirmação e início da primeira prova
+Local: CTE - Centro de Treinamento Esportivo (Av. Alfredo Camarate, 617 - São Luiz - BH/MG)
+
+
+
+TÊNIS DE CAMPO
+Horário: 8h
+Local: A.A.B.B.
+
+
+CICLISMO
+Horário: 7h
+Local: Cidade Administrativa (Rod. Papa João Paulo II, 4001 - Serra Verde - BH/MG)
+Observação: O onibus dos atletas do ciclismo estará passando nos hotéis a partir das 06:30 horas.
+
+
+DOMINÓ
+Horário: 15h (Horário alterado das 14 para as 15 horas por conta do almoço)
+Local: A.A.B.B. (Salão de festa onde está sendo realizado o almoço)
+A programação dessa modalidade será divulgada no dia 22/09
+Atenção:
+
+
+
+
+Observações:
+Atenção para o endereço de acesso à portaria 2 da AABB, que todos deverão acessar no
+dia 22/09 (amanhã): Todos deverão colocar nos apps de transporte e GPS o endereço exato:
+Rua Ralph Ledsham, 120, Enseada das Graças, Pampulha.
+Se colocar AABB o GPS indicará a portaria da orla(1),exclusiva para associados da AABB.
+

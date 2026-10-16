@@ -5,7 +5,7 @@ from collections import defaultdict, Counter
 sys.path.insert(0, os.path.dirname(__file__))
 from norm import *
 
-D = '/home/claude/data'
+D = os.path.join(ROOT, 'data')
 FIELD = {'salto_altura', 'salto_distancia', 'salto_triplo', 'peso', 'dardo', 'disco'}
 
 EDITIONS = {
@@ -154,7 +154,8 @@ ages = sorted({r['age'] for r in out} | {x['age'] for x in recs if x['age']},
               key=lambda a: (a == 'livre', a == 'única', int(re.search(r'\d+', a).group()) if re.search(r'\d+', a) else 0, a))
 age_ix = {a: i for i, a in enumerate(ages)}
 # ---------- revezamentos ----------
-rel_raw = load(f'{D}/relay_raw.json') + load(f'{D}/legacy_relays.json') + load(f'{D}/y2026_relays.json')
+rel_raw = load(f'{D}/relay_raw.json') + load(f'{D}/legacy_relays.json')
+for _f in sorted(glob.glob(f'{D}/y*_relays.json')): rel_raw += load(_f)
 # mapa de nomes: liga integrantes aos atletas já unificados (mesma chave de nome)
 nk_to_name = {}
 for r in out: nk_to_name.setdefault(r['nk'], r['n'])

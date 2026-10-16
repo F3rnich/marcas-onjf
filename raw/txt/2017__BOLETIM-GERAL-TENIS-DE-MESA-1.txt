@@ -1,0 +1,216 @@
+                                           BOLETIM GERAL TÊNIS DE MESA
+                                             SIMPLES MASCULINO
+Jogo Cat. Fase                 Atleta                    Tribunal   Placar             Atleta              Tribunal
+ 1   SM    A     Adson de Oliveira Nobre              TST           WxO      Mário Jorge Morais          TRT11-AM/RR
+ 2   SM    B     Renato Mário Borges Simões           TRT5-BA       WxO      Eduardo Alcenor de Azevedo TRT14-RO/AC
+ 3   SM    C     José Alberto Alves Viana             TRT6-PE       WxO      César Silveira              TRT18-GO
+ 4   SM    D     Adrian Magno de Oliveira Campos      TRT18-GO      3x2      Guido Mannes                TRT12-SC
+ 5   SM    D     Lucas Fontes Santana                 TRT20-SE      0x3      Leonardo Felipe di Donato   TRT17-ES
+ 6   SM    E     Ricardo José Fonseca                 TRT11 AM/RR   3x0      Hélio Fernando Garcez       TRT20-SE
+ 7   SM    E     Francisco José Laranjeira            TRT12-SC      0x3      Fernando Henrique Mello     TRT10-DF/TO
+ 8   SM    F     Marcus Vinícius Reis de Alcântara    TRT20-SE      1x3      Bruno Pereira Torrozo Souza TRT3-MG
+ 9   SM    F     Antônio Carlos Falcão                TST           OxW      José Maria Batista Valente  TRT11-AM/RR
+10   SM    G     David Fernandes Neto                 TRT1-RJ       0x3      Rafael Barcelos de Lemos    TRT4-RS
+11   SM    G     Petrônio Gomes Lopes Júnior          TRT6-PE       3x0      Hugo Timo Neto              TRT18-GO
+12   SM    H     Felipe Nunes Flores                  TRT4-RS       3x0      Gildo Afonso Filho          TRT14-RO/AC
+13   SM    H     Francisco Antônio da Silva Fortuna   TRT7-CE       3x0      Robson Miranda Argolo       TRT3-MG
+14   SM    A     Ismael Stangherlini                  TRT4-RS       0x3      Adson de Oliveira Nobre     TST
+15   SM    B     Raif Ballout Amorim                  TRT3-MG       0x3      Renato Mário Borges Simões TRT5-BA
+16   SM    C     João Raul Jardim Meneses             TRT1-RJ       0x3      José Alberto Alves Viana    TRT6-PE
+17   SM    D     Adrian Magno de Oliveira Campos      TRT18-GO      3x0      Lucas Fontes Santana        TRT20-SE
+18   SM    D     Guido Mannes                         TRT12-SC      3x2      Leonardo Felipe di Donato   TRT17-ES
+19   SM    E     Ricardo José Fonseca                 TRT11-AM/RR   3x0      Francisco José Laranjeira   TRT12-SC
+20   SM    E     Helio Fernando Garcez de Sousa       TRT20-SE      3x0      Fernando Henrique Mello     TRT10-DF/TO
+21   SM    F     Jose Maria Batista Valente           TRT11-AM/RR   2x3      Bruno Pereira Torrozo Souza TRT3-MG
+22   SM    F     Bruno Pereira Torrozo Souza          TRT3-MG       WxO      Antônio Carlos Falcão       TST
+23   SM    G     David Fernandes Neto                 TRT1-RJ       0x3      Petrônio Gomes Lopes Júnior TRT6-PE
+24   SM    G     Rafael Barcelos de Lemos             TRT4-RS       0x3      Hugo Timo Neto              TRT18-GO
+25   SM    H     Felipe Nunes Flores                  TRT4-RS       0x3      Francisco Antônio da Silva  TRT7-CE
+26   SM    H     Gildo Afonso Filho                   TRT14-RO/AC   OxW      Robson Miranda Argolo       TRT3-MG
+27   SM    A     Mário Jorge Morais Vasconcelos       TRT11-AM/RR   OxW      Ismael Stangherlini         TRT4-RS
+28   SM    B     Eduardo Alcenor de Azevedo           TRT14-RO/AC   OxW      Raif Ballout Amorim         TRT3-MG
+29   SM    C     César Silveira                       TRT18-GO      OxW      João Raul Jardim Meneses    TRT1-RJ
+30   SM    D     Adrian Magno de Oliveira Campos      TRT18-GO      3x0      Leonardo Felipe di Donato   TRT17-ES
+31   SM    D     Guido Mannes                         TRT12-SC      3x0      Lucas Fontes Santana        TRT20-SE
+32   SM    E     Ricardo José Fonseca                 TRT11-AM/RR   3x1      Fernando Henrique Mello     TRT10-DF/TO
+33   SM   E Hélio Fernando Garcez de Sousa       TRT20-SE      3x0   Francisco José Laranjeira   TRT12-SC
+34   SM   F Marcus Vinícius Reis de Alcântara    TRT20-SE      0x3   José Maria Batista Valente  TRT11-AM/RR
+35   SM   F Bruno Pereira Torrozo Souza          TRT3-MG       WxO   Antônio Carlos Falcão       TST
+36   SM   G David Fernandes Neto                 TRT1-RJ       0x3   Hugo Timo Neto              TRT18-GO
+37   SM   G Rafael Barcelos de Lemos             TRT4-RS       0x3   Petrônio Gomes Lopes Júnior TRT6-PE
+38   SM   H Felipe Nunes Flores                  TRT4-RS       3x0   Robson Miranda Argolo       TRT3-MG
+39   SM   H Gildo Afonso Filho                   TRT14-RO/AC   OxW   Francisco Antônio da Silva  TRT7-CE
+40   SM 8ªs 1ºA Adson de Oliveira Nobre          TST           3x0   2ºG Hugo Timo Neto          TRT18-GO
+41   SM 8ªs 1ºH Francisco Antônio da Silva       TRT7-CE       3x0   2ºE Hélio Fernando Garcez   TRT20-SE
+42   SM 8ªs 1ºF Bruno Pereira Torrozo Souza      TRT3-MG       3x0   2ºB Raif Ballout Amorim     TRT3-MG
+43   SM 8ªs 1ºD Adrian Magno de Oliveira         TRT18-GO      3x0   2ºC João Raul Jardim        TRT1-RJ
+44   SM 8ªs 1ºC José Alberto Alves Viana         TRT6-PE       3x0   2ºA Ismael Stangherlini     TRT4-RS
+45   SM 8ªs 1ºE Ricardo José Fonseca             TRT11-AM/RR   3x0   2ºD Guido Mannes            TRT12-SC
+46   SM 8ªs 1ºG Petrônio Gomes Lopes Júnior      TRT6-PE       0x3   2ºF José Maria Batista      TRT11-AM/RR
+47   SM 8ªs 1ºB Renato Mário Borges Simões       TRT5-BA       3x0   2ºH Felipe Nunes Flores     TRT4-RS
+48   SM 4ªs Venc. 40 Adson de Oliveira Nobre     TST           3x0   Venc. 41 Francisco Antônio TRT7-CE
+49   SM 4ªs Venc. 42 Bruno Pereira Torrozo       TRT3-MG       2x3   Venc. 43 Adrian Magno       TRT18-GO/TO
+50   SM 4ªs Venc. 44 José Alberto Alves Viana    TRT6-PE       3x2   Venc. 45 Ricardo José       TRT11-AM/RR
+51   SM 4ªs Venc. 46 Jose Maria Batista          TRT11-AM/RR   0x3   Venc. 47 Renato Mário       TRT5-BA
+52   SM semi Venc. 48 Adson de Oliveira Nobre    TST           3x0   Venc. 49 Adrian Magno       TRT18-GO/TO
+53   SM semi Venc. 50 José Alberto Alves Viana   TRT6-PE       3x0   Venc. 51 Renato Mário       TRT5-BA
+54   SM final Venc. 52 Adson de Oliveira Nobre   TST           3x0   Venc. 53 José Alberto Alves TRT6-PE
+                                             SIMPLES FEMININO
+Jogo Cat. Fase               Atleta                 Tribunal   Placar               Atleta                Tribunal
+ 1    SF     A Maria das Graças Brandão          TRT7-CE       3x1      Katia Rego dos Santos Negreiros TRT17-ES
+ 2    SF     B Cenira Oliveira Fonseca           TRT11-AM/RR   3x0      Ana Elizabeth Japiá Mota         TRT6-PE
+ 3    SF     C Wânia Stela Meirelles             TRT18-GO      0x3      Rita Engracia Bezerra Dantas     TRT1-RJ
+ 4    SF     D Daiane da Cunha Marques           TRT18-GO      OxW      Ana Silva                        TRT6-PE
+ 5    SF     E Denise Rocha                      TRT20-SE      WxO      Juliana Valente de Oliveira      TRT10-DF/TO
+ 6    SF     F Mariane Meireles Andrade          TRT18-GO      WxO      Janete Elane Sena Belchior       TRT11-AM/RR
+ 7    SF     G Roberlane Moraes de Melo          TRT11-AM/RR   OxW      Sandra Garcia Dórea              TRT10-DF/TO
+ 8    SF     H Joyce Waterkemper Tristão         TRT12-SC      3x0      Luiza Emilia Cordeiro Cavalcanti TRT6-PE
+ 9    SF     F Cristina Bueno Aniola             TRT12-SC      3x2      Mariane Meireles Andrade         TRT18-GO
+10    SF     G Regina Fernandes Eloy             TRT7-CE       WxO      Roberlane Moraes de Melo         TRT11-AM/RR
+11    SF     H Larissa Rehbein Rodrigues         TRT10-DF/TO   3x1      Joyce Waterkemper Tristão        TRT12-SC
+12    SF     F Janete Elane Sena Belchior        TRT11-AM/RR   OxW      Cristina Bueno Aniola            TRT12-SC
+13    SF     G Sandra Garcia Dórea               TRT10-DF/TO   0x3      Regina Fernandes Eloy da Costa TRT7-CE
+14    SF     H Luiza Emilia Cordeiro             TRT6-PE       1x3      Larissa Rehbein Rodrigues        TRT10-DF/TO
+15    SF    8ªs 1º A Maria das Graças Brandão    TRT7-CE       1x3      2ºG Regina Fernandes Eloy        TRT7-CE
+16    SF    8ªs 1º H Larissa Rehbein             TRT10-DF/TO   WxO      2ºE Juliana Valente de Oliveira  TRT10-DF/TO
+17    SF    8ªs 1ºF Cristina Bueno Aniola        TRT12-SC      3x0      2ºB Ana Elizabeth Japiá Mota     TRT6-PE
+18    SF    8ªs 1ºD Ana Silva                    TRT6-PE       3x0      2ºC Wânia Stela Meirelles Borges TRT18-GO
+19    SF    8ªs 1ºC Rita Engracia Bezerra        TRT1-RJ       0x3      2ºA Kátia Rego dos Santos        TRT17-ES
+20    SF    8ªs 1ºE Denise Rocha                 TRT20-SE      3x0      2ºD Daiane da Cunha Marques      TRT18-GO
+21    SF    8ªs 1ºG Sandra Garcia Dórea          TRT10-DF/TO   3x0      2ºF Mariane Meireles Andrade     TRT18-GO
+22    SF    8ªs 1ºB Cenira Oliveira Fonseca      TRT11-AM/RR   3x1      2ºH Joyce Waterkemper Tristão TRT12-SC
+23    SF    4ªs Venc. 15 Regina Fernandes        TRT7-CE       3x2      Venc. 16 Larissa Rehbein         TRT10-DF/TO
+24    SF    4ªs Venc. 17 Cristina Bueno Aniola   TRT12-SC      3x1      Venc. 18 Ana Silva               TRT6-PE
+25    SF    4ªs Venc. 19 Katia Rego dos Santos   TRT17-ES      3x0      Venc. 20 Denise Rocha            TRT20-SE
+26    SF    4ªs Venc. 21 Sandra Garcia Dórea     TRT10-DF/TO   1x3      Venc. 22 Cenira Oliveira Fonseca TRT11-AM/RR
+27    SF   semi Venc. 23 Regina Fernandes        TRT7-CE       0x3      Venc. 24 Cristina Bueno Aniola   TRT12-SC
+28    SF   semi Venc. 25 Katia Rego dos Santos   TRT17-ES      1x3      Venc. 26 Cenira Oliveira Fonseca TRT11-AM/RR
+29    SF   final Venc. 27 Cristina Bueno         TRT12-SC      0x3      Venc. 28 Cenira Oliveira Fonseca TRT11-AM/RR
+                                                   DUPLAS
+     Fase                 Dupla                  Tribunal   Placar               Dupla                  Tribunal
+            Maria das Graças Brandão Serra;                      Mariane Meireles Andrade;
+DF     A    Regina Fernandes Eloy da Costa     TRT7-CE     3 x 1 Wânia Stela Meirelles Borges         TRT18-GO
+                                                                 Luiza Emilia Cordeiro Cavalcanti;
+           Cenira Oliveira Fonseca;            TRT11-AM/RR       Maria das Graças de Oliveira         TRT6-PE
+DF     B   Roberlane Moraes de Melo                        3 x 0 Santos
+           Ana Silva;                                            Maria das Graças Brandão Serra;
+DF     A   Ana Elizabeth Japiá Mota            TRT6-PE     0 x 3 Regina Fernandes Eloy da Costa       TRT7-CE
+           Larissa Rehbein Rodrigues;                            Cenira Oliveira Fonseca;
+DF     B   Sandra Garcia Dórea                 TRT10-DF/TO 3 x 2 Roberlane Moraes de Melo             TRT11-AM/RR
+           Mariane Meireles Andrade;                             Ana Silva;
+DF     A   Wânia Stela Meirelles Borges        TRT18-GO    0 x 3 Ana Elizabeth Japiá Mota             TRT6-PE
+           Luiza Emilia Cordeiro Cavalcanti;                     Larissa Rehbein Rodrigues;
+DF     B   Maria das Graças de Oliveira Santos TRT6-PE     0 x 3 Sandra Garcia Dórea                  TRT10-DF/TO
+           1ºA Maria das Graças Brandão;                         2ºB Cenira Oliveira Fonseca;
+DF   SEMI Regina Fernandes Eloy da Costa       TRT7-CE     2 x 3 Roberlane Moraes de Melo             TRT11-AM/RR
+           1ºB Larissa Rehbein Rodrigues;                        2ºA Ana Silva;
+DF   SEMI Sandra Garcia Dórea                  TRT10-DF/TO 3 x 0 Ana Elizabeth Japiá Mota             TRT6-PE
+           Venc. 7 Cenira Oliveira Fonseca;                      Venc. 8 Larissa Rehbein Rodrigues;
+DF   FINAL Roberlane Moraes de Melo            TRT11-AM/RR 2 x 3 Sandra Garcia Dórea                  TRT10-DF/TO
+           Adson de Oliveira Nobre;                              Silvio Reinaldo Pacheco Kuck;
+DM     A   Jaff Rodrigues da Silva             TST         O x W Guido Mannes                         TRT12-SC
+           José Alberto Alves Viana;                             Felipe Nunes Flores;
+DM     B   Petrônio Gomes Lopes Júnior         TRT6-PE     O x W Ismael Stangherlini                  TRT4-RS
+           Francisco Adail Gomes de Araújo;                      Ricardo José Fonseca;
+DM     C   Francisco Antônio da Silva Fortuna  TRT7-CE     0 x 3 José Maria Batista Valente           TRT11-AM/RR
+           Marcus Vinícius Reis de Alcântara;                    David Fernandes Neto;
+DM     D   Hélio Fernando Garcez de Sousa      TRT20-SE    3 x 1 João Raul Jardim Meneses             TRT1-RJ
+           Adrian Magno de Oliveira Campos;                      Marcus Vinícius Reis de Alcântara;
+DM     D   Armando Rassi Filho                 TRT18-GO    3 x 1 Hélio Fernando Garcez de Sousa       TRT20-SE
+           David Fernandes Neto;                                 Adrian Magno de Oliveira Campos;
+DM     D   João Raul Jardim Meneses            TRT1-RJ     0 x 3 Armando Rassi Filho                  TRT18-GO
+           1ªA Silvio Reinaldo Pacheco Kuck;                     2ºC Francisco Adail Gomes;
+DM    4ªs Guido Mannes                         TRT12-SC    0 x 3 Francisco Antônio da Silva Fortuna   TRT7-CE
+           1ºD Adrian Magno de Oliveira;                         2ºB José Alberto Alves Viana;
+DM    4ªs Armando Rassi Filho                  TRT18-GO    1 x 3 Petrônio Gomes Lopes Júnior          TRT6-PE
+           1ºB Felipe Nunes Flores;                              2ºD Marcus Vinícius Reis;
+DM    4ªs Ismael Stangherlini                  TRT4-RS     0 x 3 Hélio Fernando Garcez de Sousa       TRT20-SE
+             José Alberto Alves Viana;                                  2ºA Adson de Oliveira Nobre;
+DM      4ªs Ana Silva                              TRT6-PE       3x2    Jaff Rodrigues da Silva             TST
+             Venc. 18 Francisco Adail Gomes;                            Venc. 19 José Alberto Alves Viana;
+DM     SEMI Francisco Antônio da Silva Fortuna     TRT7-CE       3x1    Petrônio Gomes Lopes Júnior         TRT6-PE
+             Venc. 20 Marcus Vinícius Reis;                             Venc. 21 Ricardo José Fonseca;
+DM     SEMI Hélio Fernando Garcez de Sousa         TRT20-SE      0x3    José Maria Batista Valente          TRT11-AM/RR
+             Venc. 22 Francisco Adail Gomes;                            Venc. 23 Ricardo José Fonseca;
+DM     FINAL Francisco Antônio da Silva Fortuna    TRT7-CE       3x0    José Maria Batista Valente          TRT11-AM/RR
+             José Maria Batista Valente;                                Hélio Fernando Garcez de Sousa;
+DM/F     A   Roberlane Moraes de Melo              TRT11-AM/RR   3x0    Denise Rocha                        TRT20-SE
+             David Fernandes Neto;                                      Ricardo José Fonseca;
+DM/F     B   Rita Engracia Bezerra Dantas          TRT1-RJ       0x3    Cenira Oliveira Fonseca             TRT11-AM/RR
+             Adrian Magno de Oliveira Campos;                           Francisco Antônio da Silva Fortuna;
+DM/F     C   Mariane Meireles Andrade              TRT18-GO      3x0    Maria das Graças Brandão Serra      TRT7-CE
+             Guido Mannes;                                              José Alberto Alves Viana;
+DM/F     D   Joyce Waterkemper Tristão             TRT12-SC      2 x3   Ana Silva                           TRT6-PE
+             Adson de Oliveira Nobre;                                   Adrian Magno de Oliveira Campos;
+DM/F     C   Helen Silveira de Alcântara           TST           3x1    Mariane Meireles Andrade            TRT18-GO
+             Francisco Adail Gomes de Araújo;                           Guido Mannes;
+DM/F     D   Regina Fernandes Eloy da Costa        TRT7-CE       3x0    Joyce Waterkemper Tristão           TRT18-SC
+             Francisco Antônio da Silva Fortuna;                        Adson de Oliveira Nobre;
+DM/F     C   Maria das Graças Brandão Serra        TRT7-CE       0x3    Helen Silveira de Alcântara         TST
+             José Alberto Alves Viana;                                  Francisco Adail Gomes de Araújo;
+DM/F     D   Ana Silva                             TRT6-PE       3x1    Regina Fernandes Eloy da Costa      TRT7-CE
+             1ªA José Maria Batista Valente;                            2ºC Adrian Magno de Oliveira;
+DM/F    4ªs Roberlane Moraes de Melo               TRT11-AM/RR   0x3    Mariane Meireles Andrade            TRT18-GO
+             1ºD José Alberto Alves Viana;                              2ºB David Fernandes Neto;
+DM/F    4ªs Ana Silva                              TRT6-PE       3x0    Rita Engracia Bezerra Dantas        TRT1-RJ
+             1ºB Ricardo José Fonseca;                                  2ºD Francisco Adail Gomes;
+DM/F    4ªs Cenira Oliveira Fonseca                TRT11-AM/RR   3x0    Regina Fernandes Eloy da Costa      TRT7-CE
+             1ºC Adson de Oliveira Nobre;                               2ºA Hélio Fernando Garcez;
+DM/F    4ªs Helen Silveira de Alcântara            TST           3x0    Denise Rocha                        TRT20-SE
+             Venc. 33 Adrian Magno de Oliveira;                         Venc. 34 José Alberto Alves Viana;
+DM/F   SEMI Mariane Meireles Andrade               TRT18-GO      2x3    Ana Silva                           TRT6-PE
+             Venc. 35 Ricardo José Fonseca;                             Venc. 36 Adson de Oliveira Nobre;
+DM/F   SEMI Cenira Oliveira Fonseca                TRT11-AM/RR   3x1    Helen Silveira de Alcântara         TST
+             Venc. 37 José Alberto Alves Viana;                         Venc. 38 Ricardo José Fonseca;
+DM/F   FINAL Ana Silva                             TRT6-PE       3x1    Cenira Oliveira Fonseca             TRT11-AM/RR
+                            Resultados Finais
+Simples masculino                                             Tribunal
+    Campeão       Adson de Oliveira Nobre               TST
+    2º Lugar      José Alberto Alves Viana              TRT6-PE
+    3º Lugar      Renato Mário Borges Simões            TRT5-BA
+    3º Lugar      Adrian Magno de Oliveira Campos       TRT18-GO
+Simples feminino
+    Campeão       Cenira Oliveira Fonseca               TRT11-AM/RR
+    2º Lugar      Cristina Bueno Aniola                 TRT12-SC
+    3º Lugar      Katia Rego dos Santos Negreiros       TRT17-ES
+    3º Lugar      Regina Fernandes Eloy da Costa        TRT7-CE
+Duplas femininas
+                  Larissa Rehbein Rodrigues;            TRT10-DF/TO
+    Campeão
+                  Sandra Garcia Dórea
+                  Cenira Oliveira Fonseca;              TRT11-AM/RR
+    2º Lugar
+                  Roberlane Moraes de Melo
+                  Ana Silva;                            TRT6-PE
+    3º Lugar
+                  Ana Elizabeth Japiá Mota
+                  Maria das Graças Brandão Serra;       TRT7-CE
+    3º Lugar
+                  Regina Fernandes Eloy da Costa
+Duplas masculinas
+                  Francisco Adail Gomes de Araújo;      TRT7-CE
+    Campeão
+                  Francisco Antônio da Silva Fortuna
+                  Ricardo José Fonseca;                 TRT11-AM/RR
+    2º Lugar
+                  José Maria Batista Valente
+                  Marcus Vinícius Reis de Alcântara;    TRT20-SE
+    3º Lugar
+                  Hélio Fernando Garcez de Sousa Leão
+                  José Alberto Alves Viana;             TRT6-PE
+    3º Lugar
+                  Petrônio Gomes Lopes Júnior
+Duplas mista
+                  José Alberto Alves Viana;             TRT10-DF/TO
+    Campeão
+                  Ana Silva
+                  Ricardo José Fonseca;                 TRT18-GO
+    2º Lugar
+                  Cenira Oliveira Fonseca
+                  Adson de Oliveira Nobre;              TST
+    3º Lugar
+                  Helen Silveira de Alcântara
+                  Adrian Magno de Oliveira Campos;      TRT18-GO
+    3º Lugar
+                  Mariane Meireles Andrade
+

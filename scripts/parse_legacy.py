@@ -76,10 +76,10 @@ def parse_jsp(path):
 
 if __name__ == '__main__':
     out = []
-    for f in sorted(glob.glob('/home/claude/raw/leg/php/20*_*.html')):
+    for f in sorted(glob.glob(os.path.join(ROOT, 'raw/leg/php/20*_*.html'))):
         if os.path.basename(f)[:4] in ('2007', '2008'): continue
         r = parse_php(f); out += r; print(os.path.basename(f), len(r))
-    for f in sorted(glob.glob('/home/claude/raw/leg/jsp/20*_[0-9]*.html')):
+    for f in sorted(glob.glob(os.path.join(ROOT, 'raw/leg/jsp/20*_[0-9]*.html'))):
         r = parse_jsp(f); out += r
     from collections import Counter
     print(Counter(r['year'] for r in out))
@@ -137,9 +137,9 @@ def relays_jsp(path):
 
 def all_legacy_relays():
     out = []
-    for f in sorted(glob.glob('/home/claude/raw/leg/php/20*_*.html')):
+    for f in sorted(glob.glob(os.path.join(ROOT, 'raw/leg/php/20*_*.html'))):
         if os.path.basename(f)[:4] in ('2007', '2008'): continue
         out += relays_php(f)
-    for f in sorted(glob.glob('/home/claude/raw/leg/jsp/20*_[0-9]*.html')):
+    for f in sorted(glob.glob(os.path.join(ROOT, 'raw/leg/jsp/20*_[0-9]*.html'))):
         out += relays_jsp(f)
     return out

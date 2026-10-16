@@ -1,0 +1,128 @@
+   NÚMERO 6 - RESULTADOS DO DIA 26/09 E PROGRAMAÇÃO VESPETINA/NOTURNA DO DIA 27/09
+
+                                              DAMAS
+                                   Início às 14h, no alojamento 4.
+
+                                    FUTEBOL SOÇAITE LIVRE
+  JOGO       DATA       HORA      LOCAL   CHAVE        EQUIPE         X        EQUIPE
+   22                    17h      SESI 1             TRT4-RS         0X3    TRT8-PA/AP
+   23                    17h      SESI 2             TRT7-CE         0X2      TRT1-RJ
+            26/set                       QUARTAS
+   24                    18h      SESI 1          TRT11-AM/RR        1X0     TRT9-PR
+   25                    18h      SESI 2             TRT12-SC        1X0     TRT3-MG
+   26                    16h      SESI 1           TRT8-PA/AP         X      TRT12-SC
+            27/set                         SEMI
+   27                    16h      SESI 2              TRT1-RJ         X    TRT11-AM/RR
+   28                    16h      SESI 1 3º LUGAR Perd. Jogo 26       X     Perd. Jogo 27
+            28/set
+   29                    16h      SESI 2  FINAL    Venc. Jogo 26      X     Venc. Jogo 27
+Cartões amarelos:
+Jogo 22: Luiz Fernando Pavan dos Passos (TRT4-RS)
+Jogo 23: Tiago Brasil Pita (TRT7-CE)
+Jogo 23: Antônio A. Souza da Silva (TRT7-CE)
+Jogo 24: Filipe Dias Koltner (TRT11-AM/RR)
+Jogo 24: Otávio Rodrigues de Araújo (TRT11-AM/RR)
+Jogo 24: Gean Carlo Vila (TRT9-PR)
+Jogo 25: Márcio César Jacinto (TRT12-SC)
+
+Cartões vermelhos:
+Jogo 22: Bruno Feijó Siegmann (TRT4-RS)
+Jogo 25: Márcio César Jacinto (TRT12-SC)
+                                    FUTEBOL SOÇAITE MASTER
+  JOGO       DATA       HORA       LOCAL   CHAVE       EQUIPE          X        EQUIPE
+   13                    15h       SESI 1             TRT6-PE         2X1    TRT8-PA/AP
+   14                    15h       SESI 2             TRT4-RS         3X1     TRT3-MG
+             26/set                       QUARTAS
+   15                    16h       SESI 1           TRT14-RO/AC       5X0     TRT16-MA
+   16                    16h       SESI 2            TRT21-RN         1X0      TRT1-RJ
+   17                    15h       SESI 1             TRT6-PE          X      TRT21-RN
+             27/set                         SEMI
+   18                    15h       SESI 2             TRT4-RS          X    TRT14-RO/AC
+   19                    15h       SESI 1 3º LUGAR Perd. Jogo 17       X     Perd. Jogo 18
+             28/set
+   20                    15h       SESI 2  FINAL    Venc. Jogo 17      X    Venc. Jogo 18
+Cartões amarelos:
+Jogo 13: Sady Jorge Bastos (TRT8-PA/AP)
+Jogo 13: Cledisson Tavares (TRT8-PA/AP)
+Jogo 14: Carlo Miguel Tafernaberry (TRT4-RS)
+Jogo 14: Paulo R. Cabral de Oliveira (TRT3-MG)
+Jogo 16: Augusto C. M. de Medeiros (TRT21-RN)
+Jogo 16: Manassés da Silva Campos (TRT21-RN)
+Jogo 16: Michael Wegner Knabben (TRT21-RN)
+
+Cartões vermelhos:
+Jogo 14: Paulo R. Cabral de Oliveira (TRT3-MG)
+
+
+                                        VOLEIBOL FEMININO
+  JOGO       DATA       HORA       LOCAL    CHAVE       EQUIPE         X       EQUIPE
+   13                    14h                            TRT2-SP       2X0     TRT17-ES
+   14                    15h                            TRT7-CE       2X0        TST
+             26/set                SESI 6 QUARTAS
+   15                    16h                            TRT4-RS       0X2     TRT12-SC
+   16                    17h                          TRT10-DF/TO     1X2     TRT13-PB
+   17                    14h                            TRT2-SP        X      TRT13-PB
+             27/set                SESI 6    SEMI
+   18                    15h                            TRT7-CE        X      TRT12-SC
+   19                    15h               3º LUGAR Perd. Jogo 17      X    Perd. Jogo 18
+             28/set                SESI 6
+   20                    16h                 FINAL    Venc. Jogo 17    X    Venc. Jogo 18
+
+                                      VOLEIBOL MASCULINO
+  JOGO       DATA       HORA       LOCAL    CHAVE     EQUIPE           X       EQUIPE
+   13                    18h                          TRT4-RS         2X0      TRT6-PE
+             26/set                SESI 6    SEMI
+   14                    19h                         TRT13-PB         0X2        TST
+   15                    17h               3º LUGAR   TRT6-PE          X      TRT13-PB
+             27/set                SESI 6
+   16                    18h                FINAL     TRT4-RS          X         TST
+                                  BEACH TENNIS FEMININO
+ JOGO      DATA         HORA    LOCAL   CHAVE       EQUIPE           X        EQUIPE
+   1                            SESI 1     A       TRT20-SE         1X6    TRT10-DF/TO
+   2                            SESI 1     A          TST           6X3      TRT9-PR
+   3                            SESI 1     B      TRT18-GO          6X1     TRT21-RN
+   4                            SESI 1     B       TRT4-RS          6X2     TRT17-ES
+   5                            SESI 1     A       TRT20-SE         0X6        TST
+   6                            SESI 1     A     TRT10-DF/TO        1X6     TRT12-SC
+           26/set       18h
+   7                            SESI 1     B      TRT18-GO          3X6      TRT4-RS
+   8                            SESI 1     B      TRT21-RN          0X6     TRT17-ES
+   9                            SESI 1     A       TRT20-SE         1X6     TRT12-SC
+  10                            SESI 1     A     TRT10-DF/TO        0X6      TRT9-PR
+  11                            SESI 1     A      TRT20-SE*         W.O.     TRT9-PR
+  12                            SESI 1     A          TST           5X6     TRT12-SC
+  13                            SESI 1     B      TRT18-GO           X      TRT17-ES
+  14                            SESI 2     B      TRT21-RN           X       TRT4-RS
+           27/set       18h
+  15                            SESI 1     A     TRT10-DF/TO         X         TST
+  16                            SESI 2     A       TRT9-PR           X      TRT12-SC
+  17                            SESI 1                1º A           X         2º B
+           27/set       19h              SEMI
+  18                            SESI 2                1º B           X         2º A
+   19                           SESI 1   3º LUGAR   Perd. Jogo 17    X     Perd. Jogo 18
+           27/set       20h
+   20                           SESI 2    FINAL     Venc. Jogo 17    X     Venc. Jogo 18
+* TRT20-SE levou W.O.
+
+                                 BEACH TENNIS MASCULINO
+ JOGO      DATA         HORA    LOCAL   CHAVE       EQUIPE           X        EQUIPE
+   1                            SESI 2     A      TRT21-RN          7X5        TST
+   2                            SESI 2     A      TRT12-SC          6X4     TRT20-SE
+   3                            SESI 2     B       TRT9-PR          6X4    TRT10-DF/TO
+   4                            SESI 2     B      TRT18-GO          6X4      TRT1-RJ
+   5                            SESI 2     A      TRT21-RN          6X2     TRT12-SC
+   6                            SESI 2     A         TST            7X5     TRT20-SE
+           26/set       18h
+   7                            SESI 2     B       TRT9-PR          6X4     TRT18-GO
+   8                            SESI 2     B    TRT10-DF/TO         6X1      TRT1-RJ
+   9                            SESI 2     A      TRT21-RN          6X3     TRT20-SE
+  10                            SESI 2     A         TST            6X2     TRT12-SC
+  11                            SESI 2     B       TRT9-PR          6X0      TRT1-RJ
+  12                            SESI 2     B    TRT10-DF/TO         6X4     TRT18-GO
+  13                            SESI 1            TRT21-RN           X     TRT10-DF/TO
+           27/set       18h30            SEMI
+  14                            SESI 2             TRT9-PR           X         TST
+   15                           SESI 1   3º LUGAR   Perd. Jogo 13    X     Perd. Jogo 14
+           27/set       19h30
+   16                           SESI 2    FINAL     Venc. Jogo 13    X     Venc. Jogo 14
+

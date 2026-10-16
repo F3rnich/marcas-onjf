@@ -11,73 +11,74 @@ O que dá para fazer:
 - ver o quadro de medalhas histórico entre delegações;
 - comparar tempos de revezamento por delegação.
 
-Fonte dos dados: resultados e recordes publicados em [anastra.com.br](https://www.anastra.com.br) e nos sistemas de cronometragem de cada edição. Erros de grafia e de súmula das fontes originais podem aparecer; correções são bem-vindas.
+Fonte dos dados: resultados e recordes publicados em [anastra.com.br](https://www.anastra.com.br) e nos sistemas de cronometragem de cada edição.
 
-## Publicar uma atualização
-Depois de rodar o pipeline (seção abaixo), gere a página e envie:
-```
-python3 scripts/build_site.py index.html
-git add -A && git commit -m "Atualiza resultados" && git push
-```
-O GitHub Pages republica em cerca de um minuto.
+**Encontrou um erro?** [Reporte uma correção](https://github.com/F3rnich/marcas-onjf/issues/new?template=correcao.yml) (exige conta gratuita no GitHub).
 
-## Pipeline de dados
-
-
-## Requisitos
-- Python 3.10+ com `pypdf` (`pip install pypdf`)
-- `pdftotext` (pacote poppler-utils)
-- Os scripts assumem a raiz em `/home/claude`. Para rodar em outra máquina, troque `ROOT`/`D` no topo de cada script.
+---
 
 ## Atualizar após uma nova edição
-```
-python3 scripts/atualizar.py --ano 2027
-```
-O script lista os PDFs da edição pela API do site, baixa boletins e resultados, segue os links internos dos boletins, escolhe sozinho o parser compatível e regenera o painel. No fim ele imprime a validação contra a lista oficial de recordes.
 
-Se os resultados estiverem em site externo (como em 2026), passe os PDFs:
+Um comando faz tudo: baixa a edição, reconstrói a base, confere contra os recordes oficiais, gera o painel e publica.
+
 ```
-python3 scripts/atualizar.py --ano 2026 --pdf https://.../Resultado_Natacao.pdf --pdf https://.../Atletismo.pdf
+python3 scripts/atualizar.py --ano 2027 --publicar
 ```
 
-Se a organização mudar de software de cronometragem, nenhum parser vai servir; o relatório mostra 0 linhas para aquele arquivo e é preciso escrever um parser novo em `parse_pdfs.py` (cada um tem cerca de 30 linhas).
+O que ele faz:
+1. Reprocessa as fontes arquivadas em `raw/` (2009 em diante).
+2. Lista os PDFs da edição no site da Anastra, baixa, segue os links internos dos boletins (inclusive para resultados hospedados fora do site) e escolhe sozinho o leitor compatível com cada arquivo, para provas individuais e revezamentos.
+3. Procura a edição no sistema de cronometragem Gerentrack (atletismo desde 2026), descobrindo sozinho o endereço, a chave pública e os eventos.
+4. Confere a base contra as listas oficiais de recordes. **Se menos de 95% dos recordes individuais ou 70% dos de revezamento conferirem, para e não publica**: sinal de que alguma fonte mudou de formato.
+5. Gera `index.html` e, com `--publicar`, grava no Git e envia. O GitHub Pages republica em cerca de um minuto.
 
-## Atletismo 2026 (sistema Gerentrack)
-Os resultados de atletismo de 2026 não estão em PDF: vêm da API pública do sistema de cronometragem.
-```
-python3 scripts/fetch_gt.py   # baixa resultados e inscrições (usa a chave pública que o site expõe, salva em raw/ext/hdr.json)
-python3 scripts/parse_gt.py   # converte para data/y2026atl_raw.json
-python3 scripts/atualizar.py  # reconstrói base e painel
-```
-Se a Anastra usar o mesmo sistema em 2027, basta trocar os IDs de evento no topo de `fetch_gt.py` e `parse_gt.py`.
+Variações:
+- `--ano 2027` sem `--publicar`: gera tudo para revisar antes (abra `index.html`).
+- `--pdf URL`: inclui um PDF de resultado que não esteja linkado no site da Anastra.
+- Sem `--ano`: só reconstrói a partir do que já está no repositório (útil depois de corrigir um leitor).
 
-## Revezamentos
-```
-python3 scripts/parse_relays.py raw/txt data/relay_raw.json        # 2017–2025 (PDFs)
-python3 -c "import sys,json; sys.path.insert(0,'scripts'); import parse_legacy as L; json.dump(L.all_legacy_relays(), open('data/legacy_relays.json','w'), ensure_ascii=False)"
-python3 scripts/parse_gt.py relays                                 # 2026 (Gerentrack)
-python3 scripts/parse_records.py raw/rec data/records.json data/relay_records.json
-python3 scripts/atualizar.py                                       # reconstrói tudo
-```
-O motor de revezamento associa integrantes à equipe em quatro modos (after, inline, around, none), definidos por fonte em `parse_relays.py`. Categorias: livre ou soma de idades (ex.: 180 anos).
+### Requisitos
+- Python 3.10+ com `pypdf` (`pip install pypdf`)
+- `pdftotext` (pacote `poppler-utils`), só para edições novas
 
-## Arquivos
+### Se a conferência barrar a publicação
+O relatório lista os recordes que não conferiram. Em geral a organização mudou de software de cronometragem e nenhum leitor existente serve. É preciso escrever um leitor novo em `scripts/parse_pdfs.py` (provas individuais, cerca de 30 linhas) ou ajustar `scripts/parse_relays.py` (revezamentos), e rodar de novo.
+
+---
+
+## Organização do repositório
+
+| Caminho | Conteúdo |
+|---|---|
+| `index.html` | O painel publicado (gerado; não editar à mão) |
+| `panel/template.html` | Código do painel; os dados são injetados nele |
+| `data/onjt.json` | Base final consolidada |
+| `data/*_raw.json`, `data/*relays.json` | Dados intermediários por fonte |
+| `raw/txt/` | Texto extraído dos PDFs de resultados (arquivo das fontes) |
+| `raw/leg/` | Páginas do arquivo antigo do site (2009–2016) |
+| `raw/rec/` | Listas oficiais de recordes |
+| `raw/ext/` | Dados do sistema Gerentrack |
+| `preview.png` | Imagem da prévia do link (WhatsApp, redes) |
+
+As fontes ficam arquivadas porque o site original perde arquivos com o tempo (vários PDFs de 2017–2019 e as páginas de 2007–2008 já estão fora do ar). Com elas, a base pode ser reconstruída a qualquer momento.
+
 | Script | Função |
 |---|---|
-| `norm.py` | Normaliza provas, faixas etárias, delegações e marcas |
-| `parse_legacy.py` | 2009–2016 (páginas antigas do site) |
-| `parse_pdfs.py` | 2017–2025, um parser por layout de PDF |
-| `parse_records.py` | Lista oficial de recordes por faixa |
-| `build_data.py` | Junta, deduplica, valida e exporta `data/onjt.json` |
-| `validate.py` | Confere cada recorde oficial contra a base |
-| `build_panel.py` | Injeta os dados no template do painel |
-| `atualizar.py` | Executa tudo para uma edição nova |
-| `fetch_gt.py` / `parse_gt.py` | Atletismo vindo do sistema Gerentrack (2026) |
-| `parse_relays.py` | Revezamentos 2017–2025 |
+| `atualizar.py` | Executa todo o processo (comando principal) |
+| `norm.py` | Normaliza provas, faixas etárias, delegações, marcas e nomes |
+| `parse_legacy.py` | 2009–2016 (páginas antigas do site), individuais e revezamentos |
+| `parse_pdfs.py` | Provas individuais em PDF, um leitor por formato |
+| `parse_relays.py` | Revezamentos em PDF |
+| `parse_records.py` | Listas oficiais de recordes |
+| `fetch_gt.py` / `parse_gt.py` | Sistema Gerentrack (atletismo desde 2026) |
+| `build_data.py` | Junta, unifica nomes, deduplica e exporta `data/onjt.json` |
+| `validate.py` | Confere a base contra os recordes oficiais |
+| `build_panel.py` / `build_site.py` | Geram o painel e o `index.html` |
 
 ## Limitações conhecidas
-- 2007 e 2008: as páginas de modalidade no site são cópias de 2011, então ficam fora.
-- 2012–2016: o site só guarda os medalhistas.
-- Revezamentos de natação de 2026 não constam dos PDFs publicados.
+- 2007 e 2008: o site não tem resultados individuais desses anos (as páginas existentes são cópias de 2011).
+- 2012–2016: o site guarda só os medalhistas.
+- Faixas etárias mudaram ao longo dos anos; as comparações usam sempre a faixa exatamente igual.
+- Piscina de 25 m e 50 m: tempos não são comparáveis; o painel tem filtro de piscina. 2009–2011, 2013 e 2025 não informam o tamanho.
 - Revezamentos mistos de 2026 vieram como "misto por categorias", sem a regra de soma de idades; ficam numa categoria própria.
-- Piscina de 2009–2011, 2013 e 2025 não informada nas fontes.
+- Nomes de atletas são unificados por regras (partículas, abreviações, nomes cortados); casos raros podem ficar duplicados ou ser unidos por engano. Use o formulário de correção.

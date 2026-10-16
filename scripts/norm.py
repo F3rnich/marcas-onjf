@@ -1,5 +1,8 @@
 """Normalização comum: provas, faixas, delegações, marcas."""
-import re, unicodedata
+import os, re, unicodedata
+
+# raiz do repositório (pasta acima de scripts/); os caminhos de dados partem daqui
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def strip_acc(s):
     return ''.join(c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn')

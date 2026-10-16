@@ -1,0 +1,46 @@
+name: Correção de resultado
+description: Nome duplicado ou com grafia errada, marca incorreta, delegação errada ou resultado faltando.
+title: "[Correção] "
+labels: ["correção"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por ajudar a corrigir o painel. Os dados vêm dos resultados publicados pela Anastra; quando possível, informe onde está o dado correto.
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: O que está errado?
+      options:
+        - Mesmo atleta aparece com dois nomes
+        - Nome com grafia errada
+        - Marca ou tempo incorreto
+        - Delegação errada
+        - Resultado faltando
+        - Outro
+    validations:
+      required: true
+  - type: input
+    id: atleta
+    attributes:
+      label: Atleta ou delegação
+      placeholder: "Ex.: Maria da Silva Souza (TRT17-ES)"
+    validations:
+      required: true
+  - type: input
+    id: edicao
+    attributes:
+      label: Edição e prova
+      placeholder: "Ex.: 2024, 100 m rasos, 40-44"
+  - type: textarea
+    id: descricao
+    attributes:
+      label: Descrição
+      description: O que aparece hoje e qual seria o correto.
+    validations:
+      required: true
+  - type: input
+    id: fonte
+    attributes:
+      label: Fonte (opcional)
+      description: Link do boletim, súmula ou outra prova do dado correto.

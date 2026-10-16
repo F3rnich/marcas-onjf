@@ -1,0 +1,721 @@
+            NÚMERO 2 - RESULTADOS DO DIA 22/09 E PROGRAMAÇÃO DO DIA 23/09
+
+                                            NATAÇÃO
+                 CLIQUE AQUI PARA BAIXAR O RESULTADO DA NATAÇÃO DO DIA 22/09
+
+
+
+               CLIQUE AQUI PARA BAIXAR A PROGRAMAÇÃO DA NATAÇÃO DO DIA 23/09
+
+
+                                     FUTEBOL SOÇAITE LIVRE
+  JOGO        DATA       HORA      LOCAL   CHAVE        EQUIPE           X       EQUIPE
+    1                     17h      AABB 1     C      TRT11-AM/RR        5X3      TRT5-BA
+    2                     17h     AABB 2      C             TRT7-CE     0X2       TRT2-SP
+    3                     18h     AABB 1      B             TRT12-SC    6X0      TRT13-PB
+    4         22/set      18h     AABB 2      B             TRT9-PR     1X2       TRT6-PE
+    5                     19h     AABB 1      A              TRT1-RJ    1X0      TRT17-ES
+    6                     19h     AABB 2      A           TRT14-RO/AC   2X2     TRT21-RN
+    7                     20h     AABB 1      D           TRT8-PA/AP    1X5      TRT3-MG
+    8                     20h     AABB 2      D              TRT4-RS    2X1    TRT10-DF/TO
+Cartões Amarelos:
+Jogo 1: Edson Luiz A. Rocha (TRT5-BA)
+Jogo 2: Bruno Nagima Segana (TRT2-SP)
+Jogo 4: José Ricardo Perim (TRT9-PR)
+Jogo 5: Josival Gonzaga Junior (TRT1-RJ)
+Jogo 7: Cledisson Tavares Santos (TRT8-PA/AP)
+Jogo 7: Leonardo Cesar Madeira (TRT3-MG)
+Jogo 7: André Santana de Souza (TRT3-MG)
+Jogo 8: Hélio Ferraz dos Santos (TRT10-DF/TO)
+Jogo 8: Marco Aurélio de Carvalho (TRT10-DF/TO)
+Jogo 8: Raphael Freire Campos (TRT10-DF/TO)
+
+Cartões Vermelhos:
+Jogo 7: Segisnando Pinto Filho (TRT8-PA/AP) – Suspenso do Jogo 15
+                                     FUTEBOL SOÇAITE MASTER
+  JOGO        DATA       HORA       LOCAL   CHAVE       EQUIPE        X      EQUIPE
+    1                     15h       AABB 1     A       TRT3-MG       1X3    TRT16-MA
+    2         22/set      15h       AABB 2     B       TRT5-BA       2X2   TRT8-PA/AP
+    3                     16h       AABB 2     C        TRT1-RJ      1X2     TRT4-RS
+Cartões Amarelos:
+Jogo 1: Manoel Ricardo de Jesus (TRT16-MA)
+Jogo 2: Wellington Oliveira de Almeida (TRT5-BA)
+Jogo 2: Geovane de Assis Batista (TRT5-BA)
+
+
+
+                                           FUTSAL LIVRE
+  JOGO      DATA      HORA           LOCAL   CHAVE        EQUIPE      X      EQUIPE
+    1                  10h            AABB     A         TRT6-PE     4X1     TRT2-SP
+    2                  10h           UFMG      B       TRT14-RO/AC   4X0    TRT9-PR
+           22/set
+    3                  11h            AABB     C         TRT20-SE    6X1    TRT5-BA
+    4                  11h           UFMG      D          TRT1-RJ    2X3    TRT3-MG
+Cartões Amarelos (Futsal Livre):
+Jogo 1: Admilson P. F. Junior (TRT6-PE)
+Jogo 1: Luan L. F. Neto (TRT6-PE)
+Jogo 1: Adriano N. Pain (TRT2-SP)
+Jogo 1: Marcelo Freitas (TRT2-SP)
+Jogo 1: Bruno N. Segana (TRT2-SP)
+Jogo 2: Daniel Augusto de Carvalho (TRT9-PR)
+Jogo 4: Daniel Pontes de Castro (TRT1-RJ)
+Jogo 4: Felipe Bozzoni Franco (TRT3-MG)
+Jogo 4: Diego Massambani Cambraia (TRT3-MG)
+Jogo 4: Thiago Henrique Faccion (TRT3-MG)
+
+
+
+                                           FUTSAL MASTER
+  JOGO      DATA         HORA        LOCAL    CHAVE       EQUIPE      X       EQUIPE
+    1                     8h          AABB      A         TRT1-RJ    0X1   TRT10-DF/TO
+    2      22/set         8h         UFMG       B         TRT4-RS    5X1     TRT6-PE
+    3                     9h          AABB      B        TRT13-PB    1X2   TRT11-AM/RR
+Cartões Amarelos:
+Jogo 1: Severino S. Oliveira (TRT10-DF/TO)
+Jogo 2: Sandro Schirvon (TRT4-RS)
+Jogo 2: Fabiano Rangel Haese (TRT4-RS)
+
+Cartão Vermelho:
+Jogo 2: Fernando Mesquita Junior (TRT6-PE) – Suspenso do Jogo 05
+                         BASQUETE MASCULINO
+JOGO   DATA     HORA   LOCAL  CHAVE      EQUIPE          X        EQUIPE
+  1              18h            B        TRT1-RJ      33 X 14    TRT9-PR
+  2    22/set    19h   UFMG     A          TST        49 X 21    TRT7-CE
+  3              20h            B        TRT6-PE      32 X 17    TRT3-MG
+
+
+                          HANDEBOL FEMININO
+JOGO   DATA     HORA   LOCAL  CHAVE       EQUIPE         X        EQUIPE
+  1              13h            A        TRT13-PB     09 X 07       TST
+  2    22/set    14h   UFMG     B        TRT3-MG      04 X 13     TRT1-RJ
+  3              15h            B         TRT4-RS     11 X 04     TRT6-PE
+
+
+                         HANDEBOL MASCULINO
+JOGO   DATA     HORA   LOCAL  CHAVE      EQUIPE          X        EQUIPE
+  1              16h                     TRT1-RJ      13 X 18    TRT21-RN
+       22/set          UFMG   ÚNICA
+  2              17h                   TRT8-PA/AP     03 X 16    TRT17-ES
+
+
+                           VOLEIBOL FEMININO
+JOGO   DATA     HORA   LOCAL    CHAVE       EQUIPE      X         EQUIPE
+  1             16h               A        TRT3-MG     0x2          TST
+  2             17h               C        TRT17-ES    2X0        TRT1-RJ
+       22/set           AABB
+  3             18h               B        TRT6-PE     2X0      TRT10-DF/TO
+  4             19h               D         TRT4-RS    2X0      TRT14-RO/AC
+
+
+                        VOLEIBOL MASCULINO
+JOGO   DATA     HORA   LOCAL  CHAVE    EQUIPE           X         EQUIPE
+  1              14h            B      TRT6-PE         0X2       TRT12-SC
+       22/set           AABB
+  2              15h            A      TRT1-RJ         0X2       TRT20-SE
+                                                                    VÔLEI DE AREIA QUARTETO MISTO
+ DATA: 22 E 23/09
+ HORÁRIO DE INÍCIO: 08:00 Horas                                                                     1 TRT4-RS
+ LOCAL: A.A.B.B. (Quadras 1 e 2)                                                     TRT1-RJ
+                                                                         TRT1-RJ   11Perd. Jg 7 2 TRT18-GO             6   TRT4-RS
+                                                                       Venc. Jg 11 TRT18-GO                1 TRT10-DF/TO Venc. Jg 6
+                                                                                    Perd. Jg 1 3 TRT10-DF/TO Venc. Jg 1
+                                                                      15                                                          17
+                                                          Venc. Jg 15                            4 TRT1-RJ                           Venc. Jg 17
+                                                          19                       TRT3-MG                 2    TRT1-RJ
+                                              Venc. Jg 19             TRT3-MG      12 Perd. Jg 2 5 TRT3-MG     Venc. Jg 2
+                                                                       Venc. Jg 12 TRT10-DF/TO                         7   TRT6-PE
+                                                                                    Perd. Jg 6 6 TRT6-PE                  Venc. Jg 7
+                                21                          Perd. Jg 18
+                  Venc. Jg 21                                             TRT13-PB
+                                              Perd. Jg 17                   Perd. Jg 9                7 TRT17-ES                                   22
+                  23                                        TRT13-PB      13           TRT14-RO/AC               3 TRT17-ES                            Venc. Jg 22
+    Venc. Jg 23                               20            Venc. Jg 13                 Perd. Jg 3 8 TRT14-RO/AC Venc. Jg 3
+                                Venc. Jg 20                               TRT14-RO/AC 10                                     8 TRT17-ES
+                                                                           Venc. Jg 10                9 TRT12-SC                Venc. Jg 8
+                  Perd. Jg 22                               16                         TRT21-RN                  4 TRT12-SC
+                                              Venc. Jg 16                               Perd. Jg 4 10 TRT21-RN       Venc.Jg 4
+                                                                                       TRT12-SC                                         18                     24
+                                                                          TRT12-SC     14 Perd. Jg 8 11 TRT13-PB                           Venc. Jg 18             Campeão
+                                                                           Venc. Jg 14 TRT5-BA                   5 TRT13-PB
+                                                                                        Perd. Jg 5 12 TRT5-BA        Venc. Jg 5
+                                                                                                                             9 TST-DF
+                                                                                                     13 TST-DF                  Venc. Jg 9
+
+
+                                                                                                                                                      Venc. Jg 23
+
+
+
+
+                                                                                         CICLISMO
+
+                                                                                         FEMININO
+
+Categoria Até 39 anos
+   COL                     Nº                   NOME DA ATLETA                                             DELEGAÇÃO                             TEMPO
+    1°                     3              Tatiana de Sousa Faria                                             TST-DF                              21:25.44
+    2°                     7              Raquel Ribeiro Rhein                                              TRT17-ES                             21:38.62
+    3°                     13             Ana Carolina M. P. de Oliveira                                     TST-DF                              21:44.62
+   NC                      4              Mara M. Magalhaes dos Santos                                      TRT3-MG                           Não Completou
+
+                                                                                         MASCULINO
+
+Categoria Até 39 anos
+   COL         Nº          NOME DO ATLETA                                                                  DELEGAÇÃO                             TEMPO
+    1°         75    Jader Cunha Macedo                                                                     TRT5-BA                              36:01.39
+    2°         25    Hitalo Fernandes Mine Diniz                                                            TRT3-MG                              36:07.26
+    3°         40    Luis Henrique S. S. Rangel                                                             TRT3-MG                              36:13.31
+   NC          20    Luis Paulo Alves Magalhães                                                             TRT17-ES                          Não Completou
+Categoria 40 a 49 anos
+   COL         Nº          NOME DO ATLETA            DELEGAÇÃO                                                           TEMPO
+    1°          4    Claudio Kano                      TRT2-SP                                                           35:35.02
+    2°         23    Emerson Antunes Ribeiro         TRT10-DF/TO                                                         37:48.84
+    3°         10    Carlos Fernando Amorim Junior TRT10-DF/TO                                                           40:41.08
+    4°         45    João Luis A. El Sadat P. Leitão    TST-DF                                                           40:41.54
+
+Categoria 50 anos Acima
+   COL        Nº           NOME DO ATLETA                                      DELEGAÇÃO                             TEMPO
+    1°        11     Mario Garcia Ramalho                                         TST-DF                             38:40.77
+    2°        33     Joubert Lopes dos Santos                                    TRT3-MG                             41:30.74
+    3°        22     Gilson Marcos da Rocha                                      TRT3-MG                             42:08.31
+    4°        25     George Luiz Barcelos Santos                                 TRT17-ES                            42:09.83
+    5°         3     Alexandre Prates Beltrão                                  TRT10-DF/TO                           43:44.69
+    6°        26     Manoel Amaro Pereira Junior                                 TRT6-PE                            + 2 Voltas
+   NC         61     Valtelucio Dias de Lacerda                                  TRT6-PE                          Não Completou
+
+
+                                                  TÊNIS DE CAMPO
+
+DOMINGO (22/9)
+ordem horário   categoria nº jogo                                        confronto                                                    parciais
+
+
+  1    09:45    SM 40-49    j1                       João Nogueira (MG)    0    X    2 Rodrigo Corrêa (RS)                            1/4 1/4
+
+  2    09:45    SM 40-49    j2                  Antônio Bittencourt (MG)   1    X    2 Alex Pimentel (PA/AP)                       4/0 3/5 (3/10)
+
+  3    09:45    SF até 39   j4                       Mariana Costa (RS)    1    X    2 Juliana Morais (MG)                         1/4 4/1 (5/10)
+
+  4    09:45    SM 40-49    j3                Wandirney Bastos (MG)        2    X    0 Augusto Brandão (PE)                           4/0 4/1
+
+  5    10:15    SM 50-59    j4                  Fernando Souza (RS)        2    X    0 Luiz Rodrigues (GO)                           desistência
+
+
+  6    10:30     SM +60     j1               Marcos dos Santos (MG)        2    X    1   Andre Luiz Mattos (RS)                    1/4 4/0 (10/6)
+
+  7    10:30    SM 50-59    j2                 Edilson Andrade (MG)        2    X    0 Marcus Aguiar (RJ)                               WO
+
+  8    10:30    SM 50-59    j3                Cândido Tavares Filho (SE)   0    X    2 Paulo Martins (SP)                             1/4 0/4
+
+  9    11:15    SM 50-59    j6             Francisco Mendonça (RN)         2    X    0 Emerson Lage (MG)                              4/0 4/0
+
+ 10    13:00    SM 50-59    j7                       Joelson Lisboa (GO)   1    X    2 Marcelo Neves (RJ)                          3/5 5/4 (8/10)
+
+ 11    13:30    SM até 39   j1                     Eduardo Teixeira (RJ)   0    X    2 João Trindade (SC)                            desistência
+
+
+ 12    13:30    SM até 39   j2                     Marcelo Caixeta (MG)    0    X    2 Gustavo Morais (RN)                            4/5 2/5
+
+ 13    13:30    SM até 39   j3                      Felipe Flores (RS)     2    X    0 Marcelo Pinto Filho (MG)                      desistência
+
+
+ 14    13:30    SM até 39   j4                      João Maia Filho (RN)   0    X    2 Daniel Souza (PR)                              0/4 1/4
+
+ 15    14:15    SM até 39   j6                    Rodrigo Santiago (MG)    0    X    2 Daniel Rodrigues (BA)                          2/4 0/4
+
+ 16    14:15    SM até 39   j7                    Murillo Camargo (MG)     0    X    2 Rosembergue Santos (RO/AC)                     1/4 2/4
+
+ 17    14:15    SM até 39   j8                    Fábio Mastrocolla (RN)   0    X    2 José Perim (PR)                                1/4 0/4
+                                                                                         José Carlos Oliveira / Washington Sousa
+ 18    14:15    DM 50-59    j1      Paulo Castro / Cesar Silveira (GO)     2    X    0   (MG)
+                                                                                                                                      4/0 4/1
+
+ 19    15:00    SF até 39   j1                 Fernanda Araújo (MG)        2    X    0 Flávia Queiroz (GO)                            4/1 4/1
+
+ 20    15:00    SF até 39   j2                        Paula Nesi (SC)      2    X    0 Roberta Zanetti (MG)                        1/4 4/2 (10/2)
+
+ 21    15:45    SF 40-49    j1                   Cristina Aniola (SC)      2    X    0 Michele Freitas (PR)                           4/1 4/1
+
+ 22    15:45    SF 40-49    j2                        Marina Farias (RS)   0    X    2 Mariana Mesquita (PE)                          1/4 3/5
+  16   14:15   SM até 39   j7                            Murillo Camargo (MG)       0   X   2 Rosembergue Santos (RO/AC)                     1/4 2/4
+
+  17   14:15   SM até 39   j8                            Fábio Mastrocolla (RN)     0   X   2 José Perim (PR)                                1/4 0/4
+                                                                                                José Carlos Oliveira / Washington Sousa
+  18   14:15   DM 50-59    j1            Paulo Castro / Cesar Silveira (GO)         2   X   0   (MG)
+                                                                                                                                             4/0 4/1
+
+  19   15:00   SF até 39   j1                        Fernanda Araújo (MG)           2   X   0 Flávia Queiroz (GO)                            4/1 4/1
+
+  20   15:00   SF até 39   j2                                 Paula Nesi (SC)       2   X   0 Roberta Zanetti (MG)                        1/4 4/2 (10/2)
+
+  21   15:45   SF 40-49    j1                           Cristina Aniola (SC)        2   X   0 Michele Freitas (PR)                           4/1 4/1
+
+  22   15:45   SF 40-49    j2                                Marina Farias (RS)     0   X   2 Mariana Mesquita (PE)                          1/4 3/5
+
+  23   15:45   SF 50-59    j1                     Claudia Oliveira (DF/TO)          2   X   0 Mônica Obesso (RJ)                               WO
+
+  24   15:45   SF 50-59    j2                        Iliane Sanchotene (RS)         2   X   0 Nanci Trotta (MG)                              4/0 4/1
+                                                                                                Marcelo Faleiros / Edilson Andrade
+  25   16:30   DM 40-49    j1              Alex Pimentel / Samuel Silva (PA/AP)     0   X   2   (MG)
+                                                                                                                                             2/4 1/4
+
+                                                                                                João Nogueira / Wandirney Bastos
+  26   16:30   DM 40-49    j2               Rodrigo Corrêa / André Mattos (RS)      0   X   2   (MG)
+                                                                                                                                             4/5 3/5
+
+  27   16:30   SM 50-59    j1             Marco Aurélio Carvalho (DF/TO)            2   X   1   Mário Ramalho (TST)                       3/5 4/0 (10/7)
+
+  28   17:15    SM +60     j2                     José Carlos Oliveira (MG)         1   X   0 Antônio Falcão (TST)                          4/1 desist.
+                                                                                                Emerson Lage / Marcos dos Santos
+  29   17:15   DM 50-59    j2               Marcelo Neves / Marcus Aguiar (RJ)      0   X   2 (MG)                                           2/4 0/4
+
+                                Francisco Mendonça / José Marcelo Teixeira
+  30   17:15   DM 50-59    j4
+                                                                     (RN)
+                                                                                    2   X   0 Antônio Falcão / Jaff da Silva (TST)           4/2 4/0
+
+  31   17:15   SM 40-49    j4                         Marcelo Faleiros (MG)         2   X   0 Leandro Oliveira (GO)                          4/0 4/2
+                                 Marco Aurélio Carvalho / Ricardo Machado
+  32   17:15   DM 50-59    j3
+                                                                  (DF/TO)
+                                                                                    2   X   0 Luiz Rodrigues / Joelson Lisbôa (GO)          desistência
+
+
+  33   18:00    SM +60     j3                   Washington de Sousa (MG)            2   X   0 Jaff da Silva (TST)                            4/1 4/2
+
+  34   18:00   DM até 39   j1                 Murillo Franco / Luiz Osório (MG)     0   X   2 Bruno Medeiros / João Maia Filho (RN)         desistência
+
+                                                                                                Marcelo Caixeta / Rodrigo Santiago
+  35   18:00   DM até 39   j2                   Felipe Flores / Michel Silva (RS)   0   X   2   (MG)
+                                                                                                                                             4/5 1/4
+
+                                                                                                João Alvarenga / Leandro Cândido
+  36   18:00   DM até 39   j3           Fábio Mastrocolla / Gustavo Morais (RN)     0   X   2 (GO)                                           2/4 2/4
+
+  37   18:45   DF 40-49    j3       Marina Farias / Iliane Sanchotene (RS)          2   X   1   Mariana Mesquita / Fernanda Silva (PE)    4/5 4/0 (10/4)
+
+  38   18:45   DF até 39   j1          Daiane Marques / Jussara Sato (GO)           2   X   0 Juliana Morais / Fernanda Araújo (MG)          4/0 4/0
+
+  39   18:45   DF até 39   j2   Natalia Miranda / Claudia Oliveira (DF/TO)          2   X   0 Roberta Zanetti / Sara Campos (MG)             4/2 4/1
+
+  40   18:45   SM até 39   j5                           João Alvarenga (GO)         2   X   0 Michel Silva (RS)                              4/1 5/3
+
+  41   19:30   SM 50-59    j8                                Carlos Aita (RS)       2   X   0 Márcio Souza (SC)                              4/0 4/0
+
+  42   20:30   SF até 39   j5                          Daiane Marques (GO)          2   X   0 Fernanda Araújo (MG)                           4/2 4/0
+
+
+
+
+                                                     DOMINÓ INDIVIDUAL
+
+1º Lugar:      José Maria - TRT2 - SP
+2º Lugar:      José Humberto TRT13 - PB
+3º Lugar:      Vera Cristina - TRT2 - SP
+4º Lugar:      Marcio Moura TRT9 - PR
+                       PROGRAMAÇÃO PARA O DIA 23/09
+
+
+                           FUTEBOL SOÇAITE LIVRE
+JOGO   DATA     HORA     LOCAL   CHAVE        EQUIPE     X     EQUIPE
+  9              17h     AABB 1     B        TRT12-SC    X     TRT9-PR
+ 10              17h     AABB 2     B        TRT13-PB    X     TRT6-PE
+ 11              18h     AABB 1     C     TRT11-AM/RR    X     TRT7-CE
+ 12              18h     AABB 2     C        TRT5-BA     X     TRT2-SP
+       23/set
+ 13              19h     AABB 1     A         TRT1-RJ    X   TRT14-RO/AC
+ 14              19h     AABB 2     A        TRT17-ES    X    TRT21-RN
+ 15              20h     AABB 1     D       TRT8-PA/AP   X     TRT4-RS
+ 16              20h     AABB 2     D        TRT3-MG     X   TRT10-DF/TO
+
+
+                          FUTEBOL SOÇAITE MASTER
+JOGO   DATA     HORA     LOCAL   CHAVE       EQUIPE      X     EQUIPE
+  4              15h     AABB 1     A      TRT14-RO/AC   X    TRT16-MA
+  5    23/set    15h     AABB 2     B        TRT6-PE     X     TRT5-BA
+  6              16h     AABB 2     C       TRT21-RN     X     TRT4-RS
+
+
+                               FUTSAL LIVRE
+JOGO   DATA     HORA     LOCAL   CHAVE        EQUIPE     X      EQUIPE
+  5              10h      AABB     A          TRT7-CE    X     TRT6-PE
+  6              10h     UFMG      B      TRT11-AM/RR    X   TRT14-RO/AC
+       23/set
+  7              11h      AABB     C          TRT4-RS    X     TRT20-SE
+  8              11h     UFMG      D        TRT8-PA/AP   X     TRT3-MG
+
+
+                               FUTSAL MASTER
+JOGO   DATA     HORA     LOCAL    CHAVE       EQUIPE     X      EQUIPE
+  4              8h       AABB      A        TRT20-SE    X   TRT10-DF/TO
+  5    23/set    8h      UFMG       B        TRT6-PE     X   TRT11-AM/RR
+  6              9h      UFMG       B        TRT4-RS     X     TRT13-PB
+
+
+                           BASQUETE MASCULINO
+JOGO   DATA     HORA     LOCAL  CHAVE      EQUIPE        X     EQUIPE
+  4              18h              B        TRT6-PE       X    TRT9-PR
+  5    23/set    19h     UFMG     A        TRT4-RS       X    TRT7-CE
+  6              20h              B        TRT1-RJ       X    TRT3-MG
+                                             HANDEBOL FEMININO
+  JOGO           DATA             HORA    LOCAL  CHAVE       EQUIPE                               X     EQUIPE
+    4                              13h             A        TRT17-ES                              X       TST
+    5           23/set             14h    UFMG     B         TRT1-RJ                              X    TRT6-PE
+    6                              15h             B         TRT4-RS                              X    TRT3-MG
+
+
+                                            HANDEBOL MASCULINO
+  JOGO           DATA             HORA    LOCAL  CHAVE      EQUIPE                                X     EQUIPE
+    3                              16h                    TRT8-PA/AP                              X     TRT4-RS
+                23/set                    UFMG   ÚNICA
+    4                              17h                     TRT17-ES                               X    TRT21-RN
+
+
+                                              VOLEIBOL FEMININO
+  JOGO           DATA             HORA    LOCAL    CHAVE       EQUIPE                             X      EQUIPE
+    5                              16h               C        TRT13-PB                            X      TRT1-RJ
+    6                              17h               B         TRT7-CE                            X   TRT10-DF/TO
+                23/set                     AABB
+    7                              18h               A         TRT2-SP                            X     TRT3-MG
+    8                              19h               D        TRT12-SC                            X   TRT14-RO/AC
+
+
+                                             VOLEIBOL MASCULINO
+  JOGO           DATA             HORA    LOCAL    CHAVE      EQUIPE                              X     EQUIPE
+    3                              14h               B        TRT4-RS                             X     TRT6-PE
+                23/set                     AABB
+    4                              15h               A          TST                               X     TRT1-RJ
+
+
+                                                    TÊNIS DE CAMPO
+
+SEGUNDA (23/9)
+ordem horário   categoria nº jogo                                          confronto                       parciais
+
+
+  1    08:45     SM +60     j4                  Alexandre Pereira (SE)          X      Venc j1
+
+
+  2    08:45     SM +60     j5                                  Venc j2         X      Venc j3
+
+
+  3    08:45     SM +60     j6                                  Perd j2         X      Perd j3
+
+
+  4    08:45    DM até 39   j4           Daniel Souza / José Betini (PR)        X      venc. j1
+
+
+       08:45
+
+
+  5    09:45    SM 40-49    j5                   Victor Scarpellini (MS)        X      venc. j1
+
+
+  6    09:45    SM 40-49    j6                        Luiz Perrelli (PE)        X      venc. j2
+
+
+  7    09:45    SM 40-49    j7                     André Espínola (SE)          X      venc. j3
+
+
+  8    09:45    SM 40-49    j8                  Ricardo Kurylenko (RS)          X      venc. j4
+
+
+       09:45
+
+
+  9    10:30    SM 50-59    j9                    Roberto Moraes (SE)           X      venc. j1
+
+
+ 10    10:30    SM 50-59    j10                      Paulo Castro (GO)          X      venc. j2
+
+
+ 11    10:30    SM 50-59    j11             José Marcelo Teixeira (RN)          X      venc. j3
+7    09:45   SM 40-49    j7                         André Espínola (SE)        X      venc. j3
+
+
+8    09:45   SM 40-49    j8                      Ricardo Kurylenko (RS)        X      venc. j4
+
+
+     09:45
+
+
+9    10:30   SM 50-59    j9                        Roberto Moraes (SE)         X      venc. j1
+
+
+10   10:30   SM 50-59    j10                          Paulo Castro (GO)        X      venc. j2
+
+
+11   10:30   SM 50-59    j11                 José Marcelo Teixeira (RN)        X      venc. j3
+
+
+12   10:30   SM 50-59    j12                      Eduardo Oliveira (SE)        X      venc. j4
+
+
+     10:30
+
+
+13   11:15   SM 50-59    j13                         Cesar Silveira (GO)       X      Hélio Leão (SE)
+
+
+14   11:15   SM 50-59    j14                  Ricardo Machado (DF/TO)          X      venc. j6
+
+
+15   11:15   SM 50-59    j15                       Sandro Schiavon (RS)        X      venc. j7
+
+
+16   11:15   SM 50-59    j16                   Samuel da Silva (PA/AP)         X      venc. j8
+
+
+     11:15
+
+
+     12:00
+
+
+     12:45                                                                     X
+
+                                                                                      Eduardo Silva / Alexandre Beltrão
+17   13:30   DM 40-49    j3       André Espínola / Eduardo Oliveira (SE)       X
+                                                                                      (DF/TO)
+
+18   13:30   DM 40-49    j4    Ricardo Kurylenko / Sandro Schiavon (RS)        X      venc. j1
+
+
+     13:30                                                                     X
+
+
+     13:30                                                                     X
+
+
+20   14:15   DM 50-59    j5            Roberto Moraes / Hélio Leão (SE)        X      venc. j1
+
+                                                                                      Alexandre Pereira / José Cleonâncio
+21   14:15   DM 50-59    j6                                     venc. j2       X
+                                                                                      Macedo (SE)
+                                                                                      Carlos Aita / Rubem Gottschefsky
+22   14:15   DM 50-59    j7                                     venc. j3       X
+                                                                                      (RS)
+
+19   14:15   DM até 39   j5                                     venc. j2       X      venc. j3
+
+
+     14:15
+
+
+             SM até 39   j9                                     perd. j1       X      perd. j2                              desistência
+
+             SM até 39   j10                                    perd. j3       X      perd. j4                              desistência
+
+25   15:00   SM até 39   j11                                    perd. j5       X      perd. j6
+
+
+26   15:00   SM até 39   j12                                    perd. j7       X      perd. j8
+
+
+27   15:00   SM até 39   j13                                    venc. j1       X      venc. j2
+
+
+     15:00   SF até 39   j3                    Natalia Miranda (DF/TO)         X      Juliana Maldonado (MG)
+
+
+     15:00
+
+
+28   15:45   SM 40-49    j9                                     perd. j1       X      perd. j6
+
+
+29   15:45   SM 40-49    j10                                    perd. j2       X      perd. j5
+
+
+30   15:45   SM 40-49    j11                                    perd. j3       X      perd. j8
+
+
+31   15:45   SM 40-49    j12                                    perd. j4       X      perd. j7
+
+
+     15:45
+
+
+32   16:30   DM até 39   j6                                     perd. j2       X      perd. j3
+
+
+33   16:30   SM 50-59    j17                                     Perd j1       X      Perd j10
+
+
+34   16:30   SM 50-59    j18                                     Perd j2       X      Perd j9
+
+
+35   16:30   SM 50-59    j19                                     Perd j3       X      Perd j12
+
+
+     16:30
+
+
+     17:00   SF até 39   j6               (perd. j1) Flávia Queiroz (GO)       X      (perd. j2) Roberta Zanetti (MG)
+
+
+             SM 50-59    j20                                     Perd j4   0   X   2 Perd j11                               desistência
+33     16:30   SM 50-59    j17                            Perd j1       X      Perd j10
+
+
+34     16:30   SM 50-59    j18                           Perd j2        X      Perd j9
+
+
+35     16:30   SM 50-59    j19                           Perd j3        X      Perd j12
+
+
+       16:30
+
+
+       17:00   SF até 39   j6      (perd. j1) Flávia Queiroz (GO)       X      (perd. j2) Roberta Zanetti (MG)
+
+
+               SM 50-59    j20                           Perd j4    0   X   2 Perd j11                           desistência
+
+               SM 50-59    j21                           Perd j5    0   X   2 Perd j14                           desistência
+
+37     17:15   SM 50-59    j22                           Perd j6        X      Perd j13
+
+
+38     17:15   DM 40-49    j5                            venc. j2       X      venc. j3
+
+
+39     17:15   SM até 39   j14                           venc. j3       X      venc. j4
+
+
+       17:15
+
+
+40     18:00   SM 50-59    j23                            Perd j7       X      Perd j16
+
+
+41     18:00   SM 50-59    j24                           Perd j8        X      Perd j15
+
+
+42     18:00   SM até 39   j15                           venc. j5       X      venc. j6
+
+
+43     18:00   SM até 39   j16                           venc. j7       X      venc. j8
+
+
+       18:00                                Sara / Roberta (MG)                Jassara / Daiane (GO)
+
+
+44     18:45
+
+
+46     18:45   SF 40-49    j3                  Jussara Sato (GO)        X      venc. j1
+
+
+47     18:45   SF 40-49    j4        Silvana Schaarschmidt (SC)         X      venc. j2
+
+
+       18:45      SF       j2               Michele Freitas (PR)        X      Sara Campos (MG)
+
+
+45     18:45
+
+
+       19:30                                                            X
+
+
+
+
+                                 TÊNIS DE MESA SIMPLES FEMININO
+
+                GRUPO A                                                               GRUPO D
+         MARGOT NUNES - TRT12-SC                                            ANA MARIA DA CUNHA - TRT6-PE
+         ANA PAULA - TRT11-AM-RR                                             CASSIA VALADARES - TRT3-MG
+         HAMANA KARLA - TRT5-BA                                                NATALY JOANA - TRT2-SP
+
+                 GRUPO B                                                              GRUPO E
+      LARISSA RODRIGUES - TRT10-DF-TO                                       MARIANE MEIRELES - TRT18-GO
+        JÉSSICA GRAZIELLE - TRT3-MG                                             LUIZA EMILIA - TRT6-PE
+         CRISTINA BUENO - TRT12-SC                                          CENIRA FONSECA - TRT11-AM-RR
+
+                 GRUPO C                                                               GRUPO F
+          JOYCE TRISTÃO - TRT12-SC                                             JÓLIA LUCENA - TRT21-RN
+     ROBERLANE MARINHO - TRT11-AM-RR                                          MARIA DAS GRAÇAS - TRT6-PE
+       SANDRA GARCIA - TRT10-DF-TO                                             ANA CAROLINA - TRT7-CE
+                                                        TÊNIS DE MESA SIMPLES MASCULINO
+
+                        GRUPO A                                                                                          GRUPO E
+                   ADSON NOBRE - TST                                                                             RENATO SIMOES - TRT5-BA
+               VINICIUS SOBREIRA - TRT6-PE                                                                       NILSON LAZARO - TRT3-MG
+              FERNANDO LÚCIO - TRT18-GO                                                                         BRUNO MEDEIROS - TRT21-RN
+                                                                                                                  RONAN SILVEIRA - TRT7-CE
+                       GRUPO B
+               FRANCISCO ADAIL - TRT7-CE                                                                              GRUPO F
+                 ANTONIO FALCAO - TST                                                                           HELIO LEÃO - TRT20-SE
+              ROBERTO ALMEIDA - TRT20-SE                                                                   FÁBIO MASTROCOLLA - TRT21-RN
+                                                                                                             NELSON LAZARO - TRT3-MG
+                      GRUPO C
+               JOSÉ MARIA - TRT11-AM-RR                                                                               GRUPO G
+                MARCELO NEVES - TRT1-RJ                                                                        JULIO CESAR - TRT3-MG
+              MAGNO BRANDÃO - TRT18-GO                                                                    RICARDO FONSECA - TRT11-AM-RR
+                                                                                                            FRANCISCO FORTUNA - TRT7-CE
+                 GRUPO D
+       DOUGLAS GARAVITO - TRT11-AM-RR                                                                                    GRUPO H
+           JOSÉ ALBERTO - TRT6-PE                                                                                 HERLEI SILVA - TRT18-GO
+             JOÃO RAUL - TRT1-RJ                                                                                GERALDO EUCLIDES - TRT6-PE
+                                                                                                                  JOÃO VICTOR - TRT-12-SC
+
+
+
+                                                                           FUTEVÔLEI LIVRE
+   DATA: 23 E 24/09
+   HORÁRIO DE INÍCIO: 13:00 Horas
+   LOCAL: A.A.B.B. (Quadras 1 e 2)                                                 1   TRT1-RJ1                                                    TRT1-RJ1: Cicero/Alan
+                                                                                               2                                                   TRT1-RJ2: Carrilho/Wellder
+                                                                      Perd. Jg 2   2    TRT4-RS    Venc. Jg 2
+                                                                      7                                     8
+                                                         Venc. Jg 7                3   TRT9-PR                   Venc. Jg 8
+                                                        11                                    3
+                                          Venc. Jg 11                 Perd. Jg 3   4   TRT17-ES    Venc. Jg 3
+
+                            14                           Perd. Jg 9                5 TRT10-DF/TO                                      13
+              Venc. Jg 14                                                                      4                                           Venc. Jg 13
+                                           Perd. Jg 8                 Perd .Jg 4   6   TRT2-SP     Venc. Jg 4
+                                          12                          6
+                            Venc. Jg 12                  Venc. Jg 6                7   TRT1-RJ2                           9
+              15                                        10                                     1                              Venc. Jg 9
+Venc. Jg 15                               Venc. Jg 10                 Perd. Jg1    8   TRT20-SE    Venc. Jg 1                                      16
+                                                                                                            5                                            Campeão
+                                                         Perd. Jg 5                9   TRT18-GO                  Venc. Jg 5
+
+
+              Perd. Jg 13
+
+
+                                                                                                                                           Venc. Jg 15
+                                       FUTEVÔLEI MASTER
+
+   DATA: 23 E 24/09
+   HORÁRIO DEINÍCIO: 13:00 Horas
+   LOCAL: A.A.B.B. (Quadras 1 e 2)
+
+                            Jogo 01       TRT10-DF/TO          X           TRT17-ES
+
+                            Jogo 02       TRT11-AM/RO          X          Perd. Jg 01
+
+                            Jogo 03       TRT11-AM/RO          X          Venc. Jg 01
+
+
+
+NATAÇÃO
+7h – Aquecimento e Eventuais Substituições
+7h55 – Chamada para confirmação e início da primeira prova
+Local: CTE - Centro de Treinamento Esportivo (Av. Alfredo Camarate, 617 - São Luiz - BH/MG)
+
+
+DOMINÓ
+Horário: 15h (Horário alterado das 14 para as 15 horas por conta do almoço)
+Local: A.A.B.B. (Salão de festa onde está sendo realizado o almoço)
+A programação dessa modalidade será divulgada no dia 22/09
+
+
+AVISO ALMOÇO
+
+Para o bom andamento do evento, solicitamos que após o almoço, os atletas coloquem os seus
+pratos próximo a saída do localde refeições na saída para facilitar na organização.
+

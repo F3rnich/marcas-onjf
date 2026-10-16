@@ -2,14 +2,20 @@
 Tempos de pista vêm em milissegundos ('17200' = 17,20 s); provas de campo em metros."""
 import json, os, re, sys
 sys.path.insert(0, os.path.dirname(__file__))
-from norm import detect_event, detect_age, title_name
+from norm import ROOT, detect_event, detect_age, title_name
 
-EXT = '/home/claude/raw/ext'
-EVENTOS = {'1789646392246': False, '1790212007822': True}  # id -> é PCD
+EXT = os.path.join(ROOT, 'raw/ext')
+
+def eventos(year):
+    """IDs de evento do ano (gravados por fetch_gt.py) -> é PCD."""
+    p = os.path.join(EXT, f'eventos_{year}.json')
+    if os.path.exists(p):
+        return {e['id']: e['pcd'] for e in json.load(open(p))}
+    return {'1789646392246': False, '1790212007822': True} if year == 2026 else {}
 
 def convert(year=2026):
     out = []
-    for ev, is_pcd in EVENTOS.items():
+    for ev, is_pcd in eventos(year).items():
         res = json.load(open(f'{EXT}/resultados_{ev}.json'))
         ins = {(i['dados'].get('atletaId'), i['dados'].get('provaId')): i['dados'] for i in json.load(open(f'{EXT}/inscricoes_{ev}.json')) if i['dados'].get('atletaId')}
         for r in res:
@@ -28,24 +34,17 @@ def convert(year=2026):
                     mark = f'{int(m) / 1000:.2f}'
                 else:
                     mark = m.replace(',', '.')
-            out.append(dict(year=year, source='gerentrack_2026', modality='Atletismo', event=e[1], event_label=e[2],
+            out.append(dict(year=year, source=f'gerentrack_{year}', modality='Atletismo', event=e[1], event_label=e[2],
                             gender=d['sexo'], age='única' if is_pcd else detect_age(d.get('categoriaOficial') or d['categoria']),
                             place=None, name=title_name(d.get('atletaNome') or d.get('nome')), deleg_raw=d.get('equipeCadastro') or '',
                             mark_raw=mark, status=st, record=False))
     return out
 
-if __name__ == '__main__':
-    rows = convert()
-    json.dump(rows, open('/home/claude/data/y2026atl_raw.json', 'w'), ensure_ascii=False)
-    from collections import Counter
-    print(len(rows), Counter(r['event_label'] for r in rows).most_common(8))
-    print('sem faixa', sum(1 for r in rows if not r['age']), 'amostra', [(r['name'], r['event_label'], r['age'], r['mark_raw']) for r in rows if r['mark_raw']][:4])
-
 def convert_relays(year=2026):
     """Revezamentos 2026: competidor é a equipe; integrantes vêm por atletasIds."""
     from parse_relays import relay_header
     out = []
-    for ev, is_pcd in EVENTOS.items():
+    for ev, is_pcd in eventos(year).items():
         ins = json.load(open(f'{EXT}/inscricoes_{ev}.json'))
         names = {i['dados'].get('atletaId'): i['dados'].get('atletaNome') for i in ins if i['dados'].get('atletaId')}
         rel = {(i['dados'].get('equipeId'), i['dados'].get('provaId')): i['dados'] for i in ins if i['dados'].get('tipo') == 'revezamento'}
@@ -62,13 +61,17 @@ def convert_relays(year=2026):
             m = (r.get('marca') or '').strip()
             mark = f'{int(m) / 1000:.2f}' if (not st and re.fullmatch(r'\d{4,}', m)) else (m or None)
             ids = (r.get('dados') or {}).get('atletasIds') or d.get('atletasIds') or []
-            out.append(dict(year=year, source='gerentrack_2026', modality='Atletismo', event=h['key'], event_label=h['label'],
+            out.append(dict(year=year, source=f'gerentrack_{year}', modality='Atletismo', event=h['key'], event_label=h['label'],
                             gender=g, cat=cat, place=None, deleg_raw=(r.get('dados') or {}).get('nomeEquipe') or '',
                             mark_raw=mark, status=st, members=[title_name(names[i]) for i in ids if names.get(i)]))
     return out
 
-if __name__ == '__main__' and 'relays' in sys.argv:
-    rr = convert_relays()
-    json.dump(rr, open('/home/claude/data/y2026_relays.json', 'w'), ensure_ascii=False)
-    from collections import Counter
-    print(len(rr), Counter((r['event_label'], r['gender'], r['cat']) for r in rr), rr[0])
+def run(year):
+    """Converte o ano e grava data/y<ano>gt_raw.json (individuais) e data/y<ano>gt_relays.json."""
+    rows, rel = convert(year), convert_relays(year)
+    json.dump(rows, open(os.path.join(ROOT, f'data/y{year}gt_raw.json'), 'w'), ensure_ascii=False)
+    json.dump(rel, open(os.path.join(ROOT, f'data/y{year}gt_relays.json'), 'w'), ensure_ascii=False)
+    return len(rows), len(rel)
+
+if __name__ == '__main__':
+    print(run(int(sys.argv[1]) if len(sys.argv) > 1 else 2026))

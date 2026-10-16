@@ -133,6 +133,8 @@ td.wrapc{white-space:normal;min-width:180px}
 .empty{color:var(--muted);font-style:italic;margin:0}
 footer .wrap{padding-block:0 32px}
 footer p{font-size:13px;color:var(--muted);margin:0 0 6px;max-width:90ch}
+footer p.fix{font-size:14px;color:var(--ink)}
+main a,footer a{color:var(--accent);text-underline-offset:3px}
 @media (max-width:640px){
   .arena{opacity:.1;right:-260px;top:-20px}
   .eyebrow{letter-spacing:.1em}
@@ -337,6 +339,7 @@ footer p{font-size:13px;color:var(--muted);margin:0 0 6px;max-width:90ch}
 </div></main>
 
 <footer><div class="wrap">
+  <p class="fix">Encontrou um erro? <a href="https://github.com/F3rnich/marcas-onjf/issues/new?template=correcao.yml" target="_blank" rel="noopener">Reportar correção</a> (formulário no GitHub, exige conta gratuita).</p>
   <p id="f-src"></p>
   <p>Fonte: resultados e recordes publicados em anastra.com.br. Nomes, delegações e faixas seguem a grafia de cada edição, com padronização mínima. Faixas etárias mudaram ao longo dos anos (até 2011 eram até 35, 36–40…); as comparações usam sempre a faixa exatamente igual.</p>
 </div></footer>
@@ -670,7 +673,7 @@ function showAthlete(n){
   const gapCell=(e,v,ref)=>{if(ref==null)return '–';const d=isField(e)?ref-v:v-ref;if(Math.abs(d)<0.005)return '<span class="gap pos">igual</span>';return d<=0?`<span class="gap pos">✓ ${fmtGap(e,d)} à frente</span>`:`<span class="gap neg">faltam ${fmtGap(e,d)}</span>`};
   $('#a-out').innerHTML=`
   <div class="panel">
-    <div><h2>${esc(NM[n])}</h2><p class="note">${esc(dl)}</p></div>
+    <div><h2>${esc(NM[n])}</h2><p class="note">${esc(dl)} · <a href="https://github.com/F3rnich/marcas-onjf/issues/new?template=correcao.yml&atleta=${encodeURIComponent(NM[n]+' ('+dl+')')}&title=${encodeURIComponent('[Correção] '+NM[n])}" target="_blank" rel="noopener">algo errado neste histórico?</a></p></div>
     <div class="kpis"><div class="kpi"><b>${new Set(rs.map(r=>r.y)).size}</b><span>edições</span></div><div class="kpi"><b>${rs.length}</b><span>provas</span></div>
     <div class="kpi"><b style="color:var(--gold)">${medals[0]}</b><span>ouros</span></div><div class="kpi"><b style="color:var(--silver)">${medals[1]}</b><span>pratas</span></div><div class="kpi"><b style="color:var(--bronze)">${medals[2]}</b><span>bronzes</span></div>${relMine.length?`<div class="kpi"><b>${relMedals.join('·')}</b><span>revezamentos (O·P·B)</span></div>`:''}</div>
   </div>

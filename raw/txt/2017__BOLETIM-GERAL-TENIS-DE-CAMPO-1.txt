@@ -1,0 +1,353 @@
+                                    BOLETIM GERAL TÊNIS DE CAMPO
+ Categoria    Jogo      Tribunal                  Atleta                Placar                 Atleta               Tribunal
+SM 45-49     J1      TRT20-SE      Eduardo Guimarães de Oliveira         8x2     Paulo César Schiavi Martins      TRT2-SP
+SM 45-49     J2      TRT12-SC      Alexandre Koenig S Thiago             8x1     Luiz Antônio Accioly Perrelli    TRT6-PE
+SM 45-49     J3      TRT18-GO      Paulo Sérgio de Castro                8x0     Ildefonso Rocha de Souza         TRT11-AM/RR
+SM 45-49     J4      TRT4-RS       Sandro Schiavon                       8x4     Cleidimar Castro de Almeida      TRT18-GO
+SM 45-49     j7      TRT4-RS       Fernando Freitas de Souza             2x8     Paulo Sérgio de Castro           TRT18-GO
+SM 50-54     j1      TRT21-RN      Francisco Gilson Vieira de Lacerda    2x8     Rubem Sérgio Gottschefsky        TRT4-RS
+SM 50-54     j2      TRT1-RJ       Marcus Vinicius Freitas de Aguiar     0x8     Candido Machado Tavares Filho    TRT20-SE
+SM +60       j3      TRT4-RS       Carlos Aita                           4x8     Everardo Cruz Rollo              TRT17-ES
+SM até 34    j4      TRT10-DF/TO   Marco Aurélio Willman Saar            8x4     Sérgio Pinheiro                  TRT1-RJ
+SM até 34    j1      TRT13-PB      José Sarmento                         0x8     Márcio Souza                     TRT12-SC
+SM até 34    j2      TRT21-RN      Francisco Mendonça                    1x8     Hélio Fernando Sousa Leão        TRT20-SE
+SM até 34    j3      TRT11-AM/RR   José Cooper Batista Moura             4x8     Edinaldo Almeida Silva           TRT19-AL
+DM 45-49     j1      TRT5-BA       Sérgio Ferreira de Lima               8x0     Marcos Quintino dos Santos       TRT3-MG
+DM até 34    j1      TRT2-SP       Gabriel Rocha Netto                   4x8     Paulo Sérgio de Castro           TRT18-GO
+SM 50-54     j2      TRT1-RJ       Alan Martins Diniz                    0x8     Rubem Sérgio Gottschefsky        TRT4-RS
+SM 50-54     j3      TRT17-ES      André Silva Martinelli                8x0     Cândido Machado Tavares Filho    TRT20-SE
+SM +60       j4      TRT9-PR       José Ricardo Betini Perim             8x1     Fernando Henrique Mello          TRT10-DF/TO
+SM até 34    j1                    Fernando Freitas de Souza;                    Eduardo Guimarães de Oliveira;
+                     TRT4-RS       Sandro Schiavon                      8x4      Candido Machado Tavares Filho    TRT20-SE
+SM até 34    j1                    Diogo Felipe de Aguiar;                       Gabriel Rocha Netto;
+                     TRT18-GO      Adrian Magno de Oliveira Campos      8x5      Paulo Cesar Schiavi Martins      TRT2-SP
+SM até 34    j3                    André Silva Martinelli;                       Felipe Nunes Flores;
+                     TRT17-ES      Filipe Ribeiro Nalon                 8x1      João Francisco Moreira           TRT4-RS
+SM até 34    j4      TRT1-RJ       Eduardo Camacho Teixeira             8x0      Leandro Cândido Oliveira         TRT18-GO
+DM 45-49     j1      TRT1-RJ       Márcio Araújo Simões                 0x8      Adrian Magno de Oliveira         TRT18-GO
+DM até 34    j1      TRT17-ES      Thiago Bellotti de Barros            8x1      João Francisco Moreira           TRT4-RS
+DM até 34    j2      TRT21-RN      Francisco Gilson Vieira de Lacerda   0x8      Marcus Vinicius Freitas          TRT1-RJ
+SM 35-39     j1                    Cleuton Lopes Monteiro;                       Thiago Bellotti de Barros;
+                     TRT10-DF/TO   Ricardo Alencar Machado              8x4      Everardo Cruz Rollo              TRT17-ES
+SM 35-39     j2                    Cristina Bueno Aniola;                        Juliana Valente de Oliveira;
+                     TRT12-SC      Marta Regina Hinnig                  8x1      Marcia Maria Macau Furtado       TRT10-DF/TO
+SM 35-39     j3                    Marina Ildair Jardim de Farias;               Daiane da Cunha Marques;
+                     TRT4-RS       Iliane Beheregaray Sanchotene        4x8      Wânia Stela Meirelles Borges     TRT18-GO
+SM 55-59     j6      TRT20-SE      Eduardo Guimarães de Oliveira        3x8      Victor Gibin Scarpellini         TRT24-MS
+DM 35-39     j1      TRT12-SC      Alexandre Koenig S Thiago            1x8      Samuel Veiga da Silva            TRT8-PA/AP
+SM até 34    j3      TRT2-SP       Paulo Cesar Schiavi Martins          4x8      Cleidimar Castro de Almeida      TRT18-GO
+SM até 34    j4      TST           Jaff Rodrigues da Silva              8x4      José Oliveira                    TRT3-MG
+DM 45-49     j1      TRT12-SC      Márcio Luiz de Souza                 2x8      José Marcelo de Lira Teixeira    TRT21-RN
+DM até 34    j1      TST           Mário Garcia Ramalho                 4x8      Roberto Fagundes Moraes          TRT20-SE
+DM até 34    j2      TST           Renato Carrasco Costa                2x8      Felipe Nunes Flores              TRT4-RS
+SM 35-39     j1      TRT12-SC      Marta Regina Hinnig                  8x5      Wânia Stela Meirelles Borges     TRT18-GO
+SM 35-39    j2    TRT18-GO       Daiane da Cunha Marques           8x6   Michele Emiko Tomimori            TRT9-PR
+SM 35-39    j3    TRT18-GO       Flávia Ramos Queiroz              0x8   Marina Ildair Jardim de Farias    TRT4-RS
+SM 55-59    j6    TRT18-GO       Robnaldo José Santos Alves        8x0   Jose Ângelo Lago Filho            TRT5-BA
+SM 55-59    j7    TRT4-RS        Rubem Sérgio Gottschefsky         2x8   Ricardo Alencar Machado           TRT10-DF/TO
+SM 55-59    j8    TRT10- DF/TO   Marco Aurélio Willman Saar        2x8   César Silveira                    TRT18-GO
+SM 35-39    j4    TRT5-BA        Maurício Borges Farias            0x8   Leandro Cândido Oliveira          TRT18-GO
+SM 35-39    j5    TRT17-ES       Thiago Bellotti de Barros         8x2   Adrian Magno de Oliveira          TRT18-GO
+SM 35-39    j6    TRT1-RJ        Márcio Araújo Simões              0x8   João Francisco Moreira            TRT4-RS
+                                 Joelson da Conceição Lisbôa;            José Marcelo de Lira Teixeira;
+DM 45-49    j2
+                  TRT18-GO       César Silveira                    3x8   Francisco Carlos Mota             TRT21-RN
+                                 Mirian Cristina Ribeiro;                Daiane da Cunha Marques;
+DF          j3
+                  TRT10-DF/TO    Claudia Inês Amaral de Oliveira   8x1   Wânia Stela Meirelles Borges      TRT18-GO
+                                 Cristina Bueno Aniola;                  Marina Ildair Jardim de Farias;
+DF          j4
+                  TRT12-SC       Marta Regina Hinnig               8x1   Iliane Beheregaray                TRT4-RS
+                                 Eduardo Camacho Teixeira;               João Victor Almeida Moreira;
+DM 35-39    j2
+                  TRT1-RJ        Márcio Araújo Simões              0x8   José Cleonâncio de Santana        TRT20-SE
+SM até 34   j5    TRT2-SP        Gabriel Rocha Netto               1x8   Fernando Henrique Mello           TRT10-DF/TO
+SM 50-54    j5    TRT13-PB       José Humberto Almeida             0x8   Mário Garcia Ramalho              TST
+SM 55-59    j7    TRT4-RS        Rubem Sérgio Gottschefsky         2x8   Ricardo Alencar Machado           TRT10-DF/TO
+SM 55-59    j8    TRT10-DF/TO    Marco Aurélio Willman Saar        2x8   César Silveira                    TRT18-GO
+SM 35-39    j4    TRT5-BA        Maurício Borges Farias            0x8   Leandro Cândido Oliveira          TRT18-GO
+SM 35-39    j5    TRT17-ES       Thiago Bellotti de Barros         8x2   Adrian Magno de Oliveira          TRT18-GO
+SM 35-39    j6    TRT1-RJ        Márcio Araújo Simões              0x8   João Francisco Moreira            TRT4-RS
+                                 Joelson da Conceição Lisbôa;            José Marcelo de Lira Teixeira;
+DM 45-49    j2
+                  TRT18-GO       César Silveira                    3x8   Francisco Carlos Mota             TRT21-RN
+                                 Mirian Cristina Ribeiro ;               Daiane da Cunha Marques;
+DF          j3
+                  TRT10-DF/TO    Claudia Inês Amaral de Oliveira   8x1   Wânia Stela Meirelles Borges      TRT18-GO
+                                 Cristina Bueno Aniola;                  Marina Ildair Jardim de Farias;
+DF          j4
+                  TRT12-SC       Marta Regina Hinnig               8x1   Iliane Beheregaray                TRT4-RS
+                                 Eduardo Camacho Teixeira;               João Victor Almeida Moreira;
+DM 35-39    j2
+                  TRT1-RJ        Márcio Araújo Simões              0x8   José Cleonâncio de Santana        TRT20-SE
+SM até 34   j5    TRT2-SP        Gabriel Rocha Netto               1x8   Fernando Henrique Mello           TRT10-DF/TO
+SM 50-54    j5    TRT13-PB       José Humberto Almeida             0x8   Mário Garcia Ramalho              TST
+SM 55-59    j5    TRT1-RJ        Sérgio Luiz Silva Pinheiro        0x8   Carlos Aita                       TRT4-RS
+SM 45-49    j10   TRT6-PE        Luiz Antônio Accioly Perrelli     0x8   Fernando Freitas de Souza         TRT4-RS
+SM 45-49    j11   TRT24-MS       Victor Gibin Scarpellini          8x2   Sandro Schiavon                   TRT4-RS
+SM 45-49    j12   TRT8-PA/AP     Samuel Veiga da Silva             8x6   Paulo Sérgio de Castro            TRT18-GO
+SM 50-54    j7    TRT21-RN       Francisco Carlos Mota             8x0   José Cooper Batista Moura         TRT11-AM/RR
+SM 50-54    j8    TRT12-SC       Márcio Luiz de Souza              0x8   Mário Garcia Ramalho              TST
+SM até 34   j8    TST            Renato Carrasco Costa             0x8   Fernando Henrique Mello           TRT10-DF/TO
+                                 Fernando Henrique Mello;                Gabriel Rocha Netto;
+DM até 34   j3
+                  TRT10-DF/TO    Marco Aurélio Willman Saar        8x4   Paulo Cesar Schiavi Martins       TRT2-SP
+                                 Renato Carrasco Costa;                  Felipe Nunes Flores;
+DM até 34   j4
+                  TST            Mário Garcia Ramalho              2x8   João Francisco Moreira            TRT4-RS
+                                  Leandro Cândido Oliveira;               Thiago Bellotti de Barros;
+DM 35-39    j3
+                    TRT18-GO      Paulo Sérgio de Castro            8x3   Everardo Cruz Rollo               TRT17-ES
+                                  Cleuton Lopes Monteiro;                 João Victor Almeida Moreira;
+DM 35-39    j4
+                    TRT10-DF/TO   Ricardo Alencar Machado           8x0   José Cleonâncio de Santana        TRT20-SE
+                                  Marcos Quintino dos Santos;             Marcus Vinicius Freitas;
+DM 55-59    j1
+                    TRT3-MG       José Oliveira                     8x4   Sergio Luiz Silva Pinheiro        TRT1-RJ
+                                                                    0x2
+SM 40-44    FINAL                 Robnaldo José Santos Alves              Cleuton Lopes Monteiro
+                    TRT18-GO                                                                                TRT10-DF/TO
+SM 55-59    j11     TRT10-DF/TO   Ricardo Alencar Machado           8x0   Cândido Machado Tavares           TRT20-SE
+SM 55-59    j12     TRT17-ES      Everardo Cruz Rollo               6x8   César Silveira                    TRT18-GO
+SF 50-54    j2      TRT10-DF/TO   Mirian Cristina Ribeiro           8x0   Wânia Stela Meirelles Borges      TRT18-GO
+SM até 34   j9      TRT17-ES      André Silva Martinelli            5x8   Diogo Felipe de Aguiar            TRT18-GO
+SM até 34   j10     TRT4-RS       Felipe Nunes Flores               8x5   José Ricardo Betini Perim         TRT9-PR
+SM +60      j3      TST           Jaff Rodrigues da Silva           6x8   Marcos Quintino dos Santos        TRT3-MG
+SM +60      j4      TRT5-BA       Sérgio Ferreira de Lima           8x1   José Oliveira                     TRT3-MG
+                                  Adrian Magno de Oliveira;               Fernando Henrique Mello;
+DM até 34   j5
+                    TRT18-GO      Diogo Felipe de Aguiar            8x6   Marco Aurélio Willman Saar        TRT10-DF/TO
+                                  André Silva Martinelli;                 Renato Carrasco Costa;
+DM até 34   j6
+                    TRT17-ES      Filipe Ribeiro Nalon              8x0   Mário Garcia Ramalho              TST
+SF 35-39    j3      TRT18-GO      Flávia Ramos Queiroz              2x8   Michele Emiko Tomimori            TRT9-PR
+SF 35-39    j4      TRT18-GO      Daiane da Cunha Marques           9x8   Marina Ildair Jardim de Farias    TRT4-RS
+SM 50-54    j9      TRT19-AL      Edinaldo Almeida Silva            0x8   Hélio Fernando Garcez             TRT20-SE
+SM 50-54    j10     TRT21-RN      José Marcelo de Lira Teixeira     7x9   Roberto Fagundes Moraes           TRT20-SE
+                                  Juliana Valente de Oliveira;            Daiane da Cunha Marques;
+DF          j5
+                    TRT10-DF/TO   Marcia Maria Macau Furtado        3x8   Wânia Stela Meirelles Borges      TRT18-GO
+                                  Mirian Cristina Ribeiro;                Marina Ildair Jardim de Farias;
+DF          j6
+                    TRT10-DF/TO   Claudia Inês Amaral de Oliveira   8x1   Iliane Beheregaray                TRT4-RS
+SM 45-49    j13     TRT4-RS       Fernando Freitas de Souza         8x2   Alexandre Koenig s Thiago         TRT12-SC
+SM 45-49    j14     TRT20-SE      Eduardo Guimarães de Oliveira     2x8   Cleidimar Castro de Almeida       TRT18-GO
+                                  Marcos Quintino dos Santos;             Carlos Aita;
+DM 55-59    j3
+                    TRT3-MG       José Oliveira                     0x8   Rubem Sérgio Gottschefsky         TRT4-RS
+                                  Jaff Rodrigues da Silva;                Marcus Vinicius Freitas;
+DM 55-59    j4
+                    TST           Antônio Carlos Falcão             8x1   Sergio Luiz Silva Pinheiro        TRT1-RJ
+SF 50-54    j1      TRT12-SC      Marta Regina Hinnig               3x8   Claudia Inês Amaral               TRT10-DF/TO
+SM 55-59    j9      TRT10-DF/TO   Marco Aurélio Willman Saar        0x3   Carlos Aita                       TRT4-RS
+                                  Alexandre Koenig S Thiago;              Eduardo Guimarães;
+DM 45-49    j3
+                    TRT12-SC      Márcio Luiz de Souza              1x8   Candido Machado Tavares           TRT20-SE
+                                  José Marcelo de Lira Teixeira;          Helio Fernando Garcez;
+DM 45-49    j4
+                    TRT21-RN      Francisco Carlos Mota             6x8   Roberto Fagundes Moraes           TRT20-SE
+SF 45-49    j1      TRT6-PE       Adriana Ferreira Martinelli       8x1   Cristina Bueno Aniola             TRT12-SC
+SM 35-39    j8      TRT4-RS       João Francisco Moreira            8x4   Adrian Magno de Oliveira          TRT18-GO
+SM 50-54    j11     TRT21-RN      Francisco Carlos Mota Mendonça    3x8   (Pj10) José Marcelo de Lira       TRT21-RN
+SM 50-54    j12     TRT19-AL      (Pj9) Edinaldo Almeida Silva      5x8   (Vj8) Mário Garcia Ramalho        TST
+SM 55-59    j13     TRT4-RS       (Vj9) Carlos Aita                 8x5   (Pj11) Cândido Machado            TRT20-SE
+SM até 34   j11     TRT1-RJ       Alan Martins Diniz                0x8   (Pj10) José Ricardo Betini        TRT9-PR
+SM até 34   j12   TRT17-ES      (Pj9) André Silva Martinelli      8x3   Fernando Henrique Mello           TRT10-DF/TO
+SF 45-49    j3    TST           Clara Fernanda Waquim Carvalho    4x8   Cristina Bueno Aniola             TRT12-SC
+SF 45-49    j4    TRT6-PE       Adriana Ferreira Martinelli       8x2   Marcia Maria Macau Furtado        TRT10-DF/TO
+SM 55-59    j10   TRT4-RS       Rubem Sérgio Gottschefsky         8x2   Marcus Vinicius Freitas           TRT1-RJ
+                                Fernando Freitas de Souza;              Alexandre Koenig s Thiago;
+DM 45-49    j5
+                  TRT4-RS       Sandro Schiavon                   8x3   Márcio Luiz de Souza              TRT12-SC
+DM 45-49    j6                  Joelson da Conceição Lisbôa;            Hélio Fernando Garcez;
+                  TRT18-GO      César Silveira                    1x8   Roberto Fagundes Moraes           TRT20-SE
+SM 45-49    j15   TRT4-RS       (Vj13) Fernando Freitas           8x0   Sandro Schiavon                   TRT4-RS
+SM 45-49    j16   TRT18-GO      Paulo Sérgio de Castro            8x4   (Vj14) Cleidimar Castro           TRT18-GO
+DM 35-39                        Cleuton Lopes Monteiro;                 Leandro Cândido Oliveira; Paulo
+                  TRT10-DF/TO   Ricardo Alencar Machado           8x4   Sérgio de Castro                  TRT18-GO
+DM 55-59    j5                  Carlos Aita;                            Marcus Vinicius Freitas;
+                  TRT4-RS       Rubem Sergio Gottschefsky         8x0   Sergio Luiz Silva Pinheiro        TRT1-RJ
+SM 50-54    j14   TRT21-RN      José Marcelo de Lira Teixeira     8x3   Mário Garcia Ramalho              TST
+DF          j7                  Cristina Bueno Aniola;                  Daiane da Cunha Marques;
+                  TRT12-SC      Marta Regina Hinnig               8x1   Wânia Stela Meirelles Borges      TRT18-GO
+DF          j8                  Mirian Cristina Ribeiro;                Juliana Valente de Oliveira;
+                  TRT10-DF/TO   Claudia Inês Amaral               8x3   Marcia Maria Macau Furtado        TRT10-DF/TO
+SM 55-59    j14   TRT17-ES      Everardo Cruz Rollo (Pj12)        1x8   (Vj10) Rubem Sergio               TRT4-RS
+SM 35-39    j11   TRT4-RS       João Francisco Moreira            0x2   Leandro Cândido Oliveira          TRT18-GO
+                                Jaff Rodrigues da Silva;                Carlos Aita;
+DM 55-59    j2
+                  TST           Antônio Carlos Falcão             2x8   Rubem Sergio Gottschefsky         TRT4-RS
+SM 55-59    j15   TRT10-DF/TO   Ricardo Alencar Machado           8x6   César Silveira                    TRT18-GO
+SM 50-54    j13   TRT20-SE      Roberto Fagundes Moraes           2x0   Hélio Fernando Garcez             TRT20-SE
+SF 50-54    j8    TRT10-DF/TO   Mirian Cristina Ribeiro           9x7   Claudia Inês Amaral               TRT10-DF/TO
+SF 45-49    j2    TST           Clara Fernanda Waquim Carvalho    8x2   Marcia Maria Macau Furtado        TRT10-DF/TO
+SM até 34   j13   TRT4-RS       Felipe Nunes Flores               2x1   Diogo Felipe de Aguiar            TRT18-GO
+SM até 34   j14   TRT9-PR       José Ricardo Betini Perim         8x4   André Silva Martinelli            TRT17-ES
+SM 45-49    j17   TRT24-MS      Victor Gibin Scarpellini          2x1   Samuel Veiga da Silva             TRT8-PA/AP
+SM 45-49    j18   TRT4-RS       Fernando Freitas de Souza         4x8   Paulo Sérgio de Castro            TRT18-GO
+SM 55-59    j16   TRT4-RS       Carlos Aita                       8x0   Rubem Sérgio Gottschefsky         TRT4-RS
+                                Hélio Fernando Garcez de Sousa;         Eduardo Guimarães;
+DM 45-49    j11
+                  TRT20-SE      Roberto Fagundes Moraes           2x0   Cândido Machado Tavares           TRT20-SE
+                                André Silva Martinelli;                 Fernando Henrique Mello;
+DM até 34   j8
+                  TRT17-ES      Filipe Ribeiro Nalon              2x1   Marco Aurélio Willman Saar        TRT10-DF/TO
+                                Diogo Felipe de Aguiar;                 Felipe Nunes Flores;
+DM até 34   j7
+                  TRT18-GO      Adrian Magno de Oliveira          1x2   João Francisco Moreira            TRT4-RS
+SM 45-49    j19   TRT8-PA/AP    (Pj17) Samuel Veiga da Silva      1x2   Paulo Sérgio de Castro (Vj18)     TRT18-GO
+SM 35-39    j12   TRT17-ES      Thiago Bellotti de Barros         2x1   (Vj11) Leandro Cândido            TRT18-GO
+SM até 34   j15   TRT18-GO      (Pj13) Diogo Felipe de Aguiar     1x2   José Ricardo Betini (Vj14)        TRT9-PR
+SM 50-54    j15   TRT20-SE      (Pj13) Hélio Fernando Garcez      0x2   José Marcelo de Lira (Vj14)       TRT21-RN
+                                Fernando Freitas de Souza;              José Marcelo de Lira Teixeira;
+DM 45-49    j10
+                  TRT4-RS       Sandro Schiavon                   2x1   Francisco Carlos Mota             TRT21-RN
+SM 55-59    j17   TRT18-GO      (Pj15) César Silveira             2x0   (Vj16) Carlos Aita                TRT4-RS
+SF 35-39    j6    TRT18-GO      Daiane da Cunha Marques           8x3      Flávia Ramos Queiroz              TRT18-GO
+                                Juliana Valente de Oliveira;               Marina Ildair Jardim de Farias;
+DF          j9
+                  TRT10-DF/TO   Márcia Maria Macau Furtado        2x8      Iliane Beheregaray                TRT4-RS
+                                Mirian Cristina Ribeiro;                   Cristina Bueno Aniola;
+DF          j10
+                  TRT10-DF/TO   Claudia Inês Amaral de Oliveira   8x3      Marta Regina Hinnig               TRT12-SC
+SM +60      j5    TRT3-MG       José Oliveira                     2x8      Marcos Quintino dos Santos        TRT3-MG
+SM +60      j6    TRT5-BA       Sérgio Ferreira de Lima           8x4      Jaff Rodrigues da Silva           TST
+                                Fernando Freitas de Souza;                 Hélio Fernando Garcez; Roberto
+DM 45-49
+                  TRT4-RS       Sandro Schiavon                   2x0      Fagundes Moraes                   TRT20-SE
+                                João Victor Almeida Moreira;               Thiago Bellotti de Barros;
+DM 35-39    j5
+                  TRT20-SE      José Cleonâncio de Santana        0x8      Everardo Cruz Rollo               TRT17-ES
+SM 55-59    j18   TRT10-DF/TO   Ricardo Alencar Machado           2x0      César Silveira                    TRT18-GO
+SM 50-54    j16   TRT20-SE      Roberto Fagundes Moraes           2x0      José Marcelo de Lira Teixeira     TRT21-RN
+SF 45-49    j5    TRT10-DF/TO   Márcia Maria Macau Furtado        1x8      Cristina Bueno Aniola             TRT12-SC
+SF 45-49    j6    TRT6-PE       Adriana Ferreira Martinelli       8x1      Clara Fernanda Waquim             TST
+SF 50-54    j10   TRT10-DF/TO   Mirian Cristina Ribeiro           8x4      Marta Regina Hinnig               TRT12-SC
+                                Jaff Rodrigues da Silva;                   Marcos Quintino dos Santos;
+DM 55-59    j5
+                  TST           Antônio Carlos Falcão             8x2      José Oliveira                     TRT3-MG
+SF 50-54    j9    TRT10-DF/TO   Claudia Inês Amaral de Oliveira   8x0      Wânia Stela Meirelles Borges      TRT18-GO
+SM 45-49    j20   TRT24-MS      Victor Gibin Scarpellini          2x0      Paulo Sérgio de Castro            TRT18-GO
+SM até 34   j16   TRT4-RS       Felipe Nunes Flores               2x0      José Ricardo Betini Perim         TRT9-PR
+                                Leandro Cândido Oliveira;                  João Victor Almeida Moreira;
+DM 35-39    j9
+                  TRT18-GO      Paulo Sérgio de Castro            8x0      José Cleonâncio de Santana        TRT20-SE
+                                Felipe Nunes Flores;                       André Silva Martinelli;
+DM até 34   j9
+                  TRT4-RS       João Francisco Moreira            10 x 6   Filipe Ribeiro Nalon              TRT17-ES
+SF 35-39    j5    TRT4-RS       Marina Ildair Jardim de Farias     4x8     Michele Emiko Tomimori            TRT9-PR
+                           Resultados Finais
+SM até 34 anos (simples masc.)                              Tribunal
+    Campeão        Felipe Nunes Flores                    TRT4-RS
+     2º Lugar      José Ricardo Betini Perim              TRT9-PR
+     3º Lugar      Diogo Felipe de Aguiar                 TRT18-GO
+     3º Lugar      André Silva Martinelli                 TRT17-ES
+SM 35 a 39 anos (simples masc.)
+    Campeão        Thiago Bellotti de Barros              TRT17-ES
+     2º Lugar      Leandro Cândido Oliveira               TRT18-GO
+     3º Lugar      João Francisco Moreira da Encarnação   TRT4-RS
+     3º Lugar      Eduardo Camacho Teixeira               TRT1-RJ
+SM 40 a 44 anos (simples masc.)
+    Campeão        Cleuton Lopes Monteiro                 TRT10-DF/TO
+     2º Lugar      Robnaldo José Santos Alves             TRT18-GO
+SM 45 a 49 anos (simples masc.)
+    Campeão        Victor Gibin Scarpellini               TRT24-MS
+     2º Lugar      Paulo Sérgio de Castro                 TRT18-GO
+     3º Lugar      Samuel Veiga da Silva                  TRT8-PA/AP
+     3º Lugar      Fernando Freitas de Souza              TRT4-RS
+SM 50 a 54 anos (simples masc.)
+    Campeão        Roberto Fagundes Moraes                TRT20-SE
+     2º Lugar      José Marcelo de Lira Teixeira          TRT21-RN
+     3º Lugar      Hélio Fernando Garcez de Sousa Leão    TRT20-SE
+     3º Lugar      Mário Garcia Ramalho                   TST
+SM 55 a 59 anos (simples masc.)
+    Campeão        Ricardo Alencar Machado                TRT10-DF/TO
+     2º Lugar      César Silveira                         TRT18-GO
+     3º Lugar      Carlos Aita                            TRT4-RS
+     3º Lugar      Rubem Sérgio Gottschefsky              TRT4-RS
+SM 60 anos acima (simples masc.)
+    Campeão        Sérgio Ferreira de Lima                TRT5-BA
+     2º Lugar      Marcos Quintino dos Santos             TRT3-MG
+     3º Lugar      Jaff Rodrigues da Silva                TST
+     3º Lugar      José Oliveira                          TRT3-MG
+DM até 34 anos (dupla masc.)
+                    André Silva Martinelli;                TRT17-ES
+     Campeão
+                    Filipe Ribeiro Nalon
+                    Felipe Nunes Flores;                   TRT4-RS
+      2º Lugar
+                    João Francisco Moreira
+                    Diogo Felipe de Aguiar;                TRT18-GO
+      3º Lugar
+                    Adrian Magno de Oliveira
+                    Fernando Henrique Mello Rodrigues;     TRT10-DF/TO
+      3º Lugar
+                    Marco Aurélio Willman Saar
+DM 35 a 39 anos (dupla masc.)
+                    Cleuton Lopes Monteiro;                TRT10-DF/TO
+     Campeão
+                    Ricardo Alencar Machado
+                    Leandro Cândido Oliveira;              TRT18-GO
+      2º Lugar
+                    Paulo Sérgio de Castro
+                    Thiago Barros;                         TRT17-ES
+      3º Lugar
+                    Everardo Rollo
+                    João Moreira;                          TRT20-SE
+      3º Lugar
+                    José Cleonâncio Macedo
+DM 45 a 49 anos (dupla masc.)
+                    Hélio Fernando Garcez de Sousa Leão;   TRT20-SE
+     Campeão
+                    Roberto Fagundes Moraes
+                    Sandro Schiavon;                       TRT4-RS
+      2º Lugar
+                    Fernando Freitas de Souza
+                    Eduardo Guimarães de Oliveira;         TRT20-SE
+      3º Lugar
+                    Candido Machado Tavares Filho
+                    José Marcelo de Lira Teixeira;         TRT21-RN
+      3º Lugar
+                    Francisco Carlos Mota Mendonça
+DM 55 a 59 anos (dupla masc.)
+                    Carlos Aita;                           TRT4-RS
+     Campeão
+                    Rubem Sérgio Gottschefsky
+                    Jaff Rodrigues da Silva;               TST
+      2º Lugar
+                    Antônio Carlos Falcão
+                    Marcos Quintino dos Santos;            TRT3-MG
+      3º Lugar
+                    José Oliveira
+                    Marcus Vinicius Freitas de Aguiar;     TRT1-RJ
+      3º Lugar
+                    Sergio Luiz Silva Pinheiro
+SF até 35 a 39 anos (simples fem.)
+      Campeã        Daiane da Cunha Marques                TRT18-GO
+      2º Lugar      Michele Emiko Tomimori Freitas         TRT9-PR
+      3º Lugar      Marina Ildair Jardim de Farias         TRT4-RS
+      3º Lugar      Flávia Ramos Queiroz                   TRT18-GO
+SF até 45 a 49 anos (simples fem.)
+      Campeã        Adriana Ferreira Martinelli           TRT6-PE
+      2º Lugar      Cristina Bueno Aniola                 TRT12-SC
+      3º Lugar      Clara Fernanda Waquim Carvalho        TST
+      3º Lugar      Marcia Maria Macau Furtado            TRT10-DF/TO
+SF até 50 a 54 anos (simples fem.)
+      Campeã        Mirian Cristina Ribeiro de Menezes    TRT10-DF/TO
+      2º Lugar      Claudia Inês Amaral de Oliveira       TRT10-DF/TO
+      3º Lugar      Marta Regina Hinnig                   TRT12-SC
+      3º Lugar      Wânia Stela Meirelles Borges          TRT18-GO
+DF (dupla fem.)
+                    Mirian Cristina Ribeiro de Menezes;   TRT10-DF/TO
+     Campeãs
+                    Claudia Inês Amaral de Oliveira
+                    Cristina Bueno Aniola;                TRT12-SC
+      2º Lugar
+                    Marta Regina Hinnig
+                    Marina Ildair Jardim de Farias;       TRT4-RS
+      3º Lugar
+                    Iliane Beheregaray Sanchotene
+                    Daiane da Cunha Marques;              TRT18-GO
+      3º Lugar
+                    Wânia Stela Meirelles Borges
+
