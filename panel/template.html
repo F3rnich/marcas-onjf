@@ -426,7 +426,7 @@ dialog.card .top{display:flex;justify-content:space-between;align-items:center;g
 <section class="view" id="v-escalacao" hidden>
   <div>
     <h2>Assistente de escalação</h2>
-    <p class="lede">Para técnicos de atletismo e natação. Parte dos atletas da sua delegação na última edição e das marcas recentes de cada um, sugere quem correr ou nadar cada prova e cada revezamento para somar mais pontos, e confere os limites do regulamento. Tudo pode ser ajustado à mão.</p>
+    <p class="lede">Para técnicos de atletismo e natação. Parte dos atletas da sua delegação nas três últimas edições e das marcas recentes de cada um, sugere quem correr ou nadar cada prova e cada revezamento para somar mais pontos, e confere os limites do regulamento. Tudo pode ser ajustado à mão.</p>
   </div>
   <div class="controls">
     <label class="f" for="es-del">Delegação<select id="es-del"></select></label>
@@ -438,7 +438,7 @@ dialog.card .top{display:flex;justify-content:space-between;align-items:center;g
   </div>
   <div class="verdict" id="es-head"></div>
   <div class="panel"><h3>Atletas</h3>
-    <p class="note">Marque as provas de cada atleta. A faixa etária é a da próxima edição, calculada pelo ano de nascimento estimado pelo histórico; corrija o ano quando souber. A colocação estimada compara a marca mais recente do atleta em cada prova (das últimas quatro edições) com os resultados das outras delegações na edição mais recente da prova.</p>
+    <p class="note">Marque as provas de cada atleta. A faixa etária é a da próxima edição, calculada pelo ano de nascimento estimado pelo histórico; corrija o ano quando souber. O elenco reúne quem competiu pela delegação em alguma das três últimas edições. A colocação estimada compara a marca mais recente do atleta em cada prova (das suas três últimas participações) com os resultados das outras delegações na edição mais recente da prova.</p>
     <div class="es-grid" id="es-ath"></div></div>
   <div class="panel"><h3>Revezamentos</h3><p class="note" id="es-ratio"></p><div class="es-grid" id="es-rel"></div></div>
   <div class="panel"><h3>Regras aplicadas</h3>
@@ -1359,14 +1359,21 @@ const REL_RATIO={};
   Object.entries(acc).forEach(([k,a])=>{if(a.length>=5)REL_RATIO[k]=median(a)});
 })();
 const ES={del:null,mod:'Atletismo',ath:[],ind:new Set(),rel:{},fill:true};
-const escKey=()=>`onjt.esc.${DL[ES.del]}.${ES.mod}`;
+const escKey=()=>`onjt.esc2.${DL[ES.del]}.${ES.mod}`;
 function escSave(){store.set(escKey(),JSON.stringify({ath:ES.ath.map(a=>({n:NM[a.n],b:a.birth,off:a.off,c:a.confirmed})),ind:[...ES.ind].map(k=>{const[n,e]=k.split('|');return NM[n]+'|'+EV[e].key}),rel:Object.fromEntries(Object.entries(ES.rel).map(([k,v])=>[k,{on:v.on,mem:v.mem.map(n=>n==null?null:NM[n])}])),fill:ES.fill}))}
+// elenco: atletas cuja delegação mais recente, nas três últimas edições, é a escolhida
+const ES_FROM=YEARS[Math.max(0,YEARS.length-3)];
 function escRoster(){
-  const ns=new Set();
-  R.forEach(r=>{if(r.y===LASTY&&r.d===ES.del&&EV[r.e].mod===ES.mod)ns.add(r.n)});
-  RL.forEach(r=>{if(r.y===LASTY&&r.d===ES.del&&REV[r.e].mod===ES.mod)r.mem.forEach(n=>ns.add(n))});
-  return [...ns];
+  const last=new Map(); // atleta -> {y,d} mais recente na modalidade
+  const see=(n,y,d)=>{const o=last.get(n);if(!o||y>o.y)last.set(n,{y,d})};
+  R.forEach(r=>{if(r.y>=ES_FROM&&EV[r.e].mod===ES.mod)see(r.n,r.y,r.d)});
+  RL.forEach(r=>{if(r.y>=ES_FROM&&REV[r.e].mod===ES.mod)r.mem.forEach(n=>see(n,r.y,r.d))});
+  return [...last].filter(([n,o])=>o.d===ES.del).map(([n])=>n);
 }
+// janela de marcas: as três últimas participações do próprio atleta na modalidade (quem pulou uma edição não perde o histórico)
+const EPF=new Map();
+function escFrom(n){const k=ES.mod+'|'+n;if(EPF.has(k))return EPF.get(k);const ys=new Set();(byName.get(n)||[]).forEach(r=>{if(EV[r.e].mod===ES.mod)ys.add(r.y)});RL.forEach(r=>{if(REV[r.e].mod===ES.mod&&r.mem.includes(n))ys.add(r.y)});const v=[...ys].sort((a,b)=>b-a).slice(0,3).pop()||LASTY;EPF.set(k,v);return v}
+function escLastYear(n){let y=0;(byName.get(n)||[]).forEach(r=>{if(EV[r.e].mod===ES.mod&&r.y>y)y=r.y});RL.forEach(r=>{if(REV[r.e].mod===ES.mod&&r.y>y&&r.mem.includes(n))y=r.y});return y}
 function escGender(n){const rs=byName.get(n)||[];if(rs.length)return genderOf(n);const r=RL.find(r=>r.mem.includes(n)&&r.g!=='X');return r?r.g:'M'}
 function escBirth(n){const h=birthHint(n);if(h)return Math.round((h[0]+h[1])/2);
   const rs=(byName.get(n)||[]).filter(r=>AG[r.a].startsWith('até'));if(rs.length){const y=Math.max(...rs.map(r=>r.y));return y-30}return NEXTY-45}
@@ -1374,9 +1381,9 @@ function escMakeAth(n,birth,off){const h=birthHint(n);return{n,g:escGender(n),bi
 function escAge(a){return NEXTY-a.birth}
 function escUncertain(a){ // faixa da próxima edição muda dentro do intervalo de nascimento possível (e o técnico ainda não confirmou)
   if(!a.hint||a.confirmed)return false;const e=evIdx('100_rasos');return groupFor(e,a.g,NEXTY-a.hint[0])!==groupFor(e,a.g,NEXTY-a.hint[1])}
-// marca de referência: a mais recente (melhor da última edição em que fez a prova, desde LASTY-3)
+// marca de referência: a mais recente (melhor da última edição em que fez a prova, entre as três últimas participações do atleta)
 const ESM=new Map();
-function escMarks(n){const ck=ES.mod+'|'+n;if(ESM.has(ck))return ESM.get(ck);const m={};(byName.get(n)||[]).forEach(r=>{if(r.v==null||r.y<LASTY-3||EV[r.e].mod!==ES.mod)return;if(!m[r.e]||r.y>m[r.e].y||(r.y===m[r.e].y&&better(r.e,r.v,m[r.e].v)))m[r.e]={v:r.v,y:r.y}});ESM.set(ck,m);return m}
+function escMarks(n){const ck=ES.mod+'|'+n;if(ESM.has(ck))return ESM.get(ck);const m={};(byName.get(n)||[]).forEach(r=>{if(r.v==null||EV[r.e].mod!==ES.mod||r.y<escFrom(n))return;if(!m[r.e]||r.y>m[r.e].y||(r.y===m[r.e].y&&better(r.e,r.v,m[r.e].v)))m[r.e]={v:r.v,y:r.y}});ESM.set(ck,m);return m}
 // faixa sem outra delegação no histórico: pela regra de quórum (2 delegações, exceto 65+) a prova pode não acontecer
 const noQuorum=(f,ag)=>f.v.length===0&&!(ageRange(AG[ag])&&ageRange(AG[ag])[0]>=65);
 function escGroup(a,e){if(EV[e].key.endsWith('_pcd'))return AG.indexOf('única');return groupFor(e,a.g,escAge(a))}
@@ -1414,7 +1421,7 @@ function escEval(){
 // tempo de uma perna: marca individual na distância da perna; sem ela, média por perna dos revezamentos
 // da mesma prova que o atleta correu/nadou desde LASTY-3 (a maioria dos integrantes não faz a prova individual)
 const RLM=new Map();
-function relLegAvg(n,ek){const k=n+'|'+ek;if(RLM.has(k))return RLM.get(k);let b=null;RL.forEach(r=>{if(r.v==null||r.y<LASTY-3||REV[r.e].key!==ek||!r.mem.includes(n))return;const v=r.v/4;if(b==null||v<b)b=v});RLM.set(k,b);return b}
+function relLegAvg(n,ek){const k=n+'|'+ek;if(RLM.has(k))return RLM.get(k);let b=null;RL.forEach(r=>{if(r.v==null||REV[r.e].key!==ek||!r.mem.includes(n)||r.y<escFrom(n))return;const v=r.v/4;if(b==null||v<b)b=v});RLM.set(k,b);return b}
 function legTime(n,p,i){const le=relLegs(p)[i];const m=escMarks(n)[le];if(m)return{v:m.v,src:'i'};const r=relLegAvg(n,p[0]);return r!=null?{v:r,src:'r'}:null}
 function teamTime(p,mem){const ls=mem.map((n,i)=>legTime(n,p,i));if(ls.some(x=>!x))return null;const si=ls.filter(x=>x.src==='i').reduce((s,x)=>s+x.v,0),sr=ls.filter(x=>x.src==='r').reduce((s,x)=>s+x.v,0);return si*(REL_RATIO[p[0]]||1)+sr}
 function relLegs(p){const k=p[0];return k==='rev_4x50_medley'?MEDLEY.map(evIdx):[0,1,2,3].map(()=>evIdx(LEG[k]))}
@@ -1498,8 +1505,8 @@ function escRender(){
     const evs=Object.keys(mk).map(Number).sort((x,y)=>x-y);
     const rows=evs.map(e=>{const k=a.n+'|'+e,on=ES.ind.has(k),x=ev.ind.get(k),ag=escGroup(a,e);
       const f=ag!=null?escField(e,a.g,ag):null,pl=x?x.pl:(f?1+f.v.filter(v=>better(e,v,mk[e].v)).length:null);
-      return `<label class="es-ev${on?' on':''}"><input type="checkbox" data-ind="${k}"${on?' checked':''}${a.off||ag==null?' disabled':''}><span class="es-evn">${esc(EV[e].label)} <small>${ag!=null?esc(AG[ag]):'sem faixa'}</small></span><span class="es-mk"><span class="gap">${fmt(e,mk[e].v)}</span> <small>(${mk[e].y})</small> · ${pl?placeBadge(pl)+(f&&f.v.length?`<small> de ${f.v.length+1}</small>`:''):'–'}</span><b class="es-pts">${f&&noQuorum(f,ag)?'<small class="p-warn" title="Nenhuma outra delegação disputou esta prova nesta faixa na última edição; pela regra de quórum ela pode não acontecer ou ser fundida com outra faixa">sem quórum?</small>':on&&x?x.pts+' pts':pl&&ptsOf(pl)?`<small class="p-mut">${ptsOf(pl)} pts</small>`:''}</b></label>`}).join('')||'<p class="empty">Sem marca individual desde '+(LASTY-3)+'; pode entrar em revezamentos.</p>';
-    return `<div class="es-card${a.off?' off':''}"><div class="es-top"><div><b>${esc(NM[a.n])}</b><small>${genderLab[a.g]} · ${escAge(a)} anos em ${NEXTY}${unc?' <span class="pill p-warn" title="O histórico não define o ano exato; confira o ano de nascimento">confira a faixa</span>':''}</small></div>
+      return `<label class="es-ev${on?' on':''}"><input type="checkbox" data-ind="${k}"${on?' checked':''}${a.off||ag==null?' disabled':''}><span class="es-evn">${esc(EV[e].label)} <small>${ag!=null?esc(AG[ag]):'sem faixa'}</small></span><span class="es-mk"><span class="gap">${fmt(e,mk[e].v)}</span> <small>(${mk[e].y})</small> · ${pl?placeBadge(pl)+(f&&f.v.length?`<small> de ${f.v.length+1}</small>`:''):'–'}</span><b class="es-pts">${f&&noQuorum(f,ag)?'<small class="p-warn" title="Nenhuma outra delegação disputou esta prova nesta faixa na última edição; pela regra de quórum ela pode não acontecer ou ser fundida com outra faixa">sem quórum?</small>':on&&x?x.pts+' pts':pl&&ptsOf(pl)?`<small class="p-mut">${ptsOf(pl)} pts</small>`:''}</b></label>`}).join('')||'<p class="empty">Sem marca individual nas três últimas participações; pode entrar em revezamentos.</p>';
+    return `<div class="es-card${a.off?' off':''}"><div class="es-top"><div><b>${esc(NM[a.n])}</b><small>${genderLab[a.g]} · ${escAge(a)} anos em ${NEXTY}${(()=>{const ly=escLastYear(a.n);return ly&&ly<LASTY?` · <span class="pill p-mut" title="Não competiu em ${LASTY}; confirme se volta">última vez em ${ly}</span>`:''})()}${unc?' <span class="pill p-warn" title="O histórico não define o ano exato; confira o ano de nascimento">confira a faixa</span>':''}</small></div>
       <label class="es-b">Nasc.<input type="text" inputmode="numeric" maxlength="4" value="${a.birth}" data-birth="${a.n}"></label></div>
       <div class="es-cnt"><span class="${c.i>3?'neg':''}">${c.i}/3 individuais</span><span class="${c.r>3?'neg':''}">${c.r}/3 revezamentos</span><span class="${c.i+c.r>5?'neg':''}">${c.i+c.r}/5 no total</span>
       <button type="button" class="more" data-off="${a.n}">${a.off?'Incluir de novo':'Não vai competir'}</button></div>${a.off?'':rows}</div>`}).join('')||'<p class="empty">Nenhum atleta desta delegação nesta modalidade em '+LASTY+'. Adicione atletas pela busca.</p>';
@@ -1511,7 +1518,7 @@ function escRender(){
     let info='';if(s.on&&x){if(x.err)info=`<span class="p-warn">${esc(x.err)}</span>`;else if(x.miss)info=`<span class="p-mut">falta marca individual de algum integrante para estimar o tempo</span>`;else info=`Tempo estimado <b class="gap">${fmt(TEV,x.time)}</b> · ${placeBadge(x.pl)} de ${x.n_} · <b>${x.pts} pts</b>`;if(x.ages)info+=` · soma de idades ${x.ages}`}
     return `<div class="es-card${s.on?'':' off'}"><div class="es-top"><div><b>${esc(progLab(p))}</b><small>${f.y?`referência: ${f.v.length} equipe(s) de outras delegações em ${f.y}`:'sem resultados anteriores'}</small></div><label class="es-b"><input type="checkbox" data-relon="${id}"${s.on?' checked':''}> Escalar</label></div>
       ${s.on?`<div class="controls es-legs">${[0,1,2,3].map(i=>opt(p,s.mem[i],i)).join('')}</div><p class="note">${info}</p>`:''}</div>`}).join('');
-  $('#es-ratio').textContent=`Tempo estimado = soma dos tempos de cada perna: a marca individual do atleta na distância (no medley, no estilo indicado) ou, se ele não faz a prova individual, a média por perna dos revezamentos que já disputou desde ${LASTY-3} (marcado "revez." na lista). Quem não tem nenhuma das duas referências não entra na sugestão automática.`;
+  $('#es-ratio').textContent=`Tempo estimado = soma dos tempos de cada perna: a marca individual do atleta na distância (no medley, no estilo indicado) ou, se ele não faz a prova individual, a média por perna dos revezamentos que disputou nas suas três últimas participações (marcado "revez." na lista). Quem não tem nenhuma das duas referências não entra na sugestão automática.`;
   escSave();
 }
 function escLoad(){
