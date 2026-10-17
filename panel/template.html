@@ -45,11 +45,24 @@ h1 span{color:var(--gold-hi)}
 .board b{font:800 italic clamp(26px,4.6vw,38px) var(--f-display);font-variant-numeric:tabular-nums;letter-spacing:.01em}
 .board span{font:600 11px var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--night-muted);margin-top:4px}
 .ribbon{height:8px;background:linear-gradient(90deg,var(--gold) 0 33.33%,var(--silver) 33.33% 66.66%,var(--bronze) 66.66% 100%)}
-nav.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-top:4px}
-nav.tabs button{font:700 italic 16px/1 var(--f-display);letter-spacing:.06em;text-transform:uppercase;color:var(--night-muted);background:none;border:0;padding:12px 14px 13px;border-bottom:4px solid transparent;cursor:pointer;white-space:nowrap}
-nav.tabs button:hover{color:var(--night-ink)}
-nav.tabs button[aria-selected="true"]{color:var(--night-ink);border-bottom-color:var(--gold-hi)}
-nav.tabs button:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+/* navegação: 4 seções (topo no computador, barra fixa embaixo no celular) + subabas */
+.mainnav{display:flex;gap:4px;margin-top:4px}
+.mainnav button{display:flex;align-items:center;gap:8px;font:700 italic 17px/1 var(--f-display);letter-spacing:.06em;text-transform:uppercase;color:var(--night-muted);background:none;border:0;padding:12px 16px 13px;border-bottom:4px solid transparent;cursor:pointer;white-space:nowrap}
+.mainnav svg{width:20px;height:20px;flex:none}
+.mainnav button:hover{color:var(--night-ink)}
+.mainnav button[aria-current="page"]{color:var(--night-ink);border-bottom-color:var(--gold-hi)}
+.subbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.subnav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:10px 0}
+.subnav::-webkit-scrollbar{display:none}
+.subnav button{flex:none;font:600 14px var(--f-body);color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:8px 14px;cursor:pointer;white-space:nowrap}
+.subnav button:hover{color:var(--ink);border-color:var(--accent)}
+.subnav button[aria-current="page"]{background:var(--night-2);border-color:var(--night-2);color:var(--night-ink)}
+/* cabeçalho compacto fora do Início */
+header.band.slim .wrap{padding-block:12px 0;gap:8px}
+header.band.slim .eyebrow,header.band.slim .board{display:none}
+header.band.slim h1{font-size:30px;margin:0}
+header.band.slim .arena{opacity:.12;top:-120px}
+.mainnav button:focus-visible,.subnav button:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 main .wrap{padding-block:22px 48px;display:grid;gap:20px}
 section.view{display:grid;gap:18px}
 h2{font-family:var(--f-display);font-weight:800;font-style:italic;text-transform:uppercase;font-size:28px;margin:0;letter-spacing:.01em;line-height:1.05;text-wrap:balance}
@@ -138,7 +151,7 @@ main a,footer a{color:var(--accent);text-underline-offset:3px}
 /* início */
 .find{gap:12px;background:linear-gradient(135deg,color-mix(in srgb,var(--gold) 10%,var(--surface)),var(--surface) 60%)}
 .find input{font-size:18px;padding:14px 14px}
-.shortcuts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.shortcuts{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:10px}
 .sc{display:grid;gap:4px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 40px 14px 16px;cursor:pointer;color:var(--ink);position:relative;font:inherit}
 .sc::after{content:"→";position:absolute;right:16px;top:50%;transform:translateY(-50%);font:700 20px var(--f-body);color:var(--accent)}
 .sc:hover{border-color:var(--accent)}
@@ -164,9 +177,17 @@ main a,footer a{color:var(--accent);text-underline-offset:3px}
   .board{flex-wrap:nowrap;gap:16px}
   .board b{font-size:22px}
   .board span{font-size:9px;letter-spacing:.08em}
-  nav.tabs{flex-wrap:nowrap;margin-inline:-16px;padding-inline:12px;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 28px),transparent)}
-  nav.tabs::-webkit-scrollbar{display:none}
-  nav.tabs button{padding:10px 10px 11px;font-size:15px;flex:none}
+  body{padding-bottom:calc(66px + env(safe-area-inset-bottom,0px))}
+  .mainnav{position:fixed;left:0;right:0;bottom:0;z-index:40;margin:0;gap:0;background:var(--night);border-top:1px solid color-mix(in srgb,var(--night-ink) 14%,transparent);padding:4px 4px calc(4px + env(safe-area-inset-bottom,0px));box-shadow:0 -6px 18px color-mix(in srgb,#000 22%,transparent)}
+  .mainnav button{flex:1;flex-direction:column;gap:3px;padding:7px 2px 6px;font:600 11px/1 var(--f-body);letter-spacing:.02em;text-transform:none;font-style:normal;border-bottom:0;border-top:3px solid transparent;border-radius:0}
+  .mainnav svg{width:24px;height:24px}
+  .mainnav button[aria-current="page"]{border-top-color:var(--gold-hi);color:var(--night-ink)}
+  header.band.slim .wrap{padding-block:10px 8px}
+  header.band.slim h1{font-size:24px}
+  header.band.slim .ribbon{height:5px}
+  .subnav{padding:8px 0}
+  .subnav button{padding:8px 12px;font-size:13.5px}
+  main .wrap{padding-block:16px 32px}
   .tablebox:not(:has(table.keep)){overflow:visible;border:0;background:none}
   main table:not(.keep),main table:not(.keep) tbody,main table:not(.keep) tr,main table:not(.keep) td{display:block;width:100%}
   main table:not(.keep) tr.hrow{display:none}
@@ -202,6 +223,7 @@ dialog.card .in{display:grid;gap:12px;padding:16px}
 dialog.card img{width:100%;height:auto;max-height:62dvh;object-fit:contain;border-radius:8px;background:var(--night)}
 dialog.card .top{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .ag{font-family:var(--f-data);font-variant-numeric:tabular-nums}
+.mdot{white-space:nowrap;font:600 14px var(--f-data)}.mdot i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:4px;vertical-align:-1px}
 .es-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
 .es-card{border:1px solid var(--line);border-radius:10px;padding:12px;display:grid;gap:8px;background:var(--bg);min-width:0}
 .es-card.off{opacity:.6}
@@ -241,21 +263,16 @@ dialog.card .top{display:flex;justify-content:space-between;align-items:center;g
       <h1>Marcas <span>ONJT/ONJF</span></h1>
     </div>
     <div class="board" id="board"></div>
-    <nav class="tabs" role="tablist" aria-label="Seções">
-      <button role="tab" id="tab-inicio" aria-selected="true" data-view="inicio">Início</button>
-      <button role="tab" id="tab-comparar" aria-selected="false" data-view="comparar">Minha marca</button>
-      <button role="tab" id="tab-medalha" aria-selected="false" data-view="medalha">Sua medalha</button>
-      <button role="tab" id="tab-revez" aria-selected="false" data-view="revez">Revezamentos</button>
-      <button role="tab" id="tab-atletas" aria-selected="false" data-view="atletas">Atletas</button>
-      <button role="tab" id="tab-delegacoes" aria-selected="false" data-view="delegacoes">Delegações</button>
-      <button role="tab" id="tab-escalacao" aria-selected="false" data-view="escalacao">Escalação</button>
-      <button role="tab" id="tab-duelo" aria-selected="false" data-view="duelo">Frente a frente</button>
-      <button role="tab" id="tab-recordes" aria-selected="false" data-view="recordes">Recordes</button>
-      <button role="tab" id="tab-edicoes" aria-selected="false" data-view="edicoes">Edições</button>
+    <nav class="mainnav" id="mainnav" aria-label="Seções">
+      <button type="button" data-sec="inicio" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/></svg><span>Início</span></button>
+      <button type="button" data-sec="atletas"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="14.5" cy="4.5" r="2"/><path d="M8 21l3-6 3 2v4"/><path d="M6 12l3-4 4 1 3 3 3 1"/><path d="M11 15l2-6"/></svg><span>Atletas</span></button>
+      <button type="button" data-sec="delegacoes"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4"/><path d="M5 4h11l-2 3.5L16 11H5"/></svg><span>Delegações</span></button>
+      <button type="button" data-sec="resultados"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v4a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4"/><path d="M17 6h3a3 3 0 0 1-3 4"/><path d="M12 13v4"/><path d="M8 20h8"/></svg><span>Resultados</span></button>
     </nav>
   </div>
   <div class="ribbon"></div>
 </header>
+<div class="subbar" id="subbar" hidden><div class="wrap"><nav class="subnav" id="subnav" aria-label="Subseções"></nav></div></div>
 
 <main><div class="wrap">
 
@@ -269,7 +286,7 @@ dialog.card .top{display:flex;justify-content:space-between;align-items:center;g
   <div class="shortcuts">
     <button type="button" class="sc" data-go="medalha"><b>Onde está a sua medalha?</b><span id="sc-medal">As provas da sua faixa na próxima edição com menos concorrência e a marca que rende pódio</span></button>
     <button type="button" class="sc" data-go="comparar"><b>Quanto falta para a medalha?</b><span>Digite sua marca e compare com o pódio e o recorde da sua faixa</span></button>
-    <button type="button" class="sc" data-go="revez"><b>Revezamentos</b><span>Tempos da sua equipe contra os que deram pódio</span></button>
+    <button type="button" class="sc" data-go="escalacao"><b>Escalação da delegação</b><span>Para técnicos: quem escalar em cada prova e revezamento, dentro do regulamento</span></button>
     <button type="button" class="sc" data-go="recordes"><b>Recordes</b><span>Recorde de cada prova e faixa etária</span></button>
     <button type="button" class="sc" data-go="delegacoes"><b>Quadro de medalhas</b><span>Ranking histórico das delegações</span></button>
     <button type="button" class="sc" data-go="duelo"><b>Frente a frente</b><span>Confrontos diretos entre dois atletas ou duas delegações</span></button>
@@ -426,7 +443,7 @@ dialog.card .top{display:flex;justify-content:space-between;align-items:center;g
 <section class="view" id="v-escalacao" hidden>
   <div>
     <h2>Assistente de escalação</h2>
-    <p class="lede">Para técnicos de atletismo e natação. Parte dos atletas da sua delegação nas três últimas edições e das marcas recentes de cada um, sugere quem correr ou nadar cada prova e cada revezamento para somar mais pontos, e confere os limites do regulamento. Tudo pode ser ajustado à mão.</p>
+    <p class="lede">Para técnicos: sugere quem escalar em cada prova e revezamento para somar mais pontos, dentro do regulamento. Tudo pode ser ajustado à mão.</p>
   </div>
   <div class="controls">
     <label class="f" for="es-del">Delegação<select id="es-del"></select></label>
@@ -454,11 +471,11 @@ dialog.card .top{display:flex;justify-content:space-between;align-items:center;g
 <!-- ================= FRENTE A FRENTE ================= -->
 <section class="view" id="v-duelo" hidden>
   <div>
-    <h2>Frente a frente</h2>
-    <p class="lede">Compare dois atletas (confrontos diretos na mesma prova e faixa, medalhas e melhores marcas) ou duas delegações (medalhas por edição e por prova).</p>
+    <h2 id="x-title">Frente a frente</h2>
+    <p class="lede" id="x-lede">Compare dois atletas: confrontos diretos na mesma prova e faixa, medalhas e melhores marcas.</p>
   </div>
   <div class="controls">
-    <label class="f">Comparar<div class="seg" id="x-kind"><button type="button" data-v="a" aria-pressed="true">Atletas</button><button type="button" data-v="d" aria-pressed="false">Delegações</button></div></label>
+    <label class="f" hidden>Comparar<div class="seg" id="x-kind"><button type="button" data-v="a" aria-pressed="true">Atletas</button><button type="button" data-v="d" aria-pressed="false">Delegações</button></div></label>
     <div class="xa"><label class="f" for="x-qa">Atleta 1<input id="x-qa" type="search" placeholder="Nome" autocomplete="off"></label><div class="hits" id="x-ha"></div></div>
     <div class="xa"><label class="f" for="x-qb">Atleta 2<input id="x-qb" type="search" placeholder="Nome" autocomplete="off"></label><div class="hits" id="x-hb"></div></div>
     <label class="f xd" for="x-da" hidden>Delegação 1<select id="x-da"></select></label>
@@ -1308,7 +1325,7 @@ function duelDel(){
   const sa=sum(A),sb=sum(B);
   const byEv={};R.forEach(r=>{if((r.d!==A&&r.d!==B)||!(r.pl>=1&&r.pl<=3)||!ys.includes(r.y))return;const k=EV[r.e].mod+'|'+EV[r.e].label;const o=byEv[k]||(byEv[k]={A:0,B:0});o[r.d===A?'A':'B']++});
   const evRows=Object.entries(byEv).sort((p,q)=>(q[1].A+q[1].B)-(p[1].A+p[1].B)).slice(0,20);
-  const mm=m=>`<span style="color:var(--gold)">${m[0]} ouros</span> · <span style="color:var(--silver)">${m[1]} pratas</span> · <span style="color:var(--bronze)">${m[2]} bronzes</span>`;
+  const mm=m=>`<span class="mdot"><i class="m1"></i>${m[0]}</span> <span class="mdot"><i class="m2"></i>${m[1]}</span> <span class="mdot"><i class="m3"></i>${m[2]}</span>`;
   X.out.innerHTML=vsHead(esc(DL[A]),esc(DL[B]),wa,wb,`${mm(sa)}<br>${tot(sa)} medalhas`,`${mm(sb)}<br>${tot(sb)} medalhas`,
       ys.length?`Edições vencidas no confronto (mais ouros, depois pratas e bronzes) entre as ${ys.length} em que as duas competiram. Atletismo e natação, incluindo revezamentos.`:'As duas delegações nunca competiram na mesma edição.')+
     (ys.length?`<div class="grid2"><div class="panel"><h3>Medalhas por edição</h3><div class="tablebox"><table class="keep"><tr><th>Ano</th><th>${esc(DL[A])}</th><th>${esc(DL[B])}</th></tr>${ys.map(y=>{const c=cmpM(per[y][A],per[y][B]);return `<tr><td>${y}</td><td${c>0?' class="win"':''}>${per[y][A].join('·')} <small class="p-mut">(${tot(per[y][A])})</small></td><td${c<0?' class="win"':''}>${per[y][B].join('·')} <small class="p-mut">(${tot(per[y][B])})</small></td></tr>`}).join('')}</table></div><p class="note">Ouro·prata·bronze (total).</p></div>
@@ -1316,7 +1333,7 @@ function duelDel(){
   store.set('onjt.dueldel',JSON.stringify({a:A,b:B}));
 }
 function renderDuel(){
-  const k=segVal(X.kind);document.querySelectorAll('#v-duelo .xa').forEach(e=>e.hidden=k!=='a');document.querySelectorAll('#v-duelo .xd').forEach(e=>e.hidden=k!=='d');
+  const k=segVal(X.kind);$('#x-title').textContent=k==='a'?'Frente a frente':'Comparar delegações';$('#x-lede').textContent=k==='a'?'Compare dois atletas: confrontos diretos na mesma prova e faixa, medalhas e melhores marcas.':'Compare duas delegações: edições vencidas no confronto, medalhas por edição e por prova.';document.querySelectorAll('#v-duelo .xa').forEach(e=>e.hidden=k!=='a');document.querySelectorAll('#v-duelo .xd').forEach(e=>e.hidden=k!=='d');
   if(k==='a')duelAth();else duelDel();
 }
 bindSeg(X.kind,renderDuel);X.da.addEventListener('change',renderDuel);X.db.addEventListener('change',renderDuel);
@@ -1563,12 +1580,30 @@ $('#v-escalacao').addEventListener('click',ev=>{const b=ev.target.closest('[data
 let ESready=false;
 
 // ================= navegação =================
-const VIEWS=['inicio','comparar','medalha','revez','atletas','delegacoes','escalacao','duelo','recordes','edicoes'];
-function go(v,keepScroll){if(v==='escalacao'&&!ESready){ESready=true;escInit()}VIEWS.forEach(x=>{$('#v-'+x).hidden=x!==v;$('#tab-'+x).setAttribute('aria-selected',String(x===v))});store.set('onjt.view',v);
+const VIEWS=['inicio','comparar','medalha','revez','atletas','delegacoes','escalacao','duelo','duelod','recordes','edicoes'];
+const SECS={inicio:[['inicio','Início']],
+  atletas:[['atletas','Histórico'],['comparar','Minha marca'],['medalha','Sua medalha'],['duelo','Frente a frente']],
+  delegacoes:[['delegacoes','Quadro de medalhas'],['escalacao','Escalação'],['duelod','Comparar delegações']],
+  resultados:[['recordes','Recordes'],['edicoes','Edições'],['revez','Revezamentos']]};
+const secOf=v=>Object.keys(SECS).find(k=>SECS[k].some(x=>x[0]===v))||'inicio';
+const lastSub={};
+function go(v,keepScroll){
+  if(!VIEWS.includes(v))v='inicio';
+  if(v==='escalacao'&&!ESready){ESready=true;escInit()}
+  if(v==='duelo'||v==='duelod'){const k=v==='duelo'?'a':'d';if(segVal(X.kind)!==k){setSeg(X.kind,k);renderDuel()}}
+  const pane=v==='duelod'?'duelo':v;
+  ['inicio','comparar','medalha','revez','atletas','delegacoes','escalacao','duelo','recordes','edicoes'].forEach(x=>{$('#v-'+x).hidden=x!==pane});
+  const sec=secOf(v);lastSub[sec]=v;
+  document.querySelectorAll('#mainnav button').forEach(b=>{if(b.dataset.sec===sec)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+  const subs=SECS[sec];$('#subbar').hidden=subs.length<2;
+  $('#subnav').innerHTML=subs.length<2?'':subs.map(([id,lab])=>`<button type="button" id="tab-${id}" data-view="${id}"${id===v?' aria-current="page"':''}>${lab}</button>`).join('');
   const t=$('#tab-'+v);if(t&&t.scrollIntoView)t.scrollIntoView({block:'nearest',inline:'nearest'});
+  document.querySelector('header.band').classList.toggle('slim',v!=='inicio');
+  store.set('onjt.view',v);
   if(!keepScroll)window.scrollTo(0,0);
   try{history.replaceState(null,'',v==='inicio'?location.pathname:'#'+v)}catch(_){}}
-document.querySelector('nav.tabs').addEventListener('click',ev=>{const b=ev.target.closest('button');if(b)go(b.dataset.view)});
+$('#mainnav').addEventListener('click',ev=>{const b=ev.target.closest('button');if(!b)return;const sec=b.dataset.sec;go(lastSub[sec]||SECS[sec][0][0])});
+$('#subnav').addEventListener('click',ev=>{const b=ev.target.closest('button');if(b)go(b.dataset.view)});
 
 // ================= estado inicial =================
 const totalR=R.length, nAth=new Set(R.map(r=>r.n)).size;
@@ -1591,6 +1626,7 @@ refreshRec();
 const sd=store.get('onjt.deleg');const medalCount={};R.forEach(r=>{if(r.pl>=1&&r.pl<=3)medalCount[r.d]=(medalCount[r.d]||0)+1});const def=+Object.entries(medalCount).sort((a,b)=>b[1]-a[1])[0][0];dSel.value=(sd&&[...dSel.options].some(o=>o.value===sd))?sd:String(def>=0?def:dSel.options[0].value);renderDeleg();renderBoard();
 refreshEd();
 labelize(document.querySelector('main'));
+{const la=store.get('onjt.athlete');if(la!=null&&byName.has(+la)){$('#a-q').value=NM[+la];showAthlete(+la)}}
 const ha=decodeURIComponent(location.hash.replace('#',''));
 if(ha.startsWith('atleta=')){const i=NM.indexOf(ha.slice(7));if(i>=0&&byName.has(i))openAthlete(i);else go('atletas',true)}
 else go(VIEWS.includes(ha)?ha:'inicio',true);

@@ -16,6 +16,8 @@ O que dá para fazer:
 - montar a escalação da delegação (aba "Escalação", para técnicos): sugere provas e equipes de revezamento para somar mais pontos, respeitando os limites do Regulamento Geral (3 provas individuais e 3 revezamentos por atleta, no máximo 5; 2 atletas por prova; soma de 180 anos), com ajuste manual e cópia para o WhatsApp;
 - gerar um card do seu histórico para compartilhar no WhatsApp ou no Instagram (botão na página do atleta).
 
+**Organização das telas:** quatro seções — **Início** (busca e destaques), **Atletas** (histórico, minha marca, sua medalha, frente a frente), **Delegações** (quadro de medalhas, escalação, comparar delegações) e **Resultados** (recordes, edições, revezamentos). No celular, as seções ficam numa barra fixa embaixo.
+
 Link direto para um atleta: `https://f3rnich.github.io/marcas-onjf/#atleta=Nome%20Completo`.
 
 Fonte dos dados: resultados e recordes publicados em [anastra.com.br](https://www.anastra.com.br) e nos sistemas de cronometragem de cada edição.
