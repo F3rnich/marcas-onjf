@@ -1072,8 +1072,10 @@ function birthHint(n){
 const M={g:$('#m-g'),birth:$('#m-birth'),mod:$('#m-mod'),q:$('#m-q'),hits:$('#m-hits'),ath:null};
 function renderMedal(){
   const g=segVal(M.g),b=parseInt(M.birth.value,10),mod=M.mod.value,head=$('#m-head');
-  let hint='';
-  if(M.ath!=null){const h=birthHint(M.ath);if(h)hint=` Pelo histórico, ${esc(NM[M.ath].split(' ')[0])} nasceu entre ${h[0]} e ${h[1]}.`}
+  // dica pelo histórico: sugere o ano quando vazio; avisa só se o ano digitado não bate com as faixas já disputadas
+  let hint='';const h=M.ath!=null?birthHint(M.ath):null;
+  if(h&&!(b>=1930))hint=` Pelas faixas em que ${esc(NM[M.ath].split(' ')[0])} já competiu, o ano deve estar entre ${h[0]} e ${h[1]}.`;
+  else if(h&&(b<h[0]-1||b>h[1]+1))hint=` <b>Confira o ano:</b> pelas faixas em que ${esc(NM[M.ath].split(' ')[0])} já competiu, o esperado seria entre ${h[0]} e ${h[1]}.`;
   store.set('onjt.medal',JSON.stringify({g,b:M.birth.value,mod,ath:M.ath}));
   if(!(b>=1930&&b<=NEXTY-18)){
     head.style.setProperty('--vc','var(--line)');
