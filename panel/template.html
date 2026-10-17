@@ -247,7 +247,7 @@ dialog.card .top{display:flex;justify-content:space-between;align-items:center;g
     <div class="hits" id="h-hits"></div>
   </div>
   <div class="shortcuts">
-    <button type="button" class="sc" data-go="medalha"><b>Onde está a sua medalha?</b><span>As provas da sua faixa em 2027 com menos concorrência e a marca que rende pódio</span></button>
+    <button type="button" class="sc" data-go="medalha"><b>Onde está a sua medalha?</b><span id="sc-medal">As provas da sua faixa na próxima edição com menos concorrência e a marca que rende pódio</span></button>
     <button type="button" class="sc" data-go="comparar"><b>Quanto falta para a medalha?</b><span>Digite sua marca e compare com o pódio e o recorde da sua faixa</span></button>
     <button type="button" class="sc" data-go="revez"><b>Revezamentos</b><span>Tempos da sua equipe contra os que deram pódio</span></button>
     <button type="button" class="sc" data-go="recordes"><b>Recordes</b><span>Recorde de cada prova e faixa etária</span></button>
@@ -559,7 +559,7 @@ function refreshCompareSelectors(){
   fillSelect(C.age,recent.length?[...recent,...ao.filter(o=>!recent.includes(o))]:ao);
   $('#c-pool-wrap').hidden=mod!=='Natação';
   $('#c-mark-lab').textContent=isField(e)?'Sua marca (metros)':'Sua marca (tempo)';
-  C.mark.placeholder=isField(e)?'ex.: 4,85':(EV[e].key.match(/^(\d+)/)[1]>=400?'ex.: 2:45.30':'ex.: 13.42');
+  C.mark.placeholder=isField(e)?'ex.: 4,85':(+((EV[e].key.match(/^(\d+)/)||[0,0])[1])>=400?'ex.: 2:45.30':'ex.: 13.42');
   renderCompare();
 }
 function renderCompare(){
@@ -1034,6 +1034,7 @@ const delsOf=n=>{const rs=(byName.get(n)||[]).slice().sort((a,b)=>b.y-a.y);retur
 
 // ================= SUA MEDALHA =================
 const NEXTY=LASTY+1;
+$('#sc-medal').textContent=`As provas da sua faixa em ${NEXTY} com menos concorrência e a marca que rende pódio`;
 function ageRange(l){let m;if((m=l.match(/^até (\d+)/)))return[0,+m[1]];if((m=l.match(/^(\d+)-(\d+)/)))return[+m[1],+m[2]];if((m=l.match(/^(\d+)\+/)))return[+m[1],200];return null}
 // faixas do esquema atual: rótulos usados desde 2022 em cada prova e gênero
 const curAges=new Map();

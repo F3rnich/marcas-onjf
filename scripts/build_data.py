@@ -7,6 +7,7 @@ from norm import *
 
 D = os.path.join(ROOT, 'data')
 FIELD = {'salto_altura', 'salto_distancia', 'salto_triplo', 'peso', 'dardo', 'disco'}
+FIELD |= {k + '_pcd' for k in FIELD}   # provas PCD de campo
 
 EDITIONS = {
     2009: ('VIII ONJT', None, 'completa'), 2010: ('IX ONJT', None, 'completa'), 2011: ('X ONJT', None, 'completa'),
