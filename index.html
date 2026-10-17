@@ -220,6 +220,25 @@ dialog.card .in{display:grid;gap:12px;padding:16px}
 dialog.card img{width:100%;height:auto;max-height:62dvh;object-fit:contain;border-radius:8px;background:var(--night)}
 dialog.card .top{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .ag{font-family:var(--f-data);font-variant-numeric:tabular-nums}
+.es-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.es-card{border:1px solid var(--line);border-radius:10px;padding:12px;display:grid;gap:8px;background:var(--bg);min-width:0}
+.es-card.off{opacity:.6}
+.es-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.es-top b{font:700 italic 18px/1.15 var(--f-display);text-transform:uppercase;letter-spacing:.02em;display:block}
+.es-top small{color:var(--muted);font-size:12px}
+.es-b{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600;white-space:nowrap}
+.es-b input[type=text]{width:72px;font:500 14px var(--f-data);padding:6px 8px;background:var(--surface);border:1px solid var(--line);border-radius:6px;color:var(--ink)}
+.es-cnt{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--muted);align-items:center}
+.es-cnt .neg{color:var(--warn);font-weight:700}
+.es-cnt .more{padding:0;margin-left:auto;font-size:12px}
+.es-ev{display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"c n p" "c m p";gap:2px 10px;align-items:center;padding:6px 8px;border-radius:7px;border:1px solid transparent;cursor:pointer;font-size:14px}
+.es-ev input{grid-area:c}.es-evn{grid-area:n}.es-mk{grid-area:m;font-size:13px;color:var(--muted)}.es-mk .gap{color:var(--ink)}.es-mk .medal{width:20px;height:20px;font-size:11px}.es-ev .es-pts{grid-area:p}
+.es-ev.on{background:var(--surface);border-color:var(--accent)}
+.es-evn{line-height:1.25;font-weight:600}.es-evn small{color:var(--muted);font-size:12px;font-weight:500}
+.es-pl{white-space:nowrap}.es-pl small{color:var(--muted)}
+.es-pts{text-align:right;font-family:var(--f-data);font-size:13px}
+.es-legs{grid-template-columns:repeat(2,minmax(0,1fr));padding:0;border:0;background:none}
+.es-chk{display:flex;gap:8px;align-items:center;font-size:14px}
 #m-table td:nth-child(2){white-space:normal;min-width:200px}
 #m-table .linkbtn{background:none;border:0;cursor:pointer;font:600 15px var(--f-body)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -249,6 +268,7 @@ dialog.card .top{display:flex;justify-content:space-between;align-items:center;g
       <button role="tab" id="tab-revez" aria-selected="false" data-view="revez">Revezamentos</button>
       <button role="tab" id="tab-atletas" aria-selected="false" data-view="atletas">Atletas</button>
       <button role="tab" id="tab-delegacoes" aria-selected="false" data-view="delegacoes">Delegações</button>
+      <button role="tab" id="tab-escalacao" aria-selected="false" data-view="escalacao">Escalação</button>
       <button role="tab" id="tab-duelo" aria-selected="false" data-view="duelo">Frente a frente</button>
       <button role="tab" id="tab-recordes" aria-selected="false" data-view="recordes">Recordes</button>
       <button role="tab" id="tab-edicoes" aria-selected="false" data-view="edicoes">Edições</button>
@@ -420,6 +440,35 @@ dialog.card .top{display:flex;justify-content:space-between;align-items:center;g
     <label class="f" for="d-sel">Detalhe da delegação<select id="d-sel"></select></label>
   </div>
   <div id="d-out" class="view"></div>
+</section>
+
+<!-- ================= ESCALAÇÃO ================= -->
+<section class="view" id="v-escalacao" hidden>
+  <div>
+    <h2>Assistente de escalação</h2>
+    <p class="lede">Para técnicos de atletismo e natação. Parte dos atletas da sua delegação na última edição e das marcas recentes de cada um, sugere quem correr ou nadar cada prova e cada revezamento para somar mais pontos, e confere os limites do regulamento. Tudo pode ser ajustado à mão.</p>
+  </div>
+  <div class="controls">
+    <label class="f" for="es-del">Delegação<select id="es-del"></select></label>
+    <label class="f">Modalidade<div class="seg" id="es-mod"><button type="button" data-v="Atletismo" aria-pressed="true">Atletismo</button><button type="button" data-v="Natação" aria-pressed="false">Natação</button></div></label>
+    <label class="f wide" for="es-q">Adicionar atleta (novato ou de outra delegação)<input id="es-q" type="search" placeholder="Nome" autocomplete="off"></label>
+    <div class="hits wide" id="es-hits"></div>
+    <label class="es-chk wide"><input type="checkbox" id="es-fill" checked> Todos competem: preencher as vagas livres mesmo em provas sem pontos estimados</label>
+    <div class="actions wide"><button type="button" class="btn" id="es-sug">Sugerir escalação</button><button type="button" class="btn ghost" id="es-copy">Copiar para o WhatsApp</button><button type="button" class="btn ghost" id="es-reset">Recomeçar</button></div>
+  </div>
+  <div class="verdict" id="es-head"></div>
+  <div class="panel"><h3>Atletas</h3>
+    <p class="note">Marque as provas de cada atleta. A faixa etária é a da próxima edição, calculada pelo ano de nascimento estimado pelo histórico; corrija o ano quando souber. A colocação estimada compara a marca mais recente do atleta em cada prova (das últimas quatro edições) com os resultados das outras delegações na edição mais recente da prova.</p>
+    <div class="es-grid" id="es-ath"></div></div>
+  <div class="panel"><h3>Revezamentos</h3><p class="note" id="es-ratio"></p><div class="es-grid" id="es-rel"></div></div>
+  <div class="panel"><h3>Regras aplicadas</h3>
+    <ul class="note" style="margin:0;padding-left:18px">
+      <li>Até 3 provas individuais e 3 revezamentos por atleta, no máximo 5 no total (arts. 24 e 118 do Regulamento Geral ONJF 2026).</li>
+      <li>Até 2 atletas da delegação por prova, gênero e faixa, e 1 equipe por revezamento (arts. 23 e 117).</li>
+      <li>Revezamentos mistos com 2 homens e 2 mulheres; nos de 180 anos, soma das idades de pelo menos 180.</li>
+      <li>Pontos para a delegação: 10, 7, 4, 2 e 1 do 1º ao 5º lugar; revezamento vale o dobro. Recordes (+4) não entram na estimativa.</li>
+      <li>Faixas sem quórum podem ser fundidas pela organização; a estimativa não prevê isso.</li>
+    </ul></div>
 </section>
 
 <!-- ================= FRENTE A FRENTE ================= -->
@@ -1065,18 +1114,21 @@ function groupFor(e,g,age){
   return best;
 }
 function birthHint(n){
-  const rs=(byName.get(n)||[]).filter(r=>ageRange(AG[r.a])&&!AG[r.a].startsWith('até'));if(!rs.length)return null;
-  const y=Math.max(...rs.map(r=>r.y));const c={};rs.filter(r=>r.y===y).forEach(r=>c[r.a]=(c[r.a]||0)+1);
-  const a=+Object.keys(c).sort((p,q)=>c[q]-c[p])[0];const rg=ageRange(AG[a]);if(rg[1]>150)return null;
-  return[y-rg[1],y-rg[0]];
+  // intervalo do ano de nascimento: interseção das faixas de todas as participações (a mais recente primeiro);
+  // participações incompatíveis (atleta que competiu numa faixa mais jovem) são ignoradas
+  const rs=[...(byName.get(n)||[])].filter(r=>ageRange(AG[r.a])).sort((a,b)=>b.y-a.y);if(!rs.length)return null;
+  let lo=-1e9,hi=1e9;
+  rs.forEach(r=>{const[a0,a1]=ageRange(AG[r.a]);const l=a0===0?r.y-34:(a1>150?-1e9:r.y-a1),h=a0===0?r.y-18:r.y-a0;const L=Math.max(lo,l),H=Math.min(hi,h);if(L<=H){lo=L;hi=H}});
+  if(lo<-1e8||hi>1e8)return null;return[lo,hi];
 }
 const M={g:$('#m-g'),birth:$('#m-birth'),mod:$('#m-mod'),q:$('#m-q'),hits:$('#m-hits'),ath:null};
 function renderMedal(){
   const g=segVal(M.g),b=parseInt(M.birth.value,10),mod=M.mod.value,head=$('#m-head');
   // dica pelo histórico: sugere o ano quando vazio; avisa só se o ano digitado não bate com as faixas já disputadas
   let hint='';const h=M.ath!=null?birthHint(M.ath):null;
-  if(h&&!(b>=1930))hint=` Pelas faixas em que ${esc(NM[M.ath].split(' ')[0])} já competiu, o ano deve estar entre ${h[0]} e ${h[1]}.`;
-  else if(h&&(b<h[0]-1||b>h[1]+1))hint=` <b>Confira o ano:</b> pelas faixas em que ${esc(NM[M.ath].split(' ')[0])} já competiu, o esperado seria entre ${h[0]} e ${h[1]}.`;
+  const hr=h?(h[0]===h[1]?`seria ${h[0]}`:`seria entre ${h[0]} e ${h[1]}`):'';
+  if(h&&!(b>=1930))hint=` Pelas faixas em que ${esc(NM[M.ath].split(' ')[0])} já competiu, o ano ${hr}.`;
+  else if(h&&(b<h[0]-1||b>h[1]+1))hint=` <b>Confira o ano:</b> pelas faixas em que ${esc(NM[M.ath].split(' ')[0])} já competiu, o esperado ${hr}.`;
   store.set('onjt.medal',JSON.stringify({g,b:M.birth.value,mod,ath:M.ath}));
   if(!(b>=1930&&b<=NEXTY-18)){
     head.style.setProperty('--vc','var(--line)');
@@ -1301,9 +1353,231 @@ try{const s=JSON.parse(store.get('onjt.duel')||'{}');if(s.a!=null&&NM[s.a]){X.a=
 try{const s=JSON.parse(store.get('onjt.dueldel')||'{}');if(s.a!=null)X.da.value=String(s.a);if(s.b!=null)X.db.value=String(s.b)}catch(_){}
 renderDuel();
 
+// ================= ESCALAÇÃO (assistente para técnicos) =================
+// Regras (Regulamento Geral ONJF 2026, arts. 23–24 e 117–118): até 3 provas individuais e 3 revezamentos
+// por atleta, com no máximo 5 no total; até 2 atletas da delegação por prova (gênero e faixa) e 1 equipe por
+// revezamento; revezamentos "180 anos" exigem soma de idades >= 180. Pontos: 10-7-4-2-1, revezamento em dobro.
+const PTS=[10,7,4,2,1];
+const ptsOf=p=>p>=1&&p<=5?PTS[p-1]:0;
+const evIdx=k=>EV.findIndex(x=>x.key===k);
+const revIdx=k=>REV.findIndex(x=>x.key===k);
+const catIdx=c=>RCAT.indexOf(c);
+const LEG={rev_4x100_rasos:'100_rasos',rev_4x400_rasos:'400_rasos',rev_4x50_livre:'50_livre',rev_4x100_livre:'100_livre'};
+const MEDLEY=['50_costas','50_peito','50_borboleta','50_livre'];
+const MEDLEY_LAB=['costas','peito','borboleta','livre'];
+const PROG={
+  'Atletismo':[['rev_4x100_rasos','M','livre'],['rev_4x100_rasos','F','livre'],['rev_4x100_rasos','X','180'],['rev_4x400_rasos','M','livre'],['rev_4x400_rasos','F','livre'],['rev_4x400_rasos','X','180']],
+  'Natação':[['rev_4x50_livre','M','livre'],['rev_4x50_livre','F','livre'],['rev_4x50_livre','X','livre'],['rev_4x50_livre','X','180'],['rev_4x50_medley','M','livre'],['rev_4x50_medley','F','livre'],['rev_4x50_medley','X','livre'],['rev_4x100_livre','M','180'],['rev_4x100_livre','F','180'],['rev_4x100_livre','X','180']]
+};
+// fator de passagem: tempo real do revezamento ÷ soma das marcas individuais dos integrantes no mesmo ano
+const REL_RATIO={};
+(function(){
+  const best=new Map();R.forEach(r=>{if(r.v==null)return;const k=r.n+'|'+r.y+'|'+r.e;const b=best.get(k);if(b==null||r.v<b)best.set(k,r.v)});
+  const acc={};
+  RL.forEach(r=>{const k=REV[r.e].key,leg=LEG[k];if(!leg||r.v==null||r.mem.length!==4)return;const le=evIdx(leg);
+    const ms=r.mem.map(n=>best.get(n+'|'+r.y+'|'+le));if(ms.some(v=>v==null))return;const s=ms.reduce((a,b)=>a+b,0);const q=r.v/s;if(q>.8&&q<1.2)(acc[k]=acc[k]||[]).push(q)});
+  Object.entries(acc).forEach(([k,a])=>{if(a.length>=5)REL_RATIO[k]=median(a)});
+})();
+const ES={del:null,mod:'Atletismo',ath:[],ind:new Set(),rel:{},fill:true};
+const escKey=()=>`onjt.esc.${DL[ES.del]}.${ES.mod}`;
+function escSave(){store.set(escKey(),JSON.stringify({ath:ES.ath.map(a=>({n:NM[a.n],b:a.birth,off:a.off,c:a.confirmed})),ind:[...ES.ind].map(k=>{const[n,e]=k.split('|');return NM[n]+'|'+EV[e].key}),rel:Object.fromEntries(Object.entries(ES.rel).map(([k,v])=>[k,{on:v.on,mem:v.mem.map(n=>n==null?null:NM[n])}])),fill:ES.fill}))}
+function escRoster(){
+  const ns=new Set();
+  R.forEach(r=>{if(r.y===LASTY&&r.d===ES.del&&EV[r.e].mod===ES.mod)ns.add(r.n)});
+  RL.forEach(r=>{if(r.y===LASTY&&r.d===ES.del&&REV[r.e].mod===ES.mod)r.mem.forEach(n=>ns.add(n))});
+  return [...ns];
+}
+function escGender(n){const rs=byName.get(n)||[];if(rs.length)return genderOf(n);const r=RL.find(r=>r.mem.includes(n)&&r.g!=='X');return r?r.g:'M'}
+function escBirth(n){const h=birthHint(n);if(h)return Math.round((h[0]+h[1])/2);
+  const rs=(byName.get(n)||[]).filter(r=>AG[r.a].startsWith('até'));if(rs.length){const y=Math.max(...rs.map(r=>r.y));return y-30}return NEXTY-45}
+function escMakeAth(n,birth,off){const h=birthHint(n);return{n,g:escGender(n),birth:birth||escBirth(n),hint:h,off:!!off}}
+function escAge(a){return NEXTY-a.birth}
+function escUncertain(a){ // faixa da próxima edição muda dentro do intervalo de nascimento possível (e o técnico ainda não confirmou)
+  if(!a.hint||a.confirmed)return false;const e=evIdx('100_rasos');return groupFor(e,a.g,NEXTY-a.hint[0])!==groupFor(e,a.g,NEXTY-a.hint[1])}
+// marca de referência: a mais recente (melhor da última edição em que fez a prova, desde LASTY-3)
+const ESM=new Map();
+function escMarks(n){const ck=ES.mod+'|'+n;if(ESM.has(ck))return ESM.get(ck);const m={};(byName.get(n)||[]).forEach(r=>{if(r.v==null||r.y<LASTY-3||EV[r.e].mod!==ES.mod)return;if(!m[r.e]||r.y>m[r.e].y||(r.y===m[r.e].y&&better(r.e,r.v,m[r.e].v)))m[r.e]={v:r.v,y:r.y}});ESM.set(ck,m);return m}
+// faixa sem outra delegação no histórico: pela regra de quórum (2 delegações, exceto 65+) a prova pode não acontecer
+const noQuorum=(f,ag)=>f.v.length===0&&!(ageRange(AG[ag])&&ageRange(AG[ag])[0]>=65);
+function escGroup(a,e){if(EV[e].key.endsWith('_pcd'))return AG.indexOf('única');return groupFor(e,a.g,escAge(a))}
+const fieldCache=new Map();
+function escField(e,g,ag){ // marcas das outras delegações na edição mais recente com a prova nesta faixa
+  const k=e+'|'+g+'|'+ag+'|'+ES.del;if(fieldCache.has(k))return fieldCache.get(k);
+  const rs=rowsFor(e,g,ag,'all').filter(r=>ED[r.y].cov==='completa');const y=Math.max(...rs.map(r=>r.y),0);
+  const f={y,v:rs.filter(r=>r.y===y&&r.d!==ES.del&&r.v!=null).map(r=>r.v)};fieldCache.set(k,f);return f;
+}
+function relField(p){
+  const[ek,g,c]=p,e=revIdx(ek);const cats=c==='180'?['180 anos','misto (categorias)']:['livre'];
+  const rs=RL.filter(r=>r.e===e&&r.g===g&&cats.includes(RCAT[r.c])&&ED[r.y].cov==='completa');const y=Math.max(...rs.map(r=>r.y),0);
+  return{y,v:rs.filter(r=>r.y===y&&r.d!==ES.del&&r.v!=null).map(r=>r.v)};
+}
+const pid=p=>p.join('|');
+const progLab=p=>`${REV[revIdx(p[0])].label} ${p[1]==='M'?'masculino':p[1]==='F'?'feminino':'misto'}${p[2]==='180'?' 180 anos':''}`;
+// avaliação de uma escalação
+function escEval(){
+  const A=ES.ath.filter(a=>!a.off), byN=new Map(A.map(a=>[a.n,a]));
+  const out={ind:new Map(),grp:new Map(),rel:{},tot:0,totI:0,totR:0,med:[0,0,0],err:[]};
+  const cnt=new Map(A.map(a=>[a.n,{i:0,r:0}]));
+  ES.ind.forEach(k=>{const[n,e]=k.split('|').map(Number);const a=byN.get(n);if(!a){return}const mk=escMarks(n)[e];if(!mk)return;const ag=escGroup(a,e);if(ag==null)return;
+    const gk=e+'|'+a.g+'|'+ag;(out.grp.get(gk)||out.grp.set(gk,[]).get(gk)).push({n,v:mk.v,e});cnt.get(n).i++});
+  out.grp.forEach((L,gk)=>{const[e,g,ag]=gk.split('|');const f=escField(+e,g,+ag);
+    L.forEach(x=>{const others=f.v.filter(v=>better(+e,v,x.v)).length,mine=L.filter(o=>o!==x&&better(+e,o.v,x.v)).length;x.pl=1+others+mine;x.nq=noQuorum(f,+ag);x.pts=x.nq?0:ptsOf(x.pl);x.n_=f.v.length+L.length;x.fy=f.y;
+      out.ind.set(x.n+'|'+e,x);out.totI+=x.pts;if(x.pl<=3&&!x.nq)out.med[x.pl-1]++});
+    if(L.length>2)out.err.push(`${EV[+e].label} ${genderLab[g].toLowerCase()} ${AG[+ag]}: ${L.length} atletas (máximo 2 por delegação)`);
+  });
+  PROG[ES.mod].forEach(p=>{const s=ES.rel[pid(p)];if(!s||!s.on)return;const ev=relEvalTeam(p,s.mem);out.rel[pid(p)]=ev;
+    s.mem.forEach(n=>{if(n!=null&&cnt.has(n))cnt.get(n).r++});
+    if(ev.err)out.err.push(`${progLab(p)}: ${ev.err}`);else{out.totR+=ev.pts;if(ev.pl<=3)out.med[ev.pl-1]++}});
+  cnt.forEach((c,n)=>{const nm=NM[n];if(c.i>3)out.err.push(`${nm}: ${c.i} provas individuais (máximo 3)`);if(c.r>3)out.err.push(`${nm}: ${c.r} revezamentos (máximo 3)`);if(c.i+c.r>5)out.err.push(`${nm}: ${c.i+c.r} provas no total (máximo 5)`)});
+  out.cnt=cnt;out.tot=out.totI+out.totR;return out;
+}
+// tempo de uma perna: marca individual na distância da perna; sem ela, média por perna dos revezamentos
+// da mesma prova que o atleta correu/nadou desde LASTY-3 (a maioria dos integrantes não faz a prova individual)
+const RLM=new Map();
+function relLegAvg(n,ek){const k=n+'|'+ek;if(RLM.has(k))return RLM.get(k);let b=null;RL.forEach(r=>{if(r.v==null||r.y<LASTY-3||REV[r.e].key!==ek||!r.mem.includes(n))return;const v=r.v/4;if(b==null||v<b)b=v});RLM.set(k,b);return b}
+function legTime(n,p,i){const le=relLegs(p)[i];const m=escMarks(n)[le];if(m)return{v:m.v,src:'i'};const r=relLegAvg(n,p[0]);return r!=null?{v:r,src:'r'}:null}
+function teamTime(p,mem){const ls=mem.map((n,i)=>legTime(n,p,i));if(ls.some(x=>!x))return null;const si=ls.filter(x=>x.src==='i').reduce((s,x)=>s+x.v,0),sr=ls.filter(x=>x.src==='r').reduce((s,x)=>s+x.v,0);return si*(REL_RATIO[p[0]]||1)+sr}
+function relLegs(p){const k=p[0];return k==='rev_4x50_medley'?MEDLEY.map(evIdx):[0,1,2,3].map(()=>evIdx(LEG[k]))}
+function relEvalTeam(p,mem){
+  const legs=relLegs(p);const byN=new Map(ES.ath.filter(a=>!a.off).map(a=>[a.n,a]));
+  if(mem.some(n=>n==null))return{err:'equipe incompleta'};
+  if(new Set(mem).size<4)return{err:'atleta repetido'};
+  const as=mem.map(n=>byN.get(n));if(as.some(a=>!a))return{err:'atleta fora da lista'};
+  const[ek,g,c]=p;
+  if(g!=='X'&&as.some(a=>a.g!==g))return{err:'gênero diferente da prova'};
+  if(g==='X'&&(as.filter(a=>a.g==='M').length!==2))return{err:'misto exige 2 homens e 2 mulheres'};
+  const ages=as.reduce((s,a)=>s+escAge(a),0);
+  if(c==='180'&&ages<180)return{err:`soma de idades ${ages} (mínimo 180)`,ages};
+  const time=teamTime(p,mem);
+  if(time==null)return{ages,time:null,pl:null,pts:0,miss:true};
+  const f=relField(p);const pl=1+f.v.filter(v=>v<time).length;
+  return{ages,time,pl,pts:2*ptsOf(pl),n_:f.v.length+1,fy:f.y};
+}
+function bestTeam(p,can){ // melhor equipe entre os atletas com vaga
+  const legs=relLegs(p),[ek,g,c]=p;
+  const A=ES.ath.filter(a=>!a.off&&can(a.n)&&(g==='X'||a.g===g));
+  const mk=(a,le,i)=>{const x=legTime(a.n,p,i==null?legs.indexOf(le):i);return x?x.v:null};
+  let best=null;
+  const consider=team=>{const ages=team.reduce((s,a)=>s+escAge(a),0);if(c==='180'&&ages<180)return;
+    const t=teamTime(p,team.map(a=>a.n));if(t!=null&&(!best||t<best.t))best={t,mem:team.map(a=>a.n)}};
+  if(ek==='rev_4x50_medley'){
+    const cand=MEDLEY.map((k,i)=>A.filter(a=>mk(a,legs[i],i)!=null).sort((x,y)=>mk(x,legs[i],i)-mk(y,legs[i],i)).slice(0,7));
+    for(const a of cand[0])for(const b of cand[1])for(const d of cand[2])for(const f of cand[3]){const T=[a,b,d,f];if(new Set(T).size<4)continue;if(g==='X'&&T.filter(x=>x.g==='M').length!==2)continue;consider(T)}
+  }else{
+    const le=legs[0];const pool=A.filter(a=>mk(a,le,0)!=null).sort((x,y)=>mk(x,le,0)-mk(y,le,0));
+    if(g==='X'){const M=pool.filter(a=>a.g==='M').slice(0,9),F=pool.filter(a=>a.g==='F').slice(0,9);
+      for(let i=0;i<M.length;i++)for(let j=i+1;j<M.length;j++)for(let k=0;k<F.length;k++)for(let l=k+1;l<F.length;l++)consider([M[i],F[k],M[j],F[l]].sort((x,y)=>mk(x,le,0)-mk(y,le,0)))}
+    else{const P=pool.slice(0,11);if(c!=='180'){if(P.length>=4)consider(P.slice(0,4))}
+      else for(let i=0;i<P.length;i++)for(let j=i+1;j<P.length;j++)for(let k=j+1;k<P.length;k++)for(let l=k+1;l<P.length;l++)consider([P[i],P[j],P[k],P[l]])}
+  }
+  return best;
+}
+// sugestão automática: guloso pelo ganho de pontos, respeitando todos os limites
+function escSuggest(){
+  ES.ind=new Set();ES.rel={};
+  const A=ES.ath.filter(a=>!a.off);const cnt=new Map(A.map(a=>[a.n,{i:0,r:0}]));
+  const marks=new Map(A.map(a=>[a.n,escMarks(a.n)]));
+  const freeI=n=>{const c=cnt.get(n);return c.i<3&&c.i+c.r<5}, freeR=n=>{const c=cnt.get(n);return c.r<3&&c.i+c.r<5};
+  // candidatos individuais com faixa e campo pré-calculados
+  const cands=[];A.forEach(a=>Object.keys(marks.get(a.n)).forEach(k=>{const e=+k,ag=escGroup(a,e);if(ag==null)return;const f=escField(e,a.g,ag);const v=marks.get(a.n)[k].v;
+    cands.push({a,e,ag,v,gk:e+'|'+a.g+'|'+ag,f,pl:1+f.v.filter(x=>better(e,x,v)).length})}));
+  const grp=new Map(); // gk -> marcas já escaladas
+  const grpPts=(c,L)=>noQuorum(c.f,c.ag)?0:L.reduce((s,v)=>s+ptsOf(1+c.f.v.filter(x=>better(c.e,x,v)).length+L.filter(o=>o!==v&&better(c.e,o,v)).length),0);
+  const gainI=c=>{const L=grp.get(c.gk)||[];if(L.length>=2)return -1;return grpPts(c,[...L,c.v])-grpPts(c,L)};
+  const done=new Set(),used=new Set();
+  for(let it=0;it<300;it++){
+    let bI=null,bR=null;
+    cands.forEach(c=>{const k=c.a.n+'|'+c.e;if(used.has(k)||!freeI(c.a.n))return;const g=gainI(c);if(g<0)return;if(!bI||g>bI.g||(g===bI.g&&c.pl<bI.c.pl))bI={g,c,k}});
+    PROG[ES.mod].forEach(p=>{const id=pid(p);if(done.has(id))return;const t=bestTeam(p,freeR);if(!t)return;const r=relEvalTeam(p,t.mem);if(r.err)return;if(!bR||r.pts>bR.g)bR={g:r.pts,id,mem:t.mem}});
+    if(bR&&bR.g>0&&(!bI||bR.g>=bI.g)){ES.rel[bR.id]={on:true,mem:bR.mem};bR.mem.forEach(n=>cnt.get(n).r++);done.add(bR.id);continue}
+    if(bI&&bI.g>0){ES.ind.add(bI.k);used.add(bI.k);cnt.get(bI.c.a.n).i++;(grp.get(bI.c.gk)||grp.set(bI.c.gk,[]).get(bI.c.gk)).push(bI.c.v);continue}
+    break;
+  }
+  if(!ES.fill)return;
+  // "todos competem": revezamentos ainda vazios, depois provas individuais nas vagas livres (melhor colocação primeiro)
+  PROG[ES.mod].forEach(p=>{const id=pid(p);if(ES.rel[id])return;const t=bestTeam(p,freeR);if(t){ES.rel[id]={on:true,mem:t.mem};t.mem.forEach(n=>cnt.get(n).r++)}});
+  cands.slice().sort((x,y)=>x.pl-y.pl).forEach(c=>{const k=c.a.n+'|'+c.e;if(used.has(k)||!freeI(c.a.n)||(grp.get(c.gk)||[]).length>=2)return;ES.ind.add(k);used.add(k);cnt.get(c.a.n).i++;(grp.get(c.gk)||grp.set(c.gk,[]).get(c.gk)).push(c.v)});
+}
+function escPoints2026(){ // pontos reais da modalidade em LASTY, por delegação
+  const pts={};const add=(d,v)=>pts[d]=(pts[d]||0)+v;
+  R.forEach(r=>{if(r.y===LASTY&&EV[r.e].mod===ES.mod)add(r.d,ptsOf(r.pl))});RL.forEach(r=>{if(r.y===LASTY&&REV[r.e].mod===ES.mod)add(r.d,2*ptsOf(r.pl))});
+  const rank=Object.entries(pts).sort((a,b)=>b[1]-a[1]);const i=rank.findIndex(x=>+x[0]===ES.del);
+  const ent=R.filter(r=>r.y===LASTY&&r.d===ES.del&&EV[r.e].mod===ES.mod);
+  return{p:pts[ES.del]||0,pos:i+1,n:rank.length,top:rank.slice(0,3),ent:ent.length,miss:ent.filter(r=>r.v==null).length};
+}
+function escRender(){
+  const ev=escEval(),old=escPoints2026();
+  const A=ES.ath.slice().sort((x,y)=>x.g.localeCompare(y.g)||NM[x.n].localeCompare(NM[y.n],'pt'));
+  const hd=$('#es-head');hd.style.setProperty('--vc',ev.err.length?'var(--warn)':'var(--good)');
+  hd.innerHTML=`<p><strong>${ev.tot} pontos estimados</strong> (${ev.totI} individuais + ${ev.totR} em revezamentos) · medalhas estimadas <span class="medal m1">${ev.med[0]}</span> <span class="medal m2">${ev.med[1]}</span> <span class="medal m3">${ev.med[2]}</span></p>
+  <p class="note">Em ${LASTY}, ${esc(DL[ES.del])} fez ${old.p} pontos no ${ES.mod.toLowerCase()} (${old.pos?old.pos+'º de '+old.n:'sem pontos'}; 1º lugar: ${old.top[0]?esc(DL[old.top[0][0]])+' com '+old.top[0][1]:'–'}). A estimativa supõe que as outras delegações repitam as marcas de ${LASTY} e que todos os escalados compareçam${old.ent?`; em ${LASTY}, ${Math.round(old.miss/old.ent*100)}% das inscrições individuais da delegação terminaram sem marca (ausência, desistência ou desclassificação)`:''}.</p>
+  ${ev.err.length?`<p class="note" style="color:var(--warn)"><b>Fora do regulamento:</b> ${ev.err.map(esc).join(' · ')}</p>`:'<p class="note" style="color:var(--good)">Escalação dentro dos limites do regulamento.</p>'}`;
+  // atletas
+  $('#es-ath').innerHTML=A.map(a=>{
+    const mk=escMarks(a.n),c=ev.cnt.get(a.n)||{i:0,r:0},unc=escUncertain(a);
+    const evs=Object.keys(mk).map(Number).sort((x,y)=>x-y);
+    const rows=evs.map(e=>{const k=a.n+'|'+e,on=ES.ind.has(k),x=ev.ind.get(k),ag=escGroup(a,e);
+      const f=ag!=null?escField(e,a.g,ag):null,pl=x?x.pl:(f?1+f.v.filter(v=>better(e,v,mk[e].v)).length:null);
+      return `<label class="es-ev${on?' on':''}"><input type="checkbox" data-ind="${k}"${on?' checked':''}${a.off||ag==null?' disabled':''}><span class="es-evn">${esc(EV[e].label)} <small>${ag!=null?esc(AG[ag]):'sem faixa'}</small></span><span class="es-mk"><span class="gap">${fmt(e,mk[e].v)}</span> <small>(${mk[e].y})</small> · ${pl?placeBadge(pl)+(f&&f.v.length?`<small> de ${f.v.length+1}</small>`:''):'–'}</span><b class="es-pts">${f&&noQuorum(f,ag)?'<small class="p-warn" title="Nenhuma outra delegação disputou esta prova nesta faixa na última edição; pela regra de quórum ela pode não acontecer ou ser fundida com outra faixa">sem quórum?</small>':on&&x?x.pts+' pts':pl&&ptsOf(pl)?`<small class="p-mut">${ptsOf(pl)} pts</small>`:''}</b></label>`}).join('')||'<p class="empty">Sem marca individual desde '+(LASTY-3)+'; pode entrar em revezamentos.</p>';
+    return `<div class="es-card${a.off?' off':''}"><div class="es-top"><div><b>${esc(NM[a.n])}</b><small>${genderLab[a.g]} · ${escAge(a)} anos em ${NEXTY}${unc?' <span class="pill p-warn" title="O histórico não define o ano exato; confira o ano de nascimento">confira a faixa</span>':''}</small></div>
+      <label class="es-b">Nasc.<input type="text" inputmode="numeric" maxlength="4" value="${a.birth}" data-birth="${a.n}"></label></div>
+      <div class="es-cnt"><span class="${c.i>3?'neg':''}">${c.i}/3 individuais</span><span class="${c.r>3?'neg':''}">${c.r}/3 revezamentos</span><span class="${c.i+c.r>5?'neg':''}">${c.i+c.r}/5 no total</span>
+      <button type="button" class="more" data-off="${a.n}">${a.off?'Incluir de novo':'Não vai competir'}</button></div>${a.off?'':rows}</div>`}).join('')||'<p class="empty">Nenhum atleta desta delegação nesta modalidade em '+LASTY+'. Adicione atletas pela busca.</p>';
+  // revezamentos
+  const opt=(p,sel,i)=>{const g=p[1];const A2=ES.ath.filter(a=>!a.off&&(g==='X'||a.g===g));
+    const lab=p[0]==='rev_4x50_medley'?MEDLEY_LAB[i]:`${i+1}º`;
+    return `<label class="f">${lab}<select data-relm="${pid(p)}|${i}"><option value="">–</option>${A2.map(a=>{const lt=legTime(a.n,p,i);return `<option value="${a.n}"${a.n===sel?' selected':''}>${esc(NM[a.n])}${lt?' · '+fmt(TEV,lt.v)+(lt.src==='r'?' (revez.)':''):''}${g==='X'?' ('+a.g+')':''}</option>`}).join('')}</select></label>`};
+  $('#es-rel').innerHTML=PROG[ES.mod].map(p=>{const id=pid(p),s=ES.rel[id]||{on:false,mem:[null,null,null,null]},x=ev.rel[id];const f=relField(p);
+    let info='';if(s.on&&x){if(x.err)info=`<span class="p-warn">${esc(x.err)}</span>`;else if(x.miss)info=`<span class="p-mut">falta marca individual de algum integrante para estimar o tempo</span>`;else info=`Tempo estimado <b class="gap">${fmt(TEV,x.time)}</b> · ${placeBadge(x.pl)} de ${x.n_} · <b>${x.pts} pts</b>`;if(x.ages)info+=` · soma de idades ${x.ages}`}
+    return `<div class="es-card${s.on?'':' off'}"><div class="es-top"><div><b>${esc(progLab(p))}</b><small>${f.y?`referência: ${f.v.length} equipe(s) de outras delegações em ${f.y}`:'sem resultados anteriores'}</small></div><label class="es-b"><input type="checkbox" data-relon="${id}"${s.on?' checked':''}> Escalar</label></div>
+      ${s.on?`<div class="controls es-legs">${[0,1,2,3].map(i=>opt(p,s.mem[i],i)).join('')}</div><p class="note">${info}</p>`:''}</div>`}).join('');
+  $('#es-ratio').textContent=`Tempo estimado = soma dos tempos de cada perna: a marca individual do atleta na distância (no medley, no estilo indicado) ou, se ele não faz a prova individual, a média por perna dos revezamentos que já disputou desde ${LASTY-3} (marcado "revez." na lista). Quem não tem nenhuma das duas referências não entra na sugestão automática.`;
+  escSave();
+}
+function escLoad(){
+  fieldCache.clear();
+  let s=null;try{s=JSON.parse(store.get(escKey())||'null')}catch(_){}
+  const base=escRoster();
+  if(s&&s.ath){
+    ES.ath=s.ath.map(x=>{const n=NM.indexOf(x.n);if(n<0)return null;const a=escMakeAth(n,x.b,x.off);a.confirmed=!!x.c;return a}).filter(Boolean);
+    base.forEach(n=>{if(!ES.ath.some(a=>a.n===n))ES.ath.push(escMakeAth(n))});
+    ES.ind=new Set((s.ind||[]).map(k=>{const[nm,ek]=k.split('|');const n=NM.indexOf(nm),e=evIdx(ek);return n>=0&&e>=0?n+'|'+e:null}).filter(Boolean));
+    ES.rel={};Object.entries(s.rel||{}).forEach(([k,v])=>ES.rel[k]={on:v.on,mem:v.mem.map(x=>{const n=x==null?-1:NM.indexOf(x);return n>=0?n:null})});
+    ES.fill=s.fill!==false;
+  }else{ES.ath=base.map(n=>escMakeAth(n));ES.fill=true;escSuggest()}
+  $('#es-fill').checked=ES.fill;escRender();
+}
+function escCopy(){
+  const ev=escEval();const lines=[`*Escalação ${ES.mod} · ${DL[ES.del]} · ONJF ${NEXTY}*`,`Estimativa: ${ev.tot} pontos (base: resultados de ${LASTY})`,''];
+  const byE={};ES.ind.forEach(k=>{const[n,e]=k.split('|').map(Number);const a=ES.ath.find(x=>x.n===n);if(!a||a.off)return;const ag=escGroup(a,e);const key=`${EV[e].label} ${genderLab[a.g].toLowerCase()} ${AG[ag]}`;const x=ev.ind.get(k);(byE[key]=byE[key]||[]).push(`${NM[n]}${x?` (est. ${x.pl}º)`:''}`)});
+  Object.keys(byE).sort((a,b)=>a.localeCompare(b,'pt',{numeric:true})).forEach(k=>lines.push(`• ${k}: ${byE[k].join(', ')}`));
+  lines.push('','*Revezamentos*');
+  PROG[ES.mod].forEach(p=>{const s=ES.rel[pid(p)];if(!s||!s.on)return;const x=ev.rel[pid(p)];lines.push(`• ${progLab(p)}: ${s.mem.map((n,i)=>(p[0]==='rev_4x50_medley'?MEDLEY_LAB[i]+' ':'')+(n!=null?NM[n]:'?')).join(', ')}${x&&x.pl?` (est. ${x.pl}º)`:''}`)});
+  const t=lines.join('\n');
+  (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>{$('#es-copy').textContent='Copiado ✓';setTimeout(()=>$('#es-copy').textContent='Copiar para o WhatsApp',1800)}).catch(()=>{window.prompt('Copie a escalação:',t)});
+}
+{const ds=DL.map((d,i)=>[i,d]).filter(x=>x[1]!=='NÃO INFORMADA'&&R.some(r=>r.y===LASTY&&r.d===x[0])).sort((a,b)=>a[1].localeCompare(b[1],'pt',{numeric:true}));fillSelect($('#es-del'),ds);
+  const sv=store.get('onjt.esc.last');let v=null;try{v=JSON.parse(sv||'null')}catch(_){}
+  if(v&&DL.indexOf(v.d)>=0&&ds.some(x=>x[0]===DL.indexOf(v.d)))$('#es-del').value=String(DL.indexOf(v.d));if(v&&v.m)setSeg($('#es-mod'),v.m);}
+function escInit(){ES.del=+$('#es-del').value;ES.mod=segVal($('#es-mod'));store.set('onjt.esc.last',JSON.stringify({d:DL[ES.del],m:ES.mod}));escLoad()}
+$('#es-del').addEventListener('change',escInit);bindSeg($('#es-mod'),escInit);
+$('#es-fill').addEventListener('change',()=>{ES.fill=$('#es-fill').checked;escSave()});
+$('#es-sug').addEventListener('click',()=>{escSuggest();escRender()});
+$('#es-reset').addEventListener('click',()=>{store.set(escKey(),'');escLoad()});
+$('#es-copy').addEventListener('click',escCopy);
+athSearch($('#es-q'),$('#es-hits'),n=>{if(!ES.ath.some(a=>a.n===n))ES.ath.push(escMakeAth(n));$('#es-q').value='';escRender()});
+$('#v-escalacao').addEventListener('change',ev=>{const t=ev.target;
+  if(t.dataset.ind){t.checked?ES.ind.add(t.dataset.ind):ES.ind.delete(t.dataset.ind);escRender()}
+  else if(t.dataset.relon){const id=t.dataset.relon;if(t.checked){const p=PROG[ES.mod].find(x=>pid(x)===id);const bt=ES.rel[id]&&ES.rel[id].mem.some(x=>x!=null)?null:bestTeam(p,()=>true);ES.rel[id]={on:true,mem:bt?bt.mem:(ES.rel[id]?ES.rel[id].mem:[null,null,null,null])}}else if(ES.rel[id])ES.rel[id].on=false;escRender()}
+  else if(t.dataset.relm){const[a,b,c,i]=t.dataset.relm.split('|');const id=[a,b,c].join('|');ES.rel[id].mem[+i]=t.value===''?null:+t.value;escRender()}
+});
+$('#v-escalacao').addEventListener('input',ev=>{const t=ev.target;if(!t.dataset.birth)return;const y=parseInt(t.value,10);if(y>=1930&&y<=NEXTY-18){const a=ES.ath.find(x=>x.n===+t.dataset.birth);a.birth=y;a.confirmed=true;fieldCache.clear();const pos=t.selectionStart;escRender();const ni=document.querySelector(`[data-birth="${a.n}"]`);if(ni){ni.focus();try{ni.setSelectionRange(pos,pos)}catch(_){}}}});
+$('#v-escalacao').addEventListener('click',ev=>{const b=ev.target.closest('[data-off]');if(!b)return;const a=ES.ath.find(x=>x.n===+b.dataset.off);a.off=!a.off;escRender()});
+let ESready=false;
+
 // ================= navegação =================
-const VIEWS=['inicio','comparar','medalha','revez','atletas','delegacoes','duelo','recordes','edicoes'];
-function go(v,keepScroll){VIEWS.forEach(x=>{$('#v-'+x).hidden=x!==v;$('#tab-'+x).setAttribute('aria-selected',String(x===v))});store.set('onjt.view',v);
+const VIEWS=['inicio','comparar','medalha','revez','atletas','delegacoes','escalacao','duelo','recordes','edicoes'];
+function go(v,keepScroll){if(v==='escalacao'&&!ESready){ESready=true;escInit()}VIEWS.forEach(x=>{$('#v-'+x).hidden=x!==v;$('#tab-'+x).setAttribute('aria-selected',String(x===v))});store.set('onjt.view',v);
   const t=$('#tab-'+v);if(t&&t.scrollIntoView)t.scrollIntoView({block:'nearest',inline:'nearest'});
   if(!keepScroll)window.scrollTo(0,0);
   try{history.replaceState(null,'',v==='inicio'?location.pathname:'#'+v)}catch(_){}}

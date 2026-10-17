@@ -13,6 +13,7 @@ O que dá para fazer:
 - descobrir, pelo ano de nascimento, a faixa etária da próxima edição e as provas com menos concorrência (aba "Sua medalha");
 - ver marcas de atletismo ajustadas à idade pelos fatores oficiais da World Masters Athletics (corridas e saltos);
 - comparar dois atletas ou duas delegações frente a frente;
+- montar a escalação da delegação (aba "Escalação", para técnicos): sugere provas e equipes de revezamento para somar mais pontos, respeitando os limites do Regulamento Geral (3 provas individuais e 3 revezamentos por atleta, no máximo 5; 2 atletas por prova; soma de 180 anos), com ajuste manual e cópia para o WhatsApp;
 - gerar um card do seu histórico para compartilhar no WhatsApp ou no Instagram (botão na página do atleta).
 
 Link direto para um atleta: `https://f3rnich.github.io/marcas-onjf/#atleta=Nome%20Completo`.
