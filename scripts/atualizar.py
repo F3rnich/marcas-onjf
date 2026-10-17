@@ -175,6 +175,8 @@ def main():
         import parse_legacy
         json.dump(parse_legacy.all_legacy_relays(), open(os.path.join(ROOT, 'data/legacy_relays.json'), 'w'), ensure_ascii=False)
     run('scripts/parse_records.py', 'raw/rec', 'data/records.json', 'data/relay_records.json')
+    if os.path.exists(os.path.join(ROOT, 'raw/wma/2023-WMA-Appendix-B.pdf')):
+        run('scripts/parse_wma.py', 'raw/wma/2023-WMA-Appendix-B.pdf', 'data/wma.json')
 
     if a.ano: nova_edicao(a.ano, a.pdf)
 

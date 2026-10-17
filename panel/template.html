@@ -183,6 +183,27 @@ main a,footer a{color:var(--accent);text-underline-offset:3px}
   table.keep .hide-sm{display:none}
   table.keep td{white-space:normal}
 }
+.controls .wide{grid-column:1/-1}
+.btn{font:700 italic 16px/1 var(--f-display);letter-spacing:.06em;text-transform:uppercase;background:var(--night-2);color:var(--night-ink);border:0;border-radius:8px;padding:12px 16px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;justify-self:start}
+.btn:hover{background:var(--night)}
+.btn.ghost{background:none;color:var(--accent);border:1px solid var(--line)}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.vs{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:12px;align-items:center}
+.vs .side{display:grid;gap:4px;min-width:0}
+.vs .side:last-child{text-align:right}
+.vs .side b{font:800 italic clamp(20px,3.4vw,30px)/1.05 var(--f-display);text-transform:uppercase;overflow-wrap:anywhere}
+.vs .side small{color:var(--muted);font-size:13px}
+.vs .score{font:800 italic clamp(34px,7vw,60px)/1 var(--f-display);font-variant-numeric:tabular-nums;white-space:nowrap}
+.vs .score i{font-style:normal;color:var(--muted);font-size:.5em;vertical-align:middle;margin:0 6px}
+.win{font-weight:700}
+dialog.card{border:0;border-radius:14px;padding:0;background:var(--surface);color:var(--ink);width:min(560px,calc(100vw - 24px));max-height:calc(100dvh - 24px)}
+dialog.card::backdrop{background:color-mix(in srgb,#000 60%,transparent)}
+dialog.card .in{display:grid;gap:12px;padding:16px}
+dialog.card img{width:100%;height:auto;max-height:62dvh;object-fit:contain;border-radius:8px;background:var(--night)}
+dialog.card .top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.ag{font-family:var(--f-data);font-variant-numeric:tabular-nums}
+#m-table td:nth-child(2){white-space:normal;min-width:200px}
+#m-table .linkbtn{background:none;border:0;cursor:pointer;font:600 15px var(--f-body)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
@@ -204,9 +225,11 @@ main a,footer a{color:var(--accent);text-underline-offset:3px}
     <nav class="tabs" role="tablist" aria-label="Seções">
       <button role="tab" id="tab-inicio" aria-selected="true" data-view="inicio">Início</button>
       <button role="tab" id="tab-comparar" aria-selected="false" data-view="comparar">Minha marca</button>
+      <button role="tab" id="tab-medalha" aria-selected="false" data-view="medalha">Sua medalha</button>
       <button role="tab" id="tab-revez" aria-selected="false" data-view="revez">Revezamentos</button>
       <button role="tab" id="tab-atletas" aria-selected="false" data-view="atletas">Atletas</button>
       <button role="tab" id="tab-delegacoes" aria-selected="false" data-view="delegacoes">Delegações</button>
+      <button role="tab" id="tab-duelo" aria-selected="false" data-view="duelo">Frente a frente</button>
       <button role="tab" id="tab-recordes" aria-selected="false" data-view="recordes">Recordes</button>
       <button role="tab" id="tab-edicoes" aria-selected="false" data-view="edicoes">Edições</button>
     </nav>
@@ -224,10 +247,12 @@ main a,footer a{color:var(--accent);text-underline-offset:3px}
     <div class="hits" id="h-hits"></div>
   </div>
   <div class="shortcuts">
+    <button type="button" class="sc" data-go="medalha"><b>Onde está a sua medalha?</b><span>As provas da sua faixa em 2027 com menos concorrência e a marca que rende pódio</span></button>
     <button type="button" class="sc" data-go="comparar"><b>Quanto falta para a medalha?</b><span>Digite sua marca e compare com o pódio e o recorde da sua faixa</span></button>
     <button type="button" class="sc" data-go="revez"><b>Revezamentos</b><span>Tempos da sua equipe contra os que deram pódio</span></button>
     <button type="button" class="sc" data-go="recordes"><b>Recordes</b><span>Recorde de cada prova e faixa etária</span></button>
     <button type="button" class="sc" data-go="delegacoes"><b>Quadro de medalhas</b><span>Ranking histórico das delegações</span></button>
+    <button type="button" class="sc" data-go="duelo"><b>Frente a frente</b><span>Confrontos diretos entre dois atletas ou duas delegações</span></button>
   </div>
   <div class="hl-head"><h2 id="hl-title">Destaques</h2><p class="lede" id="hl-sub"></p></div>
   <div class="grid3">
@@ -273,6 +298,33 @@ main a,footer a{color:var(--accent);text-underline-offset:3px}
     <h3>Top 10 de todos os tempos</h3>
     <p class="note" id="c-rank-note"></p>
     <div class="tablebox"><table id="c-rank" class="keep"></table></div>
+  </div>
+  <div class="panel" id="c-ag-panel" hidden>
+    <h3>Top 10 ajustado por idade (todas as faixas)</h3>
+    <p class="note" id="c-ag-note"></p>
+    <div class="tablebox"><table id="c-ag" class="keep"></table></div>
+  </div>
+</section>
+
+<!-- ================= SUA MEDALHA ================= -->
+<section class="view" id="v-medalha" hidden>
+  <div>
+    <h2>Onde está a sua medalha?</h2>
+    <p class="lede">Informe o ano de nascimento. O painel mostra a faixa etária em que você compete na próxima edição e, em cada prova, quantos atletas costumam disputá-la e a marca que tem rendido bronze e ouro. As provas com menos concorrência aparecem primeiro.</p>
+  </div>
+  <div class="controls">
+    <label class="f">Gênero<div class="seg" id="m-g"><button type="button" data-v="M" aria-pressed="true">Masc.</button><button type="button" data-v="F" aria-pressed="false">Fem.</button></div></label>
+    <label class="f" for="m-birth">Ano de nascimento<input id="m-birth" class="mark" type="text" inputmode="numeric" maxlength="4" placeholder="ex.: 1978" autocomplete="off"></label>
+    <label class="f" for="m-mod">Modalidade<select id="m-mod"><option value="">Atletismo e natação</option><option>Atletismo</option><option>Natação</option></select></label>
+    <label class="f wide" for="m-q">Seu nome (opcional, para ver suas marcas)<input id="m-q" type="search" placeholder="Digite ao menos 3 letras" autocomplete="off"></label>
+    <div class="hits wide" id="m-hits"></div>
+  </div>
+  <div class="verdict" id="m-head"></div>
+  <div class="panel">
+    <h3 id="m-title">Provas da sua faixa</h3>
+    <p class="note" id="m-note"></p>
+    <div class="tablebox"><table id="m-table"></table></div>
+    <p class="note">Concorrência = média de atletas com marca nas três últimas edições com a prova nesta faixa. Bronze e ouro típicos = mediana das marcas de pódio desde 2017. Na natação, piscinas de 25 m e 50 m estão misturadas.</p>
   </div>
 </section>
 
@@ -350,6 +402,22 @@ main a,footer a{color:var(--accent);text-underline-offset:3px}
   <div id="d-out" class="view"></div>
 </section>
 
+<!-- ================= FRENTE A FRENTE ================= -->
+<section class="view" id="v-duelo" hidden>
+  <div>
+    <h2>Frente a frente</h2>
+    <p class="lede">Compare dois atletas (confrontos diretos na mesma prova e faixa, medalhas e melhores marcas) ou duas delegações (medalhas por edição e por prova).</p>
+  </div>
+  <div class="controls">
+    <label class="f">Comparar<div class="seg" id="x-kind"><button type="button" data-v="a" aria-pressed="true">Atletas</button><button type="button" data-v="d" aria-pressed="false">Delegações</button></div></label>
+    <div class="xa"><label class="f" for="x-qa">Atleta 1<input id="x-qa" type="search" placeholder="Nome" autocomplete="off"></label><div class="hits" id="x-ha"></div></div>
+    <div class="xa"><label class="f" for="x-qb">Atleta 2<input id="x-qb" type="search" placeholder="Nome" autocomplete="off"></label><div class="hits" id="x-hb"></div></div>
+    <label class="f xd" for="x-da" hidden>Delegação 1<select id="x-da"></select></label>
+    <label class="f xd" for="x-db" hidden>Delegação 2<select id="x-db"></select></label>
+  </div>
+  <div id="x-out" class="view"></div>
+</section>
+
 <!-- ================= RECORDES ================= -->
 <section class="view" id="v-recordes" hidden>
   <div>
@@ -392,6 +460,16 @@ main a,footer a{color:var(--accent);text-underline-offset:3px}
   <p id="f-src"></p>
   <p>Fonte: resultados e recordes publicados em anastra.com.br. Nomes, delegações e faixas seguem a grafia de cada edição, com padronização mínima. Faixas etárias mudaram ao longo dos anos (até 2011 eram até 35, 36–40…); as comparações usam sempre a faixa exatamente igual.</p>
 </div></footer>
+
+<dialog class="card" id="card-dlg" aria-labelledby="card-h">
+  <div class="in">
+    <div class="top"><h3 id="card-h">Card para compartilhar</h3><button type="button" class="btn ghost" id="card-x" aria-label="Fechar">✕</button></div>
+    <div class="seg" id="card-fmt"><button type="button" data-v="feed" aria-pressed="true">Feed / WhatsApp (4:5)</button><button type="button" data-v="story" aria-pressed="false">Stories (9:16)</button></div>
+    <img id="card-img" alt="Prévia do card">
+    <div class="actions"><button type="button" class="btn" id="card-share">Compartilhar</button><a class="btn ghost" id="card-dl" download="marcas-onjt.png">Baixar imagem</a></div>
+    <p class="note">A imagem é gerada no seu aparelho; nada é enviado a servidores.</p>
+  </div>
+</dialog>
 
 <script id="data" type="application/json">/*DATA*/</script>
 <script>
@@ -459,6 +537,14 @@ function podium(rs,y,e){ // marcas de 1º,2º,3º da edição
   return out;
 }
 
+// ================= AGE-GRADING (WMA 2023) =================
+// marca × fator de idade = marca equivalente no auge (30–34 anos). Só corridas e saltos.
+const WMA=D.wma||{};
+function wmaF(e,g,age){const t=WMA[g]&&WMA[g][e];if(!t||age==null)return null;if(age<t.from)return 1;return t.f[Math.min(t.f.length-1,Math.round(age)-t.from)]}
+function midAge(a){const rg=ageRange(AG[a]);if(!rg)return null;if(rg[0]===0)return 30;if(rg[1]>150)return rg[0]+2;return Math.round((rg[0]+rg[1])/2)}
+function adjMark(e,g,v,age){const f=wmaF(e,g,age);return f==null||v==null?null:v*f}
+const hasWMA=(e,g)=>!!(WMA[g]&&WMA[g][e]);
+
 // ================= MINHA MARCA =================
 const C={mod:$('#c-mod'),ev:$('#c-ev'),g:$('#c-g'),age:$('#c-age'),pool:$('#c-pool'),mark:$('#c-mark')};
 function evOptions(mod){return EV.map((e,i)=>[i,e.label,e]).filter(x=>x[2].mod===mod&&R.some(r=>r.e===x[0])).map(x=>[x[0],x[1]])}
@@ -518,6 +604,8 @@ function renderCompare(){
     else if(bronzeRef!=null){vc='var(--warn)';parts.push(`<strong>Faltam ${fmtGap(e,mine-bronzeRef)} para o bronze típico</strong> (${fmt(e,bronzeRef)}).`)}
     if(rec&&!better(e,mine,rec.v)&&mine!==rec.v) parts.push(`Recorde a ${fmtGap(e,mine-rec.v)}.`);
     if(sim) parts.push(`Em ${lastY} essa marca daria o ${sim.place}º lugar entre ${sim.n} atletas com marca.`);
+    const ma=midAge(a), adj=adjMark(e,g,mine,ma);
+    if(adj!=null&&ma>34) parts.push(`<br><span class="note">Ajustada à idade (fatores WMA, ${ma} anos): equivale a <b class="ag">${fmt(e,adj)}</b> de um atleta de 30 a 34 anos.</span>`);
     html='<p>'+parts.join(' ')+'</p>';
   }
   const v=$('#c-verdict');v.style.setProperty('--vc',vc);v.innerHTML=html;
@@ -544,8 +632,22 @@ function renderCompare(){
   if(myPos!=null&&myPos<=10){rows.splice(myPos-1,0,`<tr class="you"><td>${placeBadge(myPos)}</td><td><strong>Você</strong></td><td class="hide-sm">–</td><td>–</td><td class="num">${fmt(e,mine)}</td></tr>`);rows=rows.slice(0,11)}
   $('#c-rank').innerHTML=`<tr><th>#</th><th>Atleta</th><th class="hide-sm">Delegação</th><th>Ano</th><th class="num">Marca</th></tr>`+(rows.join('')||`<tr><td colspan="5" class="empty">Sem marcas nesta combinação.</td></tr>`);
   $('#c-rank-note').textContent=all.length?`Melhor marca de cada atleta nesta prova e faixa, entre ${all.length} atletas com marca registrada${EV[e].mod==='Natação'&&pool==='all'?' (piscinas misturadas)':''}.`+(myPos!=null?` Sua marca ficaria em ${myPos}º.`:''):'';
+  renderAgeTop(e,g,a,mine);
   store.set('onjt.compare',JSON.stringify({mod:segVal(C.mod),ev:C.ev.value,g,a:C.age.value,pool:C.pool.value,mark:C.mark.value}));
 }
+function renderAgeTop(e,g,a,mine){
+  const pan=$('#c-ag-panel');if(!hasWMA(e,g)){pan.hidden=true;return}pan.hidden=false;
+  const best=new Map();
+  R.forEach(r=>{if(r.e!==e||r.g!==g||r.v==null)return;const ma=midAge(r.a);if(ma==null)return;const v=adjMark(e,g,r.v,ma);const b=best.get(r.n);if(!b||better(e,v,b.adj))best.set(r.n,{r,adj:v,ma})});
+  const all=[...best.values()].sort((p,q)=>isField(e)?q.adj-p.adj:p.adj-q.adj);
+  const myMa=midAge(a),myAdj=mine!=null?adjMark(e,g,mine,myMa):null;
+  const myPos=myAdj!=null?all.filter(x=>better(e,x.adj,myAdj)).length+1:null;
+  let rows=all.slice(0,10).map((x,i)=>`<tr><td>${placeBadge(i+1)}</td><td><button type="button" class="hit linkbtn" data-goto="${x.r.n}">${esc(NM[x.r.n])}</button><small class="p-mut sm-only"> ${esc(AG[x.r.a])} · ${x.r.y}</small></td><td class="hide-sm">${esc(AG[x.r.a])} · ${x.r.y}</td><td class="num">${fmt(e,x.r.v)}</td><td class="num ag"><b>${fmt(e,x.adj)}</b></td></tr>`);
+  if(myPos!=null&&myPos<=10){rows.splice(myPos-1,0,`<tr class="you"><td>${placeBadge(myPos)}</td><td><strong>Você</strong></td><td class="hide-sm">${esc(AG[a])}</td><td class="num">${fmt(e,mine)}</td><td class="num ag"><b>${fmt(e,myAdj)}</b></td></tr>`);rows=rows.slice(0,11)}
+  $('#c-ag').innerHTML=`<tr><th>#</th><th>Atleta</th><th class="hide-sm">Faixa · ano</th><th class="num">Marca</th><th class="num">Ajustada</th></tr>`+rows.join('');
+  $('#c-ag-note').textContent=`Marca × fator de idade da World Masters Athletics (tabelas de 2023), usando a idade do meio da faixa. Coloca no mesmo patamar atletas de faixas diferentes: a coluna "ajustada" é a marca equivalente aos 30–34 anos. ${all.length} atletas.`+(myPos!=null?` Sua marca ficaria em ${myPos}º.`:'');
+}
+$('#c-ag').addEventListener('click',ev=>{const b=ev.target.closest('[data-goto]');if(b)openAthlete(+b.dataset.goto)});
 function placeBadge(p){return p<=3?`<span class="medal m${p}">${p}</span>`:`${p}º`}
 function simulatePlace(rs,y,e,mine){const vs=rs.filter(r=>r.y==y&&r.v!=null);if(!vs.length)return null;const k=vs.filter(r=>better(e,r.v,mine)).length;return{place:k+1,n:vs.length+1}}
 
@@ -725,12 +827,13 @@ function showAthlete(n){
     <div><h2>${esc(NM[n])}</h2><p class="note">${esc(dl)} · <a href="https://github.com/F3rnich/marcas-onjf/issues/new?template=correcao.yml&atleta=${encodeURIComponent(NM[n]+' ('+dl+')')}&title=${encodeURIComponent('[Correção] '+NM[n])}" target="_blank" rel="noopener">algo errado neste histórico?</a></p></div>
     <div class="kpis"><div class="kpi"><b>${new Set(rs.map(r=>r.y)).size}</b><span>edições</span></div><div class="kpi"><b>${rs.length}</b><span>provas</span></div>
     <div class="kpi"><b style="color:var(--gold)">${medals[0]}</b><span>ouros</span></div><div class="kpi"><b style="color:var(--silver)">${medals[1]}</b><span>pratas</span></div><div class="kpi"><b style="color:var(--bronze)">${medals[2]}</b><span>bronzes</span></div>${relMine.length?`<div class="kpi"><b>${relMedals.join('·')}</b><span>revezamentos (O·P·B)</span></div>`:''}</div>
+    <div class="actions"><button type="button" class="btn" data-card="${n}">Gerar card para compartilhar</button><button type="button" class="btn ghost" data-duel="${n}">Comparar com outro atleta</button></div>
   </div>
   ${evo.length?`<div class="panel"><h3>Evolução</h3><p class="note">Melhor marca em cada edição. Melhor marca sempre no alto; a faixa etária pode ter mudado entre os anos.</p><div class="evo">${evo.map(x=>spark(x.e,x.pts)).join('')}</div></div>`:''}
   <div class="panel"><h3>Onde melhorar</h3>
-    <p class="note">Última marca em cada prova comparada com o bronze típico e o recorde da faixa etária daquela participação.</p>
-    <div class="tablebox"><table><tr><th>Prova</th><th>Faixa (última)</th><th class="num">Última marca</th><th class="num">Melhor pessoal</th><th>vs. bronze típico</th><th>vs. recorde</th></tr>
-    ${diag.map(x=>`<tr><td><span class="${EV[x.e].mod==='Natação'?'mod-n':'mod-a'}">●</span> ${esc(EV[x.e].label)}</td><td>${esc(AG[x.last.a])} · ${x.last.y}</td><td class="num">${fmt(x.e,x.last.v)}</td><td class="num">${fmt(x.e,x.pb.v)} <small>(${x.pb.y})</small></td><td>${gapCell(x.e,x.last.v,x.bref)}</td><td>${gapCell(x.e,x.last.v,x.rec&&x.rec.v)}</td></tr>`).join('')||'<tr><td colspan="6" class="empty">Sem marcas válidas.</td></tr>'}
+    <p class="note">Última marca em cada prova comparada com o bronze típico e o recorde da faixa etária daquela participação.${diag.some(x=>hasWMA(x.e,x.pb.g))?' "Melhor ajustada à idade": melhor marca pessoal convertida pelos fatores da World Masters Athletics no equivalente aos 30–34 anos (corridas e saltos).':''}</p>
+    <div class="tablebox"><table><tr><th>Prova</th><th>Faixa (última)</th><th class="num">Última marca</th><th class="num">Melhor pessoal</th><th>vs. bronze típico</th><th>vs. recorde</th>${diag.some(x=>hasWMA(x.e,x.pb.g))?'<th class="num" title="Melhor pessoal × fator de idade WMA 2023 (idade do meio da faixa): marca equivalente aos 30–34 anos">Melhor ajustada à idade</th>':''}</tr>
+    ${diag.map(x=>`<tr><td><span class="${EV[x.e].mod==='Natação'?'mod-n':'mod-a'}">●</span> ${esc(EV[x.e].label)}</td><td>${esc(AG[x.last.a])} · ${x.last.y}</td><td class="num">${fmt(x.e,x.last.v)}</td><td class="num">${fmt(x.e,x.pb.v)} <small>(${x.pb.y})</small></td><td>${gapCell(x.e,x.last.v,x.bref)}</td><td>${gapCell(x.e,x.last.v,x.rec&&x.rec.v)}</td>${diag.some(x=>hasWMA(x.e,x.pb.g))?`<td class="num ag">${hasWMA(x.e,x.pb.g)&&midAge(x.pb.a)!=null?fmt(x.e,adjMark(x.e,x.pb.g,x.pb.v,midAge(x.pb.a))):'–'}</td>`:''}</tr>`).join('')||'<tr><td colspan="6" class="empty">Sem marcas válidas.</td></tr>'}
     </table></div></div>
   ${relMine.length?`<div class="panel"><h3>Revezamentos</h3><div class="tablebox"><table><tr><th>Ano</th><th>Prova</th><th>Categoria</th><th>Colocação</th><th class="num">Tempo</th><th>Equipe</th></tr>
     ${relMine.map(r=>`<tr><td>${r.y}</td><td>${esc(REV[r.e].label)} <small class="p-mut">${genderLab[r.g]||''}</small></td><td>${esc(RCAT[r.c])}</td><td>${r.pl?placeBadge(r.pl):(ST[r.st]?`<span class="pill p-mut" title="${ST[r.st]}">${stLab(r.st)}</span>`:'–')}</td><td class="num">${r.v!=null?ft(r.v):'–'}</td><td class="wrapc">${esc(DL[r.d])}: ${r.mem.filter(i=>i!==n).map(i=>`<button type="button" class="hit linkbtn mem" data-goto="${i}">${esc(NM[i])}</button>`).join(', ')}</td></tr>`).join('')}
@@ -740,6 +843,7 @@ function showAthlete(n){
     ${rs.map(r=>`<tr><td>${r.y}</td><td>${esc(EV[r.e].label)} <small class="p-mut">${genderLab[r.g]||''}</small></td><td>${esc(AG[r.a])}</td><td>${r.pl?placeBadge(r.pl):(ST[r.st]?`<span class="pill p-mut" title="${ST[r.st]}">${stLab(r.st)}</span>`:'–')}${r.rec?' <span class="pill p-rec">recorde</span>':''}</td><td class="num">${fmt(r.e,r.v)}</td><td>${esc(DL[r.d])}</td></tr>`).join('')}
     </table></div></div>`;
   store.set('onjt.athlete',String(n));
+  if(!$('#v-atletas').hidden){try{history.replaceState(null,'','#atleta='+encodeURIComponent(NM[n]))}catch(_){}}
 }
 
 // ================= DELEGAÇÕES =================
@@ -914,8 +1018,268 @@ $('#v-inicio').addEventListener('click',ev=>{
   const g=ev.target.closest('[data-go]');if(g){go(g.dataset.go);return}
   const a=ev.target.closest('[data-goto]');if(a)openAthlete(+a.dataset.goto);
 });
+// ================= busca de atleta reutilizável =================
+function athSearch(inp,box,pick){
+  inp.addEventListener('input',()=>{
+    const q=normName(inp.value.trim());if(q.length<3){box.innerHTML='';return}
+    const toks=q.split(/\s+/);const hits=[];NMN.forEach((n,i)=>{if(byName.has(i)&&toks.every(t=>n.includes(t)))hits.push(i)});
+    box.innerHTML=hits.slice(0,12).map(i=>{const rs=byName.get(i);const ys=[...new Set(rs.map(r=>r.y))].sort();
+      return `<button type="button" class="hit" data-n="${i}"><span>${esc(NM[i])}<br><small>${esc([...new Set(rs.map(r=>DL[r.d]))].join(', '))}</small></span><small>${ys[0]}${ys.length>1?'–'+ys[ys.length-1]:''}</small></button>`}).join('')||'<p class="empty">Nenhum atleta encontrado.</p>';
+  });
+  box.addEventListener('click',ev=>{const b=ev.target.closest('.hit');if(!b)return;const i=+b.dataset.n;inp.value=NM[i];box.innerHTML='';pick(i)});
+}
+const genderOf=n=>{const c={};(byName.get(n)||[]).forEach(r=>c[r.g]=(c[r.g]||0)+1);return Object.keys(c).sort((a,b)=>c[b]-c[a])[0]||'M'};
+const medalsOf=n=>{const m=[0,0,0],rm=[0,0,0];(byName.get(n)||[]).forEach(r=>{if(r.pl>=1&&r.pl<=3)m[r.pl-1]++});RL.forEach(r=>{if(r.pl>=1&&r.pl<=3&&r.mem.includes(n))rm[r.pl-1]++});return{m,rm,t:[0,1,2].map(k=>m[k]+rm[k])}};
+const delsOf=n=>{const rs=(byName.get(n)||[]).slice().sort((a,b)=>b.y-a.y);return[...new Set(rs.map(r=>DL[r.d]))]};
+
+// ================= SUA MEDALHA =================
+const NEXTY=LASTY+1;
+function ageRange(l){let m;if((m=l.match(/^até (\d+)/)))return[0,+m[1]];if((m=l.match(/^(\d+)-(\d+)/)))return[+m[1],+m[2]];if((m=l.match(/^(\d+)\+/)))return[+m[1],200];return null}
+// faixas do esquema atual: rótulos usados desde 2022 em cada prova e gênero
+const curAges=new Map();
+R.forEach(r=>{if(r.y<2022||!ageRange(AG[r.a]))return;const k=r.e+'|'+r.g;(curAges.get(k)||curAges.set(k,new Set()).get(k)).add(r.a)});
+function groupFor(e,g,age){
+  const s=curAges.get(e+'|'+g);if(!s)return null;let best=null,bw=1e9;
+  s.forEach(a=>{const rg=ageRange(AG[a]);if(age>=rg[0]&&age<=rg[1]&&rg[1]-rg[0]<bw){best=a;bw=rg[1]-rg[0]}});
+  return best;
+}
+function birthHint(n){
+  const rs=(byName.get(n)||[]).filter(r=>ageRange(AG[r.a])&&!AG[r.a].startsWith('até'));if(!rs.length)return null;
+  const y=Math.max(...rs.map(r=>r.y));const c={};rs.filter(r=>r.y===y).forEach(r=>c[r.a]=(c[r.a]||0)+1);
+  const a=+Object.keys(c).sort((p,q)=>c[q]-c[p])[0];const rg=ageRange(AG[a]);if(rg[1]>150)return null;
+  return[y-rg[1],y-rg[0]];
+}
+const M={g:$('#m-g'),birth:$('#m-birth'),mod:$('#m-mod'),q:$('#m-q'),hits:$('#m-hits'),ath:null};
+function renderMedal(){
+  const g=segVal(M.g),b=parseInt(M.birth.value,10),mod=M.mod.value,head=$('#m-head');
+  let hint='';
+  if(M.ath!=null){const h=birthHint(M.ath);if(h)hint=` Pelo histórico, ${esc(NM[M.ath].split(' ')[0])} nasceu entre ${h[0]} e ${h[1]}.`}
+  store.set('onjt.medal',JSON.stringify({g,b:M.birth.value,mod,ath:M.ath}));
+  if(!(b>=1930&&b<=NEXTY-18)){
+    head.style.setProperty('--vc','var(--line)');
+    head.innerHTML=`<p><strong>Digite o ano de nascimento</strong></p><p class="note">A faixa etária segue a idade completada no ano da competição.${hint}</p>`;
+    $('#m-table').innerHTML='';$('#m-note').textContent='';$('#m-title').textContent='Provas da sua faixa';return;
+  }
+  const age=NEXTY-b, out=[];
+  EV.forEach((x,e)=>{
+    if(x.key.endsWith('_pcd')||(mod&&x.mod!==mod))return;
+    const a=groupFor(e,g,age);if(a==null)return;
+    const rs=rowsFor(e,g,a,'all');
+    const ys=[...new Set(rs.filter(r=>ED[r.y].cov==='completa').map(r=>r.y))].sort((p,q)=>p-q);if(!ys.length)return;
+    const last3=ys.slice(-3), ns=last3.map(y=>rs.filter(r=>r.y===y&&r.v!=null).length);
+    const avg=ns.reduce((s,v)=>s+v,0)/ns.length, sure=ns.filter(v=>v>=1&&v<=3).length;
+    const pods=ys.filter(y=>y>=2017).map(y=>podium(rs,y,e));
+    const br=median(pods.map(p=>p[2]||p[1]||p[0]).filter(Boolean).map(p=>p.v));
+    const gd=median(pods.map(p=>p[0]).filter(Boolean).map(p=>p.v));
+    const rec=officialRecord(e,g,a,'all');
+    let pb=null;if(M.ath!=null){const m=(byName.get(M.ath)||[]).filter(r=>r.e===e&&r.v!=null);if(m.length)pb=m.reduce((p,r)=>better(e,r.v,p.v)?r:p)}
+    out.push({e,a,avg,ns,last3,sure,br,gd,rec,pb});
+  });
+  out.sort((p,q)=>p.avg-q.avg||p.e-q.e);
+  const cnt={};out.forEach(o=>cnt[o.a]=(cnt[o.a]||0)+1);const mainA=Object.keys(cnt).sort((p,q)=>cnt[q]-cnt[p])[0];
+  $('#m-title').textContent=out.length?`Faixa ${AG[mainA]} em ${NEXTY} · ${age} anos`:'Provas da sua faixa';
+  const easy=out.filter(o=>o.avg<=3);
+  const mine=out.filter(o=>o.pb&&o.br!=null&&!better(o.e,o.br,o.pb.v));
+  let html=`<p><strong>Em ${NEXTY} você compete na faixa ${esc(AG[mainA]||'–')}</strong> (${age} anos completados no ano).</p>`;
+  html+=`<p class="note">${easy.length?`Em ${easy.length} prova${easy.length>1?'s':''} a média recente é de até 3 atletas: quem completa a prova costuma levar medalha.`:'Todas as provas desta faixa têm tido mais de 3 atletas.'}${M.ath!=null&&mine.length?` As marcas de ${esc(NM[M.ath].split(' ')[0])} já estão no nível do bronze típico em ${mine.length} prova${mine.length>1?'s':''}: ${mine.map(o=>esc(EV[o.e].label)).join(', ')}.`:''}${hint}</p>`;
+  head.style.setProperty('--vc',easy.length?'var(--good)':'var(--gold)');head.innerHTML=html;
+  $('#m-note').textContent=out.length?`${out.length} provas com resultados nesta faixa. Toque na prova para comparar uma marca.`:'Sem provas com resultados para esta idade e gênero.';
+  const conc=o=>`<span class="gap">${o.avg.toFixed(1).replace('.',',')}</span> <small class="p-mut">(${o.last3.map((y,i)=>`${String(y).slice(2)}: ${o.ns[i]}`).join(' · ')})</small>${o.avg<=3?' <span class="pill p-rec">pódio a quem completar</span>':o.avg<=5?' <span class="pill p-mut">pouca concorrência</span>':''}`;
+  const hasPb=M.ath!=null;
+  $('#m-table').innerHTML=`<tr><th>Prova</th><th>Atletas por edição</th><th class="num">Bronze típico</th><th class="num">Ouro típico</th><th class="num">Recorde</th>${hasPb?'<th class="num">Sua melhor</th><th>Para o bronze</th>':''}</tr>`+
+    out.map(o=>{
+      let gap='–';if(o.pb&&o.br!=null){const d=isField(o.e)?o.br-o.pb.v:o.pb.v-o.br;gap=d<=0?`<span class="gap pos">✓ nível de pódio</span>`:`<span class="gap neg">faltam ${fmtGap(o.e,d)}</span>`}
+      return `<tr${o.pb?' class="you"':''}><td><span class="${EV[o.e].mod==='Natação'?'mod-n':'mod-a'}">●</span> <button type="button" class="linkbtn" data-cmp="${o.e}|${o.a}">${esc(EV[o.e].label)}</button>${String(o.a)!==mainA?` <small class="p-mut">${esc(AG[o.a])}</small>`:''}</td><td>${conc(o)}</td><td class="num">${fmt(o.e,o.br)}</td><td class="num">${fmt(o.e,o.gd)}</td><td class="num">${o.rec?fmt(o.e,o.rec.v):'–'}</td>${hasPb?`<td class="num">${o.pb?fmt(o.e,o.pb.v)+` <small>(${o.pb.y})</small>`:'–'}</td><td>${gap}</td>`:''}</tr>`}).join('');
+}
+bindSeg(M.g,renderMedal);M.birth.addEventListener('input',renderMedal);M.mod.addEventListener('change',renderMedal);
+athSearch(M.q,M.hits,i=>{M.ath=i;setSeg(M.g,genderOf(i));renderMedal()});
+M.q.addEventListener('input',()=>{if(!M.q.value.trim()&&M.ath!=null){M.ath=null;renderMedal()}});
+$('#m-table').addEventListener('click',ev=>{
+  const b=ev.target.closest('[data-cmp]');if(!b)return;const[e,a]=b.dataset.cmp.split('|').map(Number);const g=segVal(M.g);
+  setSeg(C.mod,EV[e].mod);fillSelect(C.ev,evOptions(EV[e].mod));C.ev.value=String(e);setSeg(C.g,g);refreshCompareSelectors();C.age.value=String(a);
+  let pb=null;if(M.ath!=null){const m=(byName.get(M.ath)||[]).filter(r=>r.e===e&&r.v!=null);if(m.length)pb=m.reduce((p,r)=>better(e,r.v,p.v)?r:p)}
+  C.mark.value=pb?fmt(e,pb.v).replace(' m',''):'';renderCompare();go('comparar');
+});
+
+// ================= CARD PARA COMPARTILHAR =================
+const SITE='f3rnich.github.io/marcas-onjf';
+const CARD={dlg:$('#card-dlg'),img:$('#card-img'),fmt:$('#card-fmt'),dl:$('#card-dl'),n:null,file:null};
+function cardData(n){
+  const rs=byName.get(n)||[];const ys=[...new Set(rs.map(r=>r.y))].sort((a,b)=>a-b);
+  const evs=[...new Set(rs.map(r=>r.e))].map(e=>{
+    const mine=rs.filter(r=>r.e===e);const val=mine.filter(r=>r.v!=null);if(!val.length)return null;
+    const pb=val.reduce((p,r)=>better(e,r.v,p.v)?r:p);
+    const bp=Math.min(...mine.map(r=>r.pl||99));
+    const byY={};val.forEach(r=>{if(!byY[r.y]||better(e,r.v,byY[r.y].v))byY[r.y]=r});
+    return{e,pb,bp,n:mine.length,pts:Object.values(byY).sort((a,b)=>a.y-b.y)};
+  }).filter(Boolean).sort((a,b)=>a.bp-b.bp||b.n-a.n||a.e-b.e);
+  return{rs,ys,evs,med:medalsOf(n),dels:delsOf(n)};
+}
+async function drawCard(n,kind){
+  try{await Promise.all(['800 italic 100px "Barlow Condensed"','700 italic 44px "Barlow Condensed"','600 30px Barlow','500 30px Barlow','500 48px "IBM Plex Mono"'].map(f=>document.fonts.load(f)))}catch(_){}
+  const S=kind==='story', W=1080, H=S?1920:1350, P=72;
+  const cv=document.createElement('canvas');cv.width=W;cv.height=H;const x=cv.getContext('2d');
+  const DC='"Barlow Condensed","Arial Narrow",sans-serif', BD='Barlow,Arial,sans-serif', MO='"IBM Plex Mono",Menlo,monospace';
+  const sp=v=>{try{x.letterSpacing=v}catch(_){}};
+  // fundo noturno com pista
+  const gr=x.createRadialGradient(W*.9,-80,40,W*.9,-80,H*1.15);gr.addColorStop(0,'#1b3d78');gr.addColorStop(.55,'#0a1a33');gr.addColorStop(1,'#061022');
+  x.fillStyle=gr;x.fillRect(0,0,W,H);
+  x.save();x.globalAlpha=.09;x.strokeStyle='#ffffff';x.lineWidth=3;
+  for(let i=0;i<6;i++){const w=760-i*56,h=440-i*56,cx=W-150,cy=150;x.beginPath();if(x.roundRect)x.roundRect(cx-w/2,cy-h/2,w,h,h/2);else x.rect(cx-w/2,cy-h/2,w,h);x.stroke()}
+  x.restore();
+  ['#b8901c','#7f8b99','#9c5a2a'].forEach((c,i)=>{x.fillStyle=c;x.fillRect(i*W/3,0,W/3+1,14)});
+  const d=cardData(n);
+  let y=S?150:118;
+  x.textBaseline='alphabetic';
+  sp('5px');x.fillStyle='#f3d36b';x.font=`600 28px ${BD}`;x.fillText('OLIMPÍADA NACIONAL DO JUDICIÁRIO · ONJT/ONJF',P,y);sp('0px');
+  // nome
+  const words=NM[n].toUpperCase().split(' ');let fs=S?122:112,lines;
+  const wrap=()=>{x.font=`800 italic ${fs}px ${DC}`;const ls=[];let cur='';words.forEach(w=>{const t=cur?cur+' '+w:w;if(x.measureText(t).width>W-2*P&&cur){ls.push(cur);cur=w}else cur=t});ls.push(cur);return ls};
+  while((lines=wrap()).length>(S?3:2)&&fs>60)fs-=6;
+  y+=fs*0.95+14;x.fillStyle='#f1f5fb';lines.forEach((l,i)=>x.fillText(l,P,y+i*fs*0.92));y+=(lines.length-1)*fs*0.92+56;
+  x.fillStyle='#a8b6cc';x.font=`500 32px ${BD}`;
+  x.fillText(`${d.dels.slice(0,2).join(' · ')}  ·  ${d.ys[0]}${d.ys.length>1?'–'+d.ys[d.ys.length-1]:''}  ·  ${d.ys.length} ${d.ys.length>1?'edições':'edição'}`,P,y);
+  // medalhas
+  y+=S?110:96;const R0=S?72:64;
+  const disc=(cx,cy,r,hi,lo)=>{const g2=x.createRadialGradient(cx-r*.3,cy-r*.35,r*.1,cx,cy,r);g2.addColorStop(0,hi);g2.addColorStop(.75,lo);g2.addColorStop(1,lo);x.fillStyle=g2;x.beginPath();x.arc(cx,cy,r,0,7);x.fill();x.lineWidth=r*.09;x.strokeStyle='rgba(0,0,0,.18)';x.stroke()};
+  const MC=[['#f3d36b','#b8901c','OUROS'],['#e3e8ee','#7f8b99','PRATAS'],['#e2a06a','#9c5a2a','BRONZES']];
+  MC.forEach(([hi,lo,lab],k)=>{const cx=P+R0+k*(R0*2+86);disc(cx,y,R0,hi,lo);x.fillStyle='#1b1407';x.font=`800 italic ${R0*1.05}px ${DC}`;x.textAlign='center';x.fillText(String(d.med.t[k]),cx,y+R0*.36);x.fillStyle='#a8b6cc';x.font=`600 24px ${BD}`;sp('3px');x.fillText(lab,cx,y+R0+40);sp('0px');x.textAlign='left'});
+  const kx=P+3*(R0*2+86)-20;x.fillStyle='#f1f5fb';x.font=`800 italic ${S?84:76}px ${DC}`;x.fillText(String(d.rs.length),kx,y+12);x.fillStyle='#a8b6cc';x.font=`600 24px ${BD}`;sp('3px');x.fillText('PROVAS',kx,y+R0+40);sp('0px');
+  y+=R0+40;
+  if(d.med.rm.some(v=>v)){const nr=d.med.rm.reduce((a,b)=>a+b,0);x.fillStyle='#a8b6cc';x.font=`500 24px ${BD}`;x.fillText(`Inclui ${nr} medalha${nr>1?'s':''} em revezamentos`,P,y+44);y+=44}
+  y+=S?100:84;
+  // melhores marcas
+  sp('4px');x.fillStyle='#f3d36b';x.font=`700 italic 38px ${DC}`;x.fillText('MELHORES MARCAS',P,y);sp('0px');
+  x.fillStyle='#f3d36b';x.fillRect(P,y+16,90,5);
+  y+=36;
+  const ev0=d.evs.find(o=>o.pts.length>=2);
+  const nRows=Math.min(d.evs.length,S?(ev0?4:7):4), rowH=S?118:112;
+  d.evs.slice(0,nRows).forEach((o,i)=>{
+    const top=y+i*rowH;
+    if(i){x.fillStyle='rgba(255,255,255,.12)';x.fillRect(P,top,W-2*P,2)}
+    const mid=top+rowH/2;
+    x.fillStyle=EV[o.e].mod==='Natação'?'#5ea2ea':'#e8775f';x.beginPath();x.arc(P+10,mid-10,9,0,7);x.fill();
+    x.fillStyle='#f1f5fb';x.font=`700 italic 46px ${DC}`;x.fillText(EV[o.e].label.toUpperCase(),P+34,mid+2);
+    x.fillStyle='#a8b6cc';x.font=`500 26px ${BD}`;x.fillText(`${o.pb.y} · ${AG[o.pb.a]==='livre'?'livre':AG[o.pb.a]==='única'?'faixa única':AG[o.pb.a]}${o.pb.pl?' · '+o.pb.pl+'º lugar':''}`,P+34,mid+38);
+    x.textAlign='right';x.fillStyle='#f1f5fb';x.font=`500 50px ${MO}`;x.fillText(fmt(o.e,o.pb.v),W-P,mid+16);
+    const mw=x.measureText(fmt(o.e,o.pb.v)).width;x.textAlign='left';
+    if(o.bp<=3){const c=MC[o.bp-1];disc(W-P-mw-40,mid-2,22,c[0],c[1])}
+  });
+  y+=nRows*rowH+30;
+  // evolução (stories)
+  if(S&&ev0&&y<H-420){
+    y+=30;sp('4px');x.fillStyle='#f3d36b';x.font=`700 italic 38px ${DC}`;x.fillText('EVOLUÇÃO · '+EV[ev0.e].label.toUpperCase(),P,y+20);sp('0px');
+    const gx=P+30,gy=y+110,gw=W-2*P-60,gh=Math.max(100,Math.min(300,H-340-(y+110))),pts=ev0.pts,vs=pts.map(p=>p.v);let lo=Math.min(...vs),hi=Math.max(...vs);if(lo===hi){lo-=1;hi+=1}
+    const px=i=>gx+(pts.length===1?gw/2:i*gw/(pts.length-1)), py=v=>isField(ev0.e)?gy+(hi-v)/(hi-lo)*gh:gy+(v-lo)/(hi-lo)*gh;
+    x.strokeStyle=EV[ev0.e].mod==='Natação'?'#5ea2ea':'#e8775f';x.lineWidth=6;x.beginPath();pts.forEach((p,i)=>i?x.lineTo(px(i),py(p.v)):x.moveTo(px(i),py(p.v)));x.stroke();
+    pts.forEach((p,i)=>{x.fillStyle=p===ev0.pb?'#f3d36b':'#f1f5fb';x.beginPath();x.arc(px(i),py(p.v),p===ev0.pb?14:9,0,7);x.fill();x.fillStyle='#a8b6cc';x.font=`500 24px ${MO}`;x.textAlign=i===0?'left':i===pts.length-1?'right':'center';x.fillText(String(p.y),px(i),gy+gh+50);x.fillStyle=p===ev0.pb?'#f3d36b':'#f1f5fb';x.font=`500 26px ${MO}`;x.fillText(fmt(ev0.e,p.v),px(i),py(p.v)-26)});
+    x.textAlign='left';
+  }
+  // rodapé
+  x.fillStyle='rgba(255,255,255,.12)';x.fillRect(P,H-150,W-2*P,2);
+  x.fillStyle='#f3d36b';x.font=`800 italic 46px ${DC}`;x.fillText('MARCAS ONJT/ONJF',P,H-82);
+  x.fillStyle='#a8b6cc';x.font=`500 28px ${BD}`;x.textAlign='right';x.fillText('Veja o seu histórico:',W-P,H-98);x.fillStyle='#f1f5fb';x.font=`600 30px ${BD}`;x.fillText(SITE,W-P,H-58);x.textAlign='left';
+  return new Promise(res=>cv.toBlob(res,'image/png'));
+}
+async function renderCard(){
+  const kind=segVal(CARD.fmt), n=CARD.n;CARD.img.style.opacity='.4';
+  const blob=await drawCard(n,kind);if(!blob)return;
+  const slug=normName(NM[n]).replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  CARD.file=new File([blob],`marcas-onjt-${slug}-${kind}.png`,{type:'image/png'});
+  if(CARD.url)URL.revokeObjectURL(CARD.url);CARD.url=URL.createObjectURL(blob);
+  CARD.img.src=CARD.url;CARD.img.style.opacity='1';CARD.dl.href=CARD.url;CARD.dl.download=CARD.file.name;
+  $('#card-share').hidden=!(navigator.canShare&&navigator.canShare({files:[CARD.file]}));
+}
+function openCard(n){CARD.n=n;if(CARD.dlg.showModal)CARD.dlg.showModal();else CARD.dlg.setAttribute('open','');renderCard()}
+bindSeg(CARD.fmt,renderCard);
+$('#card-x').addEventListener('click',()=>CARD.dlg.close());
+CARD.dlg.addEventListener('click',ev=>{if(ev.target===CARD.dlg)CARD.dlg.close()});
+$('#card-share').addEventListener('click',async()=>{
+  try{await navigator.share({files:[CARD.file],text:`Meu histórico na Olimpíada do Judiciário: https://${SITE}/#atleta=${encodeURIComponent(NM[CARD.n])}`})}catch(_){}
+});
+
+// ================= FRENTE A FRENTE =================
+const X={kind:$('#x-kind'),qa:$('#x-qa'),qb:$('#x-qb'),ha:$('#x-ha'),hb:$('#x-hb'),da:$('#x-da'),db:$('#x-db'),out:$('#x-out'),a:null,b:null};
+const delOpts=DL.map((d,i)=>[i,d]).filter(x=>x[1]!=='NÃO INFORMADA').sort((a,b)=>a[1].localeCompare(b[1],'pt',{numeric:true}));
+fillSelect(X.da,delOpts);fillSelect(X.db,delOpts);
+{const mc={};R.forEach(r=>{if(r.pl>=1&&r.pl<=3)mc[r.d]=(mc[r.d]||0)+1});const top=Object.entries(mc).sort((a,b)=>b[1]-a[1]);if(top[0])X.da.value=top[0][0];if(top[1])X.db.value=top[1][0]}
+function cellRes(r){if(!r)return'–';return (r.pl?placeBadge(r.pl):`<span class="pill p-mut">${stLab(r.st)}</span>`)+(r.v!=null?` <span class="gap">${fmt(r.e,r.v)}</span>`:'')}
+function winner(ra,rb){
+  if(ra.pl&&rb.pl&&ra.pl!==rb.pl)return ra.pl<rb.pl?1:2;
+  if(ra.v!=null&&rb.v!=null&&ra.v!==rb.v)return better(ra.e,ra.v,rb.v)?1:2;
+  if(ra.v!=null&&rb.v==null)return 1;if(rb.v!=null&&ra.v==null)return 2;return 0;
+}
+function vsHead(a,b,sa,sb,subA,subB,cap){
+  return `<div class="panel"><div class="vs"><div class="side"><b>${a}</b><small>${subA}</small></div><div class="score" aria-label="${cap}">${sa}<i>×</i>${sb}</div><div class="side"><b>${b}</b><small>${subB}</small></div></div><p class="note" style="text-align:center;margin:auto">${cap}</p></div>`;
+}
+function duelAth(){
+  const a=X.a,b=X.b;
+  if(a==null||b==null){X.out.innerHTML='<p class="empty">Escolha os dois atletas.</p>';return}
+  if(a===b){X.out.innerHTML='<p class="empty">Escolha dois atletas diferentes.</p>';return}
+  const ra=byName.get(a)||[],rb=byName.get(b)||[];
+  const kb=new Map();rb.forEach(r=>kb.set(r.y+'|'+r.e+'|'+r.g+'|'+r.a,r));
+  const meets=ra.map(r=>{const o=kb.get(r.y+'|'+r.e+'|'+r.g+'|'+r.a);return o?{y:r.y,e:r.e,a:r.a,A:r,B:o,w:winner(r,o)}:null}).filter(Boolean).sort((p,q)=>q.y-p.y||p.e-q.e);
+  const wa=meets.filter(m=>m.w===1).length,wb=meets.filter(m=>m.w===2).length;
+  const ma=medalsOf(a),mb=medalsOf(b);
+  const sub=(n,m)=>`${esc(delsOf(n).slice(0,2).join(' · '))}<br><span class="medal m1">${m.t[0]}</span> <span class="medal m2">${m.t[1]}</span> <span class="medal m3">${m.t[2]}</span>`;
+  // relays juntos
+  const teams=RL.filter(r=>r.mem.includes(a)&&r.mem.includes(b)).length;
+  // provas em comum
+  const evs=[...new Set(ra.map(r=>r.e))].filter(e=>rb.some(r=>r.e===e));
+  const pb=(rs,e)=>{const v=rs.filter(r=>r.e===e&&r.v!=null);return v.length?v.reduce((p,r)=>better(e,r.v,p.v)?r:p):null};
+  const common=evs.map(e=>({e,A:pb(ra,e),B:pb(rb,e)})).filter(o=>o.A&&o.B);
+  const fa=NM[a].split(' ')[0],fb=NM[b].split(' ')[0];
+  X.out.innerHTML=vsHead(`<button type="button" class="hit linkbtn" data-goto="${a}">${esc(NM[a])}</button>`,`<button type="button" class="hit linkbtn" data-goto="${b}">${esc(NM[b])}</button>`,wa,wb,sub(a,ma),sub(b,mb),
+      meets.length?`${meets.length} confronto${meets.length>1?'s':''} direto${meets.length>1?'s':''} na mesma prova, gênero e faixa${teams?` · ${teams} revezamento${teams>1?'s':''} na mesma equipe`:''}`:`Nunca disputaram a mesma prova na mesma faixa${teams?` · ${teams} revezamento${teams>1?'s':''} na mesma equipe`:''}`)+
+    (meets.length?`<div class="panel"><h3>Confrontos diretos</h3><div class="tablebox"><table><tr><th>Ano</th><th>Prova</th><th>Faixa</th><th>${esc(fa)}</th><th>${esc(fb)}</th><th>Vantagem</th></tr>${meets.map(m=>{
+      const d=m.A.v!=null&&m.B.v!=null?Math.abs(m.A.v-m.B.v):null;
+      return `<tr><td>${m.y}</td><td>${esc(EV[m.e].label)}</td><td>${esc(AG[m.a])}</td><td${m.w===1?' class="win"':''}>${cellRes(m.A)}</td><td${m.w===2?' class="win"':''}>${cellRes(m.B)}</td><td>${m.w?esc(m.w===1?fa:fb)+(d!=null?` <span class="gap">por ${fmtGap(m.e,d)}</span>`:''):'empate'}</td></tr>`}).join('')}</table></div></div>`:'')+
+    (common.length?`<div class="panel"><h3>Melhores marcas nas provas em comum</h3><p class="note">Melhor marca de cada um na prova, em qualquer ano e faixa.</p><div class="tablebox"><table><tr><th>Prova</th><th class="num">${esc(fa)}</th><th class="num">${esc(fb)}</th><th>À frente</th></tr>${common.map(o=>{
+      const w=o.A.v===o.B.v?0:better(o.e,o.A.v,o.B.v)?1:2;
+      return `<tr><td>${esc(EV[o.e].label)}</td><td class="num${w===1?' win':''}">${fmt(o.e,o.A.v)} <small>(${o.A.y})</small></td><td class="num${w===2?' win':''}">${fmt(o.e,o.B.v)} <small>(${o.B.y})</small></td><td>${w?esc(w===1?fa:fb)+` <span class="gap">por ${fmtGap(o.e,Math.abs(o.A.v-o.B.v))}</span>`:'empate'}</td></tr>`}).join('')}</table></div></div>`:'')+
+    (!meets.length&&!common.length?'<p class="empty">Os dois não têm provas em comum.</p>':'');
+  store.set('onjt.duel',JSON.stringify({a,b}));
+}
+function duelDel(){
+  const A=+X.da.value,B=+X.db.value;
+  if(A===B){X.out.innerHTML='<p class="empty">Escolha duas delegações diferentes.</p>';return}
+  const per={};const add=(d,y,p)=>{if(d!==A&&d!==B)return;const o=per[y]||(per[y]={});const m=o[d]||(o[d]=[0,0,0]);if(p>=1&&p<=3)m[p-1]++};
+  R.forEach(r=>add(r.d,r.y,r.pl));RL.forEach(r=>add(r.d,r.y,r.pl));
+  const ys=Object.keys(per).map(Number).filter(y=>per[y][A]&&per[y][B]).sort((a,b)=>b-a);
+  const tot=m=>m?m[0]+m[1]+m[2]:0;
+  const cmpM=(p,q)=>p[0]-q[0]||p[1]-q[1]||p[2]-q[2];
+  let wa=0,wb=0;ys.forEach(y=>{const c=cmpM(per[y][A],per[y][B]);if(c>0)wa++;else if(c<0)wb++});
+  const sum=d=>{const m=[0,0,0];ys.forEach(y=>per[y][d].forEach((v,k)=>m[k]+=v));return m};
+  const sa=sum(A),sb=sum(B);
+  const byEv={};R.forEach(r=>{if((r.d!==A&&r.d!==B)||!(r.pl>=1&&r.pl<=3)||!ys.includes(r.y))return;const k=EV[r.e].mod+'|'+EV[r.e].label;const o=byEv[k]||(byEv[k]={A:0,B:0});o[r.d===A?'A':'B']++});
+  const evRows=Object.entries(byEv).sort((p,q)=>(q[1].A+q[1].B)-(p[1].A+p[1].B)).slice(0,20);
+  const mm=m=>`<span style="color:var(--gold)">${m[0]} ouros</span> · <span style="color:var(--silver)">${m[1]} pratas</span> · <span style="color:var(--bronze)">${m[2]} bronzes</span>`;
+  X.out.innerHTML=vsHead(esc(DL[A]),esc(DL[B]),wa,wb,`${mm(sa)}<br>${tot(sa)} medalhas`,`${mm(sb)}<br>${tot(sb)} medalhas`,
+      ys.length?`Edições vencidas no confronto (mais ouros, depois pratas e bronzes) entre as ${ys.length} em que as duas competiram. Atletismo e natação, incluindo revezamentos.`:'As duas delegações nunca competiram na mesma edição.')+
+    (ys.length?`<div class="grid2"><div class="panel"><h3>Medalhas por edição</h3><div class="tablebox"><table class="keep"><tr><th>Ano</th><th>${esc(DL[A])}</th><th>${esc(DL[B])}</th></tr>${ys.map(y=>{const c=cmpM(per[y][A],per[y][B]);return `<tr><td>${y}</td><td${c>0?' class="win"':''}>${per[y][A].join('·')} <small class="p-mut">(${tot(per[y][A])})</small></td><td${c<0?' class="win"':''}>${per[y][B].join('·')} <small class="p-mut">(${tot(per[y][B])})</small></td></tr>`}).join('')}</table></div><p class="note">Ouro·prata·bronze (total).</p></div>
+    <div class="panel"><h3>Medalhas por prova</h3><div class="tablebox"><table class="keep"><tr><th>Prova</th><th class="num">${esc(DL[A])}</th><th class="num">${esc(DL[B])}</th></tr>${evRows.map(([k,o])=>{const[mo,lab]=k.split('|');return `<tr><td><span class="${mo==='Natação'?'mod-n':'mod-a'}">●</span> ${esc(lab)}</td><td class="num${o.A>o.B?' win':''}">${o.A}</td><td class="num${o.B>o.A?' win':''}">${o.B}</td></tr>`}).join('')}</table></div><p class="note">Provas individuais nas mesmas edições.</p></div></div>`:'');
+  store.set('onjt.dueldel',JSON.stringify({a:A,b:B}));
+}
+function renderDuel(){
+  const k=segVal(X.kind);document.querySelectorAll('#v-duelo .xa').forEach(e=>e.hidden=k!=='a');document.querySelectorAll('#v-duelo .xd').forEach(e=>e.hidden=k!=='d');
+  if(k==='a')duelAth();else duelDel();
+}
+bindSeg(X.kind,renderDuel);X.da.addEventListener('change',renderDuel);X.db.addEventListener('change',renderDuel);
+athSearch(X.qa,X.ha,i=>{X.a=i;renderDuel()});athSearch(X.qb,X.hb,i=>{X.b=i;renderDuel()});
+X.out.addEventListener('click',ev=>{const b=ev.target.closest('[data-goto]');if(b)openAthlete(+b.dataset.goto)});
+$('#a-out').addEventListener('click',ev=>{
+  const c=ev.target.closest('[data-card]');if(c){openCard(+c.dataset.card);return}
+  const d=ev.target.closest('[data-duel]');if(d){const n=+d.dataset.duel;X.a=n;X.qa.value=NM[n];setSeg(X.kind,'a');if(X.b===n){X.b=null;X.qb.value=''}renderDuel();go('duelo');X.qb.focus()}
+});
+// estado salvo
+try{const s=JSON.parse(store.get('onjt.medal')||'{}');if(s.g)setSeg(M.g,s.g);if(s.b)M.birth.value=s.b;if(s.mod!=null)M.mod.value=s.mod;if(s.ath!=null&&NM[s.ath]){M.ath=s.ath;M.q.value=NM[s.ath]}}catch(_){}
+renderMedal();
+try{const s=JSON.parse(store.get('onjt.duel')||'{}');if(s.a!=null&&NM[s.a]){X.a=s.a;X.qa.value=NM[s.a]}if(s.b!=null&&NM[s.b]){X.b=s.b;X.qb.value=NM[s.b]}}catch(_){}
+try{const s=JSON.parse(store.get('onjt.dueldel')||'{}');if(s.a!=null)X.da.value=String(s.a);if(s.b!=null)X.db.value=String(s.b)}catch(_){}
+renderDuel();
+
 // ================= navegação =================
-const VIEWS=['inicio','comparar','revez','atletas','delegacoes','recordes','edicoes'];
+const VIEWS=['inicio','comparar','medalha','revez','atletas','delegacoes','duelo','recordes','edicoes'];
 function go(v,keepScroll){VIEWS.forEach(x=>{$('#v-'+x).hidden=x!==v;$('#tab-'+x).setAttribute('aria-selected',String(x===v))});store.set('onjt.view',v);
   const t=$('#tab-'+v);if(t&&t.scrollIntoView)t.scrollIntoView({block:'nearest',inline:'nearest'});
   if(!keepScroll)window.scrollTo(0,0);
@@ -943,6 +1307,8 @@ refreshRec();
 const sd=store.get('onjt.deleg');const medalCount={};R.forEach(r=>{if(r.pl>=1&&r.pl<=3)medalCount[r.d]=(medalCount[r.d]||0)+1});const def=+Object.entries(medalCount).sort((a,b)=>b[1]-a[1])[0][0];dSel.value=(sd&&[...dSel.options].some(o=>o.value===sd))?sd:String(def>=0?def:dSel.options[0].value);renderDeleg();renderBoard();
 refreshEd();
 labelize(document.querySelector('main'));
-const ha=location.hash.replace('#','');go(VIEWS.includes(ha)?ha:'inicio',true);
+const ha=decodeURIComponent(location.hash.replace('#',''));
+if(ha.startsWith('atleta=')){const i=NM.indexOf(ha.slice(7));if(i>=0&&byName.has(i))openAthlete(i);else go('atletas',true)}
+else go(VIEWS.includes(ha)?ha:'inicio',true);
 })();
 </script>

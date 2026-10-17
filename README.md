@@ -10,6 +10,12 @@ O que dá para fazer:
 - consultar o histórico de qualquer atleta (participações, medalhas, evolução e onde melhorar);
 - ver o quadro de medalhas histórico entre delegações;
 - comparar tempos de revezamento por delegação.
+- descobrir, pelo ano de nascimento, a faixa etária da próxima edição e as provas com menos concorrência (aba "Sua medalha");
+- ver marcas de atletismo ajustadas à idade pelos fatores oficiais da World Masters Athletics (corridas e saltos);
+- comparar dois atletas ou duas delegações frente a frente;
+- gerar um card do seu histórico para compartilhar no WhatsApp ou no Instagram (botão na página do atleta).
+
+Link direto para um atleta: `https://f3rnich.github.io/marcas-onjf/#atleta=Nome%20Completo`.
 
 Fonte dos dados: resultados e recordes publicados em [anastra.com.br](https://www.anastra.com.br) e nos sistemas de cronometragem de cada edição.
 
@@ -58,6 +64,7 @@ O relatório lista os recordes que não conferiram. Em geral a organização mud
 | `raw/leg/` | Páginas do arquivo antigo do site (2009–2016) |
 | `raw/rec/` | Listas oficiais de recordes |
 | `raw/ext/` | Dados do sistema Gerentrack |
+| `raw/wma/` | Fatores de idade da World Masters Athletics (2023 Rulebook, Appendix B) |
 | `raw/manual/` | Resultados transcritos à mão quando não há arquivo (lidos automaticamente) |
 | `preview.png` | Imagem da prévia do link (WhatsApp, redes) |
 
@@ -73,6 +80,7 @@ As fontes ficam arquivadas porque o site original perde arquivos com o tempo (v�
 | `parse_records.py` | Listas oficiais de recordes |
 | `fetch_gt.py` / `parse_gt.py` | Sistema Gerentrack (atletismo desde 2026) |
 | `build_data.py` | Junta, unifica nomes, deduplica e exporta `data/onjt.json` |
+| `parse_wma.py` | Fatores de idade da WMA (age-grading) |
 | `validate.py` | Confere a base contra os recordes oficiais |
 | `build_panel.py` / `build_site.py` | Geram o painel e o `index.html` |
 
@@ -85,4 +93,5 @@ As fontes ficam arquivadas porque o site original perde arquivos com o tempo (v�
 - 2026, natação: os revezamentos foram publicados só no app da Federação Aquática de Sergipe, sem PDF; foram transcritos das telas em `raw/manual/2026_natacao_revezamentos.json` (tempos e delegações, sem integrantes). Ainda faltam o 4x100 m livre misto 180 anos e o 50 m livre PCD.
 - A base reproduz as súmulas oficiais, inclusive quando o atleta competiu em faixas etárias diferentes no mesmo ano. Erros evidentes de diagramação das fontes são corrigidos automaticamente em `build_data.py`: colocação repetida ou ausente (refeita pela marca), delegação divergente do mesmo atleta na mesma edição (vale a da maioria) e atleta impresso na lista do gênero oposto (linha descartada).
 - Auditoria de outubro/2026: 98% dos recordes oficiais individuais conferem com a base, e 98,4% das medalhas de atletismo e natação por delegação (2017–2026) batem com o quadro de medalhas oficial da Anastra.
+- Ajuste por idade (WMA): usa a idade do meio da faixa, porque a base não tem a data de nascimento; o erro típico é de 1% a 2%. Arremessos ficam de fora, porque a WMA troca o peso do implemento por faixa e a regra da ONJ pode ser outra.
 - Nomes de atletas são unificados por regras (partículas, abreviações, nomes cortados); casos raros podem ficar duplicados ou ser unidos por engano. Use o formulário de correção.

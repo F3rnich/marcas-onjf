@@ -313,6 +313,9 @@ data = dict(
              round(r['v'], 2) if r['v'] is not None else None, st_ix(r['st']), [n_ix[m] for m in r['mem']]] for r in rel],
     rel_records=rel_rec_out,
 )
+# fatores de idade da WMA (age-grading), se disponíveis
+if os.path.exists(f'{D}/wma.json'):
+    data['wma'] = {g: {ev_ix[k]: v for k, v in evs.items() if k in ev_ix} for g, evs in json.load(open(f'{D}/wma.json'))['factors'].items()}
 json.dump(data, open(f'{D}/onjt.json', 'w'), ensure_ascii=False, separators=(',', ':'))
 print('json bytes', os.path.getsize(f'{D}/onjt.json'), 'eventos', len(evs), 'faixas', ages)
 
