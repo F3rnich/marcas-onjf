@@ -790,8 +790,8 @@ $('#a-q').addEventListener('input',()=>{
   if(q.length<3){box.innerHTML='';return}
   const toks=q.split(/\s+/);
   const hits=[];NMN.forEach((n,i)=>{if(toks.every(t=>n.includes(t)))hits.push(i)});
-  box.innerHTML=hits.slice(0,40).map(i=>{const rs=byName.get(i)||[];const ys=[...new Set(rs.map(r=>r.y))].sort();const dl=[...new Set(rs.map(r=>DL[r.d]))].join(', ');
-    return `<button type="button" class="hit" data-n="${i}"><span>${esc(NM[i])}<br><small>${esc(dl)}</small></span><small>${ys[0]}${ys.length>1?'–'+ys[ys.length-1]:''} · ${rs.length} prova(s)</small></button>`}).join('')||'<p class="empty">Nenhum atleta encontrado.</p>';
+  box.innerHTML=hits.slice(0,40).map(i=>{const rs=byName.get(i)||[];const rl=RL.filter(r=>r.mem.includes(i));const ys=[...new Set([...rs,...rl].map(r=>r.y))].sort();const dl=[...new Set([...rs,...rl].map(r=>DL[r.d]))].join(', ');
+    return `<button type="button" class="hit" data-n="${i}"><span>${esc(NM[i])}<br><small>${esc(dl)}</small></span><small>${ys[0]||''}${ys.length>1?'–'+ys[ys.length-1]:''} · ${rs.length?rs.length+' prova(s)':rl.length+' revezamento(s)'}</small></button>`}).join('')||'<p class="empty">Nenhum atleta encontrado.</p>';
 });
 $('#a-hits').addEventListener('click',ev=>{const b=ev.target.closest('.hit');if(b)showAthlete(+b.dataset.n)});
 $('#a-out').addEventListener('click',ev=>{const b=ev.target.closest('[data-goto]');if(!b)return;const i=+b.dataset.goto;$('#a-q').value=NM[i];$('#a-q').dispatchEvent(new Event('input'));showAthlete(i);window.scrollTo({top:0,behavior:'smooth'})});
@@ -1050,7 +1050,7 @@ function athSearch(inp,box,pick){
 }
 const genderOf=n=>{const c={};(byName.get(n)||[]).forEach(r=>c[r.g]=(c[r.g]||0)+1);return Object.keys(c).sort((a,b)=>c[b]-c[a])[0]||'M'};
 const medalsOf=n=>{const m=[0,0,0],rm=[0,0,0];(byName.get(n)||[]).forEach(r=>{if(r.pl>=1&&r.pl<=3)m[r.pl-1]++});RL.forEach(r=>{if(r.pl>=1&&r.pl<=3&&r.mem.includes(n))rm[r.pl-1]++});return{m,rm,t:[0,1,2].map(k=>m[k]+rm[k])}};
-const delsOf=n=>{const rs=(byName.get(n)||[]).slice().sort((a,b)=>b.y-a.y);return[...new Set(rs.map(r=>DL[r.d]))]};
+const delsOf=n=>{const rs=[...(byName.get(n)||[]),...RL.filter(r=>r.mem.includes(n))].sort((a,b)=>b.y-a.y);return[...new Set(rs.map(r=>DL[r.d]))]};
 
 // ================= SUA MEDALHA =================
 const NEXTY=LASTY+1;
@@ -1128,7 +1128,7 @@ $('#m-table').addEventListener('click',ev=>{
 const SITE='f3rnich.github.io/marcas-onjf';
 const CARD={dlg:$('#card-dlg'),img:$('#card-img'),fmt:$('#card-fmt'),dl:$('#card-dl'),n:null,file:null};
 function cardData(n){
-  const rs=byName.get(n)||[];const ys=[...new Set(rs.map(r=>r.y))].sort((a,b)=>a-b);
+  const rs=byName.get(n)||[];const ys=[...new Set([...rs,...RL.filter(r=>r.mem.includes(n))].map(r=>r.y))].sort((a,b)=>a-b);
   const evs=[...new Set(rs.map(r=>r.e))].map(e=>{
     const mine=rs.filter(r=>r.e===e);const val=mine.filter(r=>r.v!=null);if(!val.length)return null;
     const pb=val.reduce((p,r)=>better(e,r.v,p.v)?r:p);
@@ -1167,13 +1167,13 @@ async function drawCard(n,kind){
   const disc=(cx,cy,r,hi,lo)=>{const g2=x.createRadialGradient(cx-r*.3,cy-r*.35,r*.1,cx,cy,r);g2.addColorStop(0,hi);g2.addColorStop(.75,lo);g2.addColorStop(1,lo);x.fillStyle=g2;x.beginPath();x.arc(cx,cy,r,0,7);x.fill();x.lineWidth=r*.09;x.strokeStyle='rgba(0,0,0,.18)';x.stroke()};
   const MC=[['#f3d36b','#b8901c','OUROS'],['#e3e8ee','#7f8b99','PRATAS'],['#e2a06a','#9c5a2a','BRONZES']];
   MC.forEach(([hi,lo,lab],k)=>{const cx=P+R0+k*(R0*2+86);disc(cx,y,R0,hi,lo);x.fillStyle='#1b1407';x.font=`800 italic ${R0*1.05}px ${DC}`;x.textAlign='center';x.fillText(String(d.med.t[k]),cx,y+R0*.36);x.fillStyle='#a8b6cc';x.font=`600 24px ${BD}`;sp('3px');x.fillText(lab,cx,y+R0+40);sp('0px');x.textAlign='left'});
-  const kx=P+3*(R0*2+86)-20;x.fillStyle='#f1f5fb';x.font=`800 italic ${S?84:76}px ${DC}`;x.fillText(String(d.rs.length),kx,y+12);x.fillStyle='#a8b6cc';x.font=`600 24px ${BD}`;sp('3px');x.fillText('PROVAS',kx,y+R0+40);sp('0px');
+  const kx=P+3*(R0*2+86)-20;x.fillStyle='#f1f5fb';x.font=`800 italic ${S?84:76}px ${DC}`;x.fillText(String(d.rs.length),kx,y+12);x.fillStyle='#a8b6cc';x.font=`600 24px ${BD}`;sp('3px');x.fillText(d.rs.length===1?'PROVA':'PROVAS',kx,y+R0+40);sp('0px');
   y+=R0+40;
   if(d.med.rm.some(v=>v)){const nr=d.med.rm.reduce((a,b)=>a+b,0);x.fillStyle='#a8b6cc';x.font=`500 24px ${BD}`;x.fillText(`Inclui ${nr} medalha${nr>1?'s':''} em revezamentos`,P,y+44);y+=44}
   y+=S?100:84;
   // melhores marcas
-  sp('4px');x.fillStyle='#f3d36b';x.font=`700 italic 38px ${DC}`;x.fillText('MELHORES MARCAS',P,y);sp('0px');
-  x.fillStyle='#f3d36b';x.fillRect(P,y+16,90,5);
+  if(d.evs.length){sp('4px');x.fillStyle='#f3d36b';x.font=`700 italic 38px ${DC}`;x.fillText('MELHORES MARCAS',P,y);sp('0px');
+  x.fillStyle='#f3d36b';x.fillRect(P,y+16,90,5);}
   y+=36;
   const ev0=d.evs.find(o=>o.pts.length>=2);
   const nRows=Math.min(d.evs.length,S?(ev0?4:7):4), rowH=S?118:112;
