@@ -591,6 +591,8 @@ function parseMark(e,s){
   p=p.map(Number); if(p.some(isNaN)) return null;
   return p.reduce((a,x)=>a*60+x,0);
 }
+function reveal(el){if(!el)return;requestAnimationFrame(()=>{const sb=document.getElementById('subbar');const off=(sb&&!sb.hidden?sb.offsetHeight:0)+10;const y=el.getBoundingClientRect().top+window.scrollY-off;
+  const rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;window.scrollTo({top:Math.max(0,y),behavior:rm?'auto':'smooth'})})}
 const median=a=>{if(!a.length)return null;const s=[...a].sort((x,y)=>x-y),m=s.length>>1;return s.length%2?s[m]:(s[m-1]+s[m])/2};
 const poolOf=y=>ED[y]&&ED[y].pool;
 const genderLab={M:'Masculino',F:'Feminino',X:'Misto'};
@@ -762,8 +764,8 @@ function drawChart(e,pods,mine,rec,o){
 bindSeg(C.mod,()=>{C.mark.value='';refreshCompareSelectors()});
 bindSeg(C.g,()=>{refreshCompareSelectors()});
 C.ev.addEventListener('change',()=>{C.mark.value='';const keep=C.age.value;refreshCompareSelectors();if([...C.age.options].some(o=>o.value===keep)){C.age.value=keep;renderCompare()}});
-$('#c-rank').addEventListener('click',ev=>{const b=ev.target.closest('[data-goto]');if(!b)return;go('atletas');$('#a-q').value=NM[+b.dataset.goto];$('#a-q').dispatchEvent(new Event('input'));showAthlete(+b.dataset.goto)});
-C.age.addEventListener('change',renderCompare);C.pool.addEventListener('change',renderCompare);C.mark.addEventListener('input',renderCompare);
+$('#c-rank').addEventListener('click',ev=>{const b=ev.target.closest('[data-goto]');if(!b)return;openAthlete(+b.dataset.goto)});
+C.age.addEventListener('change',renderCompare);C.pool.addEventListener('change',renderCompare);C.mark.addEventListener('input',renderCompare);C.mark.addEventListener('change',()=>{if(C.mark.value.trim()){C.mark.blur();reveal($('#c-verdict'))}});C.mark.addEventListener('keydown',e=>{if(e.key==='Enter')C.mark.dispatchEvent(new Event('change'))});
 
 
 // ================= REVEZAMENTOS =================
@@ -840,8 +842,8 @@ function renderRev(){
   $('#v-rank-note').textContent=all.length?`Melhores tempos já registrados nesta prova e categoria, entre ${all.length} equipes.`+(myPos!=null?` Sua equipe ficaria em ${myPos}º.`:''):'';
 }
 bindSeg(V.mod,()=>{V.mark.value='';refreshRev()});bindSeg(V.g,refreshRev);
-V.ev.addEventListener('change',()=>{V.mark.value='';refreshRev()});V.cat.addEventListener('change',renderRev);V.pool.addEventListener('change',renderRev);V.mark.addEventListener('input',renderRev);
-$('#v-rank').addEventListener('click',ev=>{const b=ev.target.closest('[data-goto]');if(!b)return;go('atletas');$('#a-q').value=NM[+b.dataset.goto];$('#a-q').dispatchEvent(new Event('input'));showAthlete(+b.dataset.goto)});
+V.ev.addEventListener('change',()=>{V.mark.value='';refreshRev()});V.cat.addEventListener('change',renderRev);V.pool.addEventListener('change',renderRev);V.mark.addEventListener('input',renderRev);V.mark.addEventListener('change',()=>{if(V.mark.value.trim()){V.mark.blur();reveal($('#v-verdict'))}});V.mark.addEventListener('keydown',e=>{if(e.key==='Enter')V.mark.dispatchEvent(new Event('change'))});
+$('#v-rank').addEventListener('click',ev=>{const b=ev.target.closest('[data-goto]');if(!b)return;openAthlete(+b.dataset.goto)});
 
 // ================= ATLETAS =================
 const normName=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
@@ -855,8 +857,8 @@ $('#a-q').addEventListener('input',()=>{
   box.innerHTML=hits.slice(0,40).map(i=>{const rs=byName.get(i)||[];const rl=RL.filter(r=>r.mem.includes(i));const ys=[...new Set([...rs,...rl].map(r=>r.y))].sort();const dl=[...new Set([...rs,...rl].map(r=>DL[r.d]))].join(', ');
     return `<button type="button" class="hit" data-n="${i}"><span>${esc(NM[i])}<br><small>${esc(dl)}</small></span><small>${ys[0]||''}${ys.length>1?'–'+ys[ys.length-1]:''} · ${rs.length?rs.length+' prova(s)':rl.length+' revezamento(s)'}</small></button>`}).join('')||'<p class="empty">Nenhum atleta encontrado.</p>';
 });
-$('#a-hits').addEventListener('click',ev=>{const b=ev.target.closest('.hit');if(b)showAthlete(+b.dataset.n)});
-$('#a-out').addEventListener('click',ev=>{const b=ev.target.closest('[data-goto]');if(!b)return;const i=+b.dataset.goto;$('#a-q').value=NM[i];$('#a-q').dispatchEvent(new Event('input'));showAthlete(i);window.scrollTo({top:0,behavior:'smooth'})});
+$('#a-hits').addEventListener('click',ev=>{const b=ev.target.closest('.hit');if(!b)return;const n=+b.dataset.n;$('#a-q').value=NM[n];$('#a-hits').innerHTML='';$('#a-q').blur();showAthlete(n);reveal($('#a-out'))});
+$('#a-out').addEventListener('click',ev=>{const b=ev.target.closest('[data-goto]');if(!b)return;const i=+b.dataset.goto;$('#a-q').value=NM[i];$('#a-hits').innerHTML='';showAthlete(i);reveal($('#a-out'))});
 function spark(e,pts){
   const W=280,H=120,L=8,Rr=8,T=22,B=22;
   const vs=pts.map(p=>p.v);let lo=Math.min(...vs),hi=Math.max(...vs);if(lo===hi){lo-=1;hi+=1}
@@ -944,7 +946,7 @@ function renderBoard(){
   $('#d-board').innerHTML=`<tr><th>#</th><th>Delegação</th><th class="num">Ouro</th><th class="num">Prata</th><th class="num">Bronze</th><th class="hide-sm">Total</th><th class="num hide-sm">Edições</th></tr>`+
     list.map(([d,o],i)=>{const tt=o.m[0]+o.m[1]+o.m[2];return `<tr${+d===+dSel.value?' class="sel"':''}><td>${i+1}º</td><td><button type="button" class="hit linkbtn" data-del="${d}">${esc(DL[d])}</button></td><td class="num">${o.m[0]}</td><td class="num">${o.m[1]}</td><td class="num">${o.m[2]}</td><td class="hide-sm"><span class="bar" style="width:${Math.round(tt/maxT*110)}px"></span> <span class="gap">${tt}</span></td><td class="num hide-sm">${o.ys.size}</td></tr>`}).join('');
 }
-$('#d-board').addEventListener('click',ev=>{const b=ev.target.closest('[data-del]');if(!b)return;dSel.value=b.dataset.del;renderDeleg();renderBoard();$('#d-sel').scrollIntoView({behavior:'smooth',block:'start'})});
+$('#d-board').addEventListener('click',ev=>{const b=ev.target.closest('[data-del]');if(!b)return;dSel.value=b.dataset.del;renderDeleg();renderBoard();reveal($('#d-sel'))});
 $('#d-kind').addEventListener('change',()=>renderBoard());
 [dFrom,dTo].forEach(s=>s.addEventListener('change',()=>{if(+dFrom.value>+dTo.value){const x=dFrom.value;dFrom.value=dTo.value;dTo.value=x}renderBoard();renderDeleg()}));
 function renderDeleg(){
@@ -969,8 +971,8 @@ function renderDeleg(){
   </div>`;
   store.set('onjt.deleg',dSel.value);
 }
-$('#d-out').addEventListener('click',ev=>{const b=ev.target.closest('[data-goto]');if(!b)return;go('atletas');$('#a-q').value=NM[+b.dataset.goto];$('#a-q').dispatchEvent(new Event('input'));showAthlete(+b.dataset.goto)});
-dSel.addEventListener('change',()=>{renderDeleg();renderBoard()});dMod.addEventListener('change',()=>{renderDeleg();renderBoard()});
+$('#d-out').addEventListener('click',ev=>{const b=ev.target.closest('[data-goto]');if(!b)return;openAthlete(+b.dataset.goto)});
+dSel.addEventListener('change',()=>{renderDeleg();renderBoard();reveal($('#d-out'))});dMod.addEventListener('change',()=>{renderDeleg();renderBoard()});
 
 // ================= RECORDES =================
 const RC={mod:$('#r-mod'),g:$('#r-g'),pool:$('#r-pool'),ev:$('#r-ev')};
@@ -994,7 +996,7 @@ function renderRec(){
   $('#r-table').innerHTML=`<tr><th>Faixa</th><th class="num">Recorde</th><th>Atleta</th><th>Delegação · ano</th><th>Superado depois?</th></tr>`+(rows||'<tr><td colspan="5" class="empty">Sem recordes cadastrados.</td></tr>');
   $('#r-note').textContent=(mod==='Natação'?'2025 não informa o tamanho da piscina; marcas de natação de 2025 aparecem como candidatas, a confirmar pela organização. ':'')+(newCount?`${newCount} recorde(s) desta seleção foram superados por marcas de 2025 ou 2026.`:'')+' Marcas com o selo "súmula": a lista oficial transcreve tempos manuais em décimos como centésimos (12.02 em vez de 12.2); o painel usa o valor da súmula da prova.';
 }
-bindSeg(RC.mod,refreshRec);bindSeg(RC.g,renderRec);RC.pool.addEventListener('change',renderRec);RC.ev.addEventListener('change',renderRec);
+bindSeg(RC.mod,refreshRec);bindSeg(RC.g,renderRec);RC.pool.addEventListener('change',renderRec);RC.ev.addEventListener('change',()=>{renderRec();reveal($('#r-table'))});
 
 // ================= EDIÇÕES =================
 const E={y:$('#e-y'),ev:$('#e-ev'),g:$('#e-g'),age:$('#e-age')};
@@ -1011,8 +1013,8 @@ function renderEd(){
   const rs=R.filter(r=>r.y===y&&r.e===e&&r.g===g&&r.a===a).sort((p,q)=>(p.pl||999)-(q.pl||999)||(p.v==null)-(q.v==null)||sortKey(e)(p)-sortKey(e)(q));
   $('#e-table').innerHTML=`<tr><th>Col.</th><th>Atleta</th><th>Delegação</th><th class="num">Marca</th></tr>`+(rs.map(r=>`<tr><td>${r.pl?placeBadge(r.pl):`<span class="pill p-mut" title="${ST[r.st]}">${stLab(r.st)}</span>`}${r.rec?' <span class="pill p-rec">recorde</span>':''}</td><td><button type="button" class="hit linkbtn" data-goto="${r.n}">${esc(NM[r.n])}</button></td><td>${esc(DL[r.d])}</td><td class="num">${fmt(e,r.v)}</td></tr>`).join('')||'<tr><td colspan="4" class="empty">Sem resultados para esta combinação.</td></tr>');
 }
-$('#e-table').addEventListener('click',ev=>{const b=ev.target.closest('[data-goto]');if(!b)return;go('atletas');$('#a-q').value=NM[+b.dataset.goto];$('#a-q').dispatchEvent(new Event('input'));showAthlete(+b.dataset.goto)});
-E.y.addEventListener('change',refreshEd);E.ev.addEventListener('change',refreshEd);bindSeg(E.g,refreshEd);E.age.addEventListener('change',renderEd);
+$('#e-table').addEventListener('click',ev=>{const b=ev.target.closest('[data-goto]');if(!b)return;openAthlete(+b.dataset.goto)});
+E.y.addEventListener('change',refreshEd);E.ev.addEventListener('change',refreshEd);bindSeg(E.g,refreshEd);E.age.addEventListener('change',()=>{renderEd();reveal($('#e-table'))});
 // cobertura
 $('#e-cov').innerHTML=`<tr><th>Ano</th><th>Edição</th><th>Sede</th><th>Registro</th><th class="num">Resultados</th><th>Piscina</th></tr>`+
   YEARS.slice().reverse().map(y=>`<tr><td>${y}</td><td>${ED[y].ed}</td><td>${ED[y].city||'–'}</td><td>${ED[y].cov==='completa'?'<span class="pill p-rec">classificação completa</span>':'<span class="pill p-warn">só pódio</span>'}${ED[y].note?` <span class="pill p-warn">${esc(ED[y].note)}</span>`:''}</td><td class="num">${R.filter(r=>r.y===y).length}</td><td>${ED[y].pool?ED[y].pool+' m':'não informada'}</td></tr>`).join('')+
@@ -1082,8 +1084,8 @@ const LASTY=YEARS[YEARS.length-1];
   $('#hl-ath').innerHTML=`<div class="hl-list">${top.map(([n,m])=>`<div class="hl-item"><div class="who"><button type="button" class="hit linkbtn" data-goto="${n}">${esc(NM[n])}</button><small>${esc(dOf(n))}</small></div><div class="val"><span class="medal m1">${m[0]}</span> <span class="medal m2">${m[1]}</span> <span class="medal m3">${m[2]}</span></div></div>`).join('')}</div><p class="note">Inclui medalhas em revezamentos.</p>`;
 })();
 // busca unificada
-function openAthlete(i){go('atletas');$('#a-q').value=NM[i];$('#a-q').dispatchEvent(new Event('input'));showAthlete(i)}
-function openDeleg(i){go('delegacoes');dSel.value=String(i);renderDeleg();renderBoard()}
+function openAthlete(i){go('atletas',true);$('#a-q').value=NM[i];$('#a-hits').innerHTML='';showAthlete(i);reveal($('#a-out'))}
+function openDeleg(i){go('delegacoes',true);dSel.value=String(i);renderDeleg();renderBoard();reveal($('#d-sel'))}
 $('#h-q').addEventListener('input',()=>{
   const raw=$('#h-q').value.trim(), q=normName(raw), box=$('#h-hits');
   if(q.length<3){box.innerHTML='';return}
@@ -1180,7 +1182,8 @@ function renderMedal(){
       return `<tr${o.pb?' class="you"':''}><td><span class="${EV[o.e].mod==='Natação'?'mod-n':'mod-a'}">●</span> <button type="button" class="linkbtn" data-cmp="${o.e}|${o.a}">${esc(EV[o.e].label)}</button>${String(o.a)!==mainA?` <small class="p-mut">${esc(AG[o.a])}</small>`:''}</td><td>${conc(o)}</td><td class="num">${fmt(o.e,o.br)}</td><td class="num">${fmt(o.e,o.gd)}</td><td class="num">${o.rec?fmt(o.e,o.rec.v):'–'}</td>${hasPb?`<td class="num">${o.pb?fmt(o.e,o.pb.v)+` <small>(${o.pb.y})</small>`:'–'}</td><td>${gap}</td>`:''}</tr>`}).join('');
 }
 bindSeg(M.g,renderMedal);M.birth.addEventListener('input',renderMedal);M.mod.addEventListener('change',renderMedal);
-athSearch(M.q,M.hits,i=>{M.ath=i;setSeg(M.g,genderOf(i));renderMedal()});
+athSearch(M.q,M.hits,i=>{M.ath=i;setSeg(M.g,genderOf(i));renderMedal();M.q.blur();reveal($('#m-head'))});
+M.birth.addEventListener('change',()=>{if(parseInt(M.birth.value,10)>=1930){M.birth.blur();reveal($('#m-head'))}});M.birth.addEventListener('keydown',e=>{if(e.key==='Enter')M.birth.dispatchEvent(new Event('change'))});M.birth.addEventListener('input',()=>{if(/^\d{4}$/.test(M.birth.value)&&parseInt(M.birth.value,10)>=1930){M.birth.blur();reveal($('#m-head'))}});
 M.q.addEventListener('input',()=>{if(!M.q.value.trim()&&M.ath!=null){M.ath=null;renderMedal()}});
 $('#m-table').addEventListener('click',ev=>{
   const b=ev.target.closest('[data-cmp]');if(!b)return;const[e,a]=b.dataset.cmp.split('|').map(Number);const g=segVal(M.g);
@@ -1352,8 +1355,8 @@ function renderDuel(){
   const k=segVal(X.kind);$('#x-title').textContent=k==='a'?'Frente a frente':'Comparar delegações';$('#x-lede').textContent=k==='a'?'Compare dois atletas: confrontos diretos na mesma prova e faixa, medalhas e melhores marcas.':'Compare duas delegações: edições vencidas no confronto, medalhas por edição e por prova.';document.querySelectorAll('#v-duelo .xa').forEach(e=>e.hidden=k!=='a');document.querySelectorAll('#v-duelo .xd').forEach(e=>e.hidden=k!=='d');
   if(k==='a')duelAth();else duelDel();
 }
-bindSeg(X.kind,renderDuel);X.da.addEventListener('change',renderDuel);X.db.addEventListener('change',renderDuel);
-athSearch(X.qa,X.ha,i=>{X.a=i;renderDuel()});athSearch(X.qb,X.hb,i=>{X.b=i;renderDuel()});
+bindSeg(X.kind,renderDuel);X.da.addEventListener('change',()=>{renderDuel();reveal(X.out)});X.db.addEventListener('change',()=>{renderDuel();reveal(X.out)});
+athSearch(X.qa,X.ha,i=>{X.a=i;renderDuel();X.qa.blur();if(X.b!=null)reveal(X.out);else X.qb.focus()});athSearch(X.qb,X.hb,i=>{X.b=i;renderDuel();X.qb.blur();if(X.a!=null)reveal(X.out);else X.qa.focus()});
 X.out.addEventListener('click',ev=>{const b=ev.target.closest('[data-goto]');if(b)openAthlete(+b.dataset.goto)});
 $('#a-out').addEventListener('click',ev=>{
   const c=ev.target.closest('[data-card]');if(c){openCard(+c.dataset.card);return}
