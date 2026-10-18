@@ -274,6 +274,8 @@ dialog.card .top{display:flex;justify-content:space-between;align-items:center;g
 .es-pts{text-align:right;font-family:var(--f-data);font-size:13px}
 .es-legs{grid-template-columns:repeat(2,minmax(0,1fr));padding:0;border:0;background:none}
 .es-chk{display:flex;gap:8px;align-items:center;font-size:14px}
+.es-ev.lock{opacity:.55;cursor:not-allowed}.es-why{grid-column:2/-1;font-size:11.5px;color:var(--warn)}
+.es-toast{color:var(--warn)!important;font-size:14px!important}
 #m-table td:nth-child(2){white-space:normal;min-width:200px}
 #m-table .linkbtn{background:none;border:0;cursor:pointer;font:600 15px var(--f-body)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -1561,7 +1563,8 @@ function escRender(){
     const evs=Object.keys(mk).map(Number).sort((x,y)=>x-y);
     const rows=evs.map(e=>{const k=a.n+'|'+e,on=ES.ind.has(k),x=ev.ind.get(k),ag=escGroup(a,e);
       const f=ag!=null?escField(e,a.g,ag):null,pl=x?x.pl:(f?1+f.v.filter(v=>better(e,v,mk[e].v)).length:null);
-      return `<label class="es-ev${on?' on':''}"><input type="checkbox" data-ind="${k}"${on?' checked':''}${a.off||ag==null?' disabled':''}><span class="es-evn">${esc(EV[e].label)} <small>${ag!=null?esc(AG[ag]):'sem faixa'}</small></span><span class="es-mk"><span class="gap">${fmt(e,mk[e].v)}</span> <small>(${mk[e].y})</small> · ${pl?placeBadge(pl)+(f&&f.v.length?`<small> de ${f.v.length+1}</small>`:''):'–'}</span><b class="es-pts">${f&&noQuorum(f,ag)?'<small class="p-warn" title="Nenhuma outra delegação disputou esta prova nesta faixa na última edição; pela regra de quórum ela pode não acontecer ou ser fundida com outra faixa">sem quórum?</small>':on&&x?x.pts+' pts':pl&&ptsOf(pl)?`<small class="p-mut">${ptsOf(pl)} pts</small>`:''}</b></label>`}).join('')||'<p class="empty">Sem marca individual nas três últimas participações; pode entrar em revezamentos.</p>';
+      const why=on||a.off||ag==null?null:canAddInd(a.n,e);
+      return `<label class="es-ev${on?' on':''}${why?' lock':''}"${why?` title="${esc(why)}"`:''}><input type="checkbox" data-ind="${k}"${on?' checked':''}${a.off||ag==null||why?' disabled':''}><span class="es-evn">${esc(EV[e].label)} <small>${ag!=null?esc(AG[ag]):'sem faixa'}</small></span><span class="es-mk"><span class="gap">${fmt(e,mk[e].v)}</span> <small>(${mk[e].y})</small> · ${pl?placeBadge(pl)+(f&&f.v.length?`<small> de ${f.v.length+1}</small>`:''):'–'}</span>${why?`<small class="es-why">🔒 ${esc(why)}</small>`:''}<b class="es-pts">${f&&noQuorum(f,ag)?'<small class="p-warn" title="Nenhuma outra delegação disputou esta prova nesta faixa na última edição; pela regra de quórum ela pode não acontecer ou ser fundida com outra faixa">sem quórum?</small>':on&&x?x.pts+' pts':pl&&ptsOf(pl)?`<small class="p-mut">${ptsOf(pl)} pts</small>`:''}</b></label>`}).join('')||'<p class="empty">Sem marca individual nas três últimas participações; pode entrar em revezamentos.</p>';
     return `<div class="es-card${a.off?' off':''}"><div class="es-top"><div><b>${esc(NM[a.n])}</b><small>${genderLab[a.g]} · ${escAge(a)} anos em ${NEXTY}${(()=>{const ly=escLastYear(a.n);return ly&&ly<LASTY?` · <span class="pill p-mut" title="Não competiu em ${LASTY}; confirme se volta">última vez em ${ly}</span>`:''})()}${unc?' <span class="pill p-warn" title="O histórico não define o ano exato; confira o ano de nascimento">confira a faixa</span>':''}</small></div>
       <label class="es-b">Nasc.<input type="text" inputmode="numeric" maxlength="4" value="${a.birth}" data-birth="${a.n}"></label></div>
       <div class="es-cnt"><span class="${c.i>3?'neg':''}">${c.i}/3 individuais</span><span class="${c.r>3?'neg':''}">${c.r}/3 revezamentos</span><span class="${c.i+c.r>5?'neg':''}">${c.i+c.r}/5 no total</span>
@@ -1569,7 +1572,7 @@ function escRender(){
   // revezamentos
   const opt=(p,sel,i)=>{const g=p[1];const A2=ES.ath.filter(a=>!a.off&&(g==='X'||a.g===g));
     const lab=p[0]==='rev_4x50_medley'?MEDLEY_LAB[i]:`${i+1}º`;
-    return `<label class="f">${lab}<select data-relm="${pid(p)}|${i}"><option value="">–</option>${A2.map(a=>{const lt=legTime(a.n,p,i);return `<option value="${a.n}"${a.n===sel?' selected':''}>${esc(NM[a.n])}${lt?' · '+fmt(TEV,lt.v)+(lt.src==='r'?' (revez.)':''):''}${g==='X'?' ('+a.g+')':''}</option>`}).join('')}</select></label>`};
+    return `<label class="f">${lab}<select data-relm="${pid(p)}|${i}"><option value="">–</option>${A2.map(a=>{const lt=legTime(a.n,p,i);const why=a.n===sel?null:canAddRel(a.n,pid(p),i);return `<option value="${a.n}"${a.n===sel?' selected':''}${why?' disabled':''}>${why?'🔒 ':''}${esc(NM[a.n])}${lt?' · '+fmt(TEV,lt.v)+(lt.src==='r'?' (revez.)':''):''}${g==='X'?' ('+a.g+')':''}${why?' — '+why:''}</option>`}).join('')}</select></label>`};
   $('#es-rel').innerHTML=PROG[ES.mod].map(p=>{const id=pid(p),s=ES.rel[id]||{on:false,mem:[null,null,null,null]},x=ev.rel[id];const f=relField(p);
     let info='';if(s.on&&x){if(x.err)info=`<span class="p-warn">${esc(x.err)}</span>`;else if(x.miss)info=`<span class="p-mut">falta marca individual de algum integrante para estimar o tempo</span>`;else info=`Tempo estimado <b class="gap">${fmt(TEV,x.time)}</b> · ${placeBadge(x.pl)} de ${x.n_} · <b>${x.pts} pts</b>`;if(x.ages)info+=` · soma de idades ${x.ages}`}
     return `<div class="es-card${s.on?'':' off'}"><div class="es-top"><div><b>${esc(progLab(p))}</b><small>${f.y?`referência: ${f.v.length} equipe(s) de outras delegações em ${f.y}`:'sem resultados anteriores'}</small></div><label class="es-b"><input type="checkbox" data-relon="${id}"${s.on?' checked':''}> Escalar</label></div>
@@ -1588,8 +1591,26 @@ function escLoad(){
     ES.rel={};Object.entries(s.rel||{}).forEach(([k,v])=>ES.rel[k]={on:v.on,mem:v.mem.map(x=>{const n=x==null?-1:NM.indexOf(x);return n>=0?n:null})});
     ES.fill=s.fill!==false;
   }else{ES.ath=base.map(n=>escMakeAth(n));ES.fill=true;escSuggest()}
+  if(escEnforce())setTimeout(()=>escToast('a escalação salva passava do limite do regulamento e foi ajustada'),50);
   $('#es-fill').checked=ES.fill;escRender();
 }
+// limites do regulamento aplicados na hora: quem já tem 3 individuais, 3 revezamentos ou 5 provas não pode ganhar outra
+function escCounts(){const c=new Map(ES.ath.map(a=>[a.n,{i:0,r:0}]));ES.ind.forEach(k=>{const n=+k.split('|')[0];if(c.has(n))c.get(n).i++});
+  Object.values(ES.rel).forEach(t=>{if(t.on)t.mem.forEach(n=>{if(n!=null&&c.has(n))c.get(n).r++})});return c}
+function grpCount(e,g,ag,exceptN){let k=0;ES.ind.forEach(x=>{const[n,e2]=x.split('|').map(Number);if(e2!==e||n===exceptN)return;const a=ES.ath.find(z=>z.n===n);if(a&&!a.off&&a.g===g&&escGroup(a,e)===ag)k++});return k}
+function canAddInd(n,e){const a=ES.ath.find(z=>z.n===n);const c=escCounts().get(n)||{i:0,r:0};
+  if(c.i>=3)return'já tem 3 provas individuais';if(c.i+c.r>=5)return'já tem 5 provas no total';
+  const ag=escGroup(a,e);if(ag!=null&&grpCount(e,a.g,ag,n)>=2)return'a delegação já tem 2 atletas nesta prova e faixa';return null}
+function canAddRel(n,id,slot){const s=ES.rel[id];if(s&&s.mem.some((m,i)=>m===n&&i!==slot))return'já está nesta equipe';
+  const inTeam=s&&s.on&&s.mem.includes(n);const c=escCounts().get(n)||{i:0,r:0};if(inTeam)return null;
+  if(c.r>=3)return'já tem 3 revezamentos';if(c.i+c.r>=5)return'já tem 5 provas no total';return null}
+// corrige escalações salvas que estouram o limite: tira primeiro a prova individual que vale menos
+function escEnforce(){let changed=0;const ev=escEval();
+  ES.ath.forEach(a=>{let c=escCounts().get(a.n);
+    while(c&&(c.i>3||c.i+c.r>5)&&c.i>0){const mine=[...ES.ind].filter(k=>+k.split('|')[0]===a.n).sort((x,y)=>((ev.ind.get(x)||{}).pts||0)-((ev.ind.get(y)||{}).pts||0));ES.ind.delete(mine[0]);changed++;c=escCounts().get(a.n)}
+    while(c&&(c.r>3||c.i+c.r>5)){const id=Object.keys(ES.rel).find(k=>ES.rel[k].on&&ES.rel[k].mem.includes(a.n));if(!id)break;const t=ES.rel[id];t.mem[t.mem.indexOf(a.n)]=null;changed++;c=escCounts().get(a.n)}});
+  return changed}
+function escToast(msg){const h=$('#es-head');const p=document.createElement('p');p.className='note es-toast';p.innerHTML=`<b>Não permitido:</b> ${esc(msg)}`;h.appendChild(p);reveal(h);setTimeout(()=>p.remove(),4000)}
 function escCopy(){
   const ev=escEval();const lines=[`*Escalação ${ES.mod} · ${DL[ES.del]} · ONJF ${NEXTY}*`,`Estimativa: ${ev.tot} pontos (base: resultados de ${LASTY})`,''];
   const byE={};ES.ind.forEach(k=>{const[n,e]=k.split('|').map(Number);const a=ES.ath.find(x=>x.n===n);if(!a||a.off)return;const ag=escGroup(a,e);const key=`${EV[e].label} ${genderLab[a.g].toLowerCase()} ${AG[ag]}`;const x=ev.ind.get(k);(byE[key]=byE[key]||[]).push(`${NM[n]}${x?` (est. ${x.pl}º)`:''}`)});
@@ -1610,9 +1631,10 @@ $('#es-reset').addEventListener('click',()=>{store.set(escKey(),'');escLoad()});
 $('#es-copy').addEventListener('click',escCopy);
 athSearch($('#es-q'),$('#es-hits'),n=>{if(!ES.ath.some(a=>a.n===n))ES.ath.push(escMakeAth(n));$('#es-q').value='';escRender()});
 $('#v-escalacao').addEventListener('change',ev=>{const t=ev.target;
-  if(t.dataset.ind){t.checked?ES.ind.add(t.dataset.ind):ES.ind.delete(t.dataset.ind);escRender()}
-  else if(t.dataset.relon){const id=t.dataset.relon;if(t.checked){const p=PROG[ES.mod].find(x=>pid(x)===id);const bt=ES.rel[id]&&ES.rel[id].mem.some(x=>x!=null)?null:bestTeam(p,()=>true);ES.rel[id]={on:true,mem:bt?bt.mem:(ES.rel[id]?ES.rel[id].mem:[null,null,null,null])}}else if(ES.rel[id])ES.rel[id].on=false;escRender()}
-  else if(t.dataset.relm){const[a,b,c,i]=t.dataset.relm.split('|');const id=[a,b,c].join('|');ES.rel[id].mem[+i]=t.value===''?null:+t.value;escRender()}
+  if(t.dataset.ind){if(t.checked){const[n,e]=t.dataset.ind.split('|').map(Number);const w=canAddInd(n,e);if(w){t.checked=false;escToast(`${NM[n]}: ${w}`);return}ES.ind.add(t.dataset.ind)}else ES.ind.delete(t.dataset.ind);escRender()}
+  else if(t.dataset.relon){const id=t.dataset.relon;if(t.checked){const p=PROG[ES.mod].find(x=>pid(x)===id);const cnt0=escCounts();const free=n=>{const c=cnt0.get(n)||{i:0,r:0};return c.r<3&&c.i+c.r<5};const bt=ES.rel[id]&&ES.rel[id].mem.some(x=>x!=null)?null:bestTeam(p,free);
+      if(ES.rel[id]&&ES.rel[id].mem.some(x=>x!=null))ES.rel[id].mem=ES.rel[id].mem.map(n=>n!=null&&!free(n)?null:n);ES.rel[id]={on:true,mem:bt?bt.mem:(ES.rel[id]?ES.rel[id].mem:[null,null,null,null])}}else if(ES.rel[id])ES.rel[id].on=false;escRender()}
+  else if(t.dataset.relm){const[a,b,c,i]=t.dataset.relm.split('|');const id=[a,b,c].join('|');const v=t.value===''?null:+t.value;if(v!=null){const w=canAddRel(v,id,+i);if(w){escToast(`${NM[v]}: ${w}`);escRender();return}}ES.rel[id].mem[+i]=v;escRender()}
 });
 $('#v-escalacao').addEventListener('input',ev=>{const t=ev.target;if(!t.dataset.birth)return;const y=parseInt(t.value,10);if(y>=1930&&y<=NEXTY-18){const a=ES.ath.find(x=>x.n===+t.dataset.birth);a.birth=y;a.confirmed=true;fieldCache.clear();const pos=t.selectionStart;escRender();const ni=document.querySelector(`[data-birth="${a.n}"]`);if(ni){ni.focus();try{ni.setSelectionRange(pos,pos)}catch(_){}}}});
 $('#v-escalacao').addEventListener('click',ev=>{const b=ev.target.closest('[data-off]');if(!b)return;const a=ES.ath.find(x=>x.n===+b.dataset.off);a.off=!a.off;escRender()});
