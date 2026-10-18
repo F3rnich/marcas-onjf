@@ -1555,7 +1555,7 @@ function escRender(){
   const A=ES.ath.slice().sort((x,y)=>x.g.localeCompare(y.g)||NM[x.n].localeCompare(NM[y.n],'pt'));
   const hd=$('#es-head');hd.style.setProperty('--vc',ev.err.length?'var(--warn)':'var(--good)');
   hd.innerHTML=`<p><strong>${ev.tot} pontos estimados</strong> (${ev.totI} individuais + ${ev.totR} em revezamentos) · medalhas estimadas <span class="medal m1">${ev.med[0]}</span> <span class="medal m2">${ev.med[1]}</span> <span class="medal m3">${ev.med[2]}</span></p>
-  <p class="note">Em ${LASTY}, ${esc(DL[ES.del])} fez ${old.p} pontos no ${ES.mod.toLowerCase()} (${old.pos?old.pos+'º de '+old.n:'sem pontos'}; 1º lugar: ${old.top[0]?esc(DL[old.top[0][0]])+' com '+old.top[0][1]:'–'}). A estimativa supõe que as outras delegações repitam as marcas de ${LASTY} e que todos os escalados compareçam${old.ent?`; em ${LASTY}, ${Math.round(old.miss/old.ent*100)}% das inscrições individuais da delegação terminaram sem marca (ausência, desistência ou desclassificação)`:''}.</p>
+  <p class="note">Em ${LASTY}, ${esc(DL[ES.del])} fez ${old.p} pontos no ${ES.mod.toLowerCase()} (${old.pos?old.pos+'º de '+old.n:'sem pontos'}; 1º lugar: ${old.top[0]?esc(DL[old.top[0][0]])+' com '+old.top[0][1]:'–'}). A estimativa usa o elenco das edições ${ES_FROM}–${LASTY} e a marca de cada atleta nas suas três últimas participações, e supõe que as outras delegações repitam as marcas da edição mais recente de cada prova e que todos os escalados compareçam${old.ent?`; em ${LASTY}, ${Math.round(old.miss/old.ent*100)}% das inscrições individuais da delegação terminaram sem marca (ausência, desistência ou desclassificação)`:''}.</p>
   ${ev.err.length?`<p class="note" style="color:var(--warn)"><b>Fora do regulamento:</b> ${ev.err.map(esc).join(' · ')}</p>`:'<p class="note" style="color:var(--good)">Escalação dentro dos limites do regulamento.</p>'}`;
   // atletas
   $('#es-ath').innerHTML=A.map(a=>{
@@ -1612,8 +1612,8 @@ function escEnforce(){let changed=0;const ev=escEval();
   return changed}
 function escToast(msg){const h=$('#es-head');const p=document.createElement('p');p.className='note es-toast';p.innerHTML=`<b>Não permitido:</b> ${esc(msg)}`;h.appendChild(p);reveal(h);setTimeout(()=>p.remove(),4000)}
 function escCopy(){
-  const ev=escEval();const lines=[`*Escalação ${ES.mod} · ${DL[ES.del]} · ONJF ${NEXTY}*`,`Estimativa: ${ev.tot} pontos (base: resultados de ${LASTY})`,''];
-  const byE={};ES.ind.forEach(k=>{const[n,e]=k.split('|').map(Number);const a=ES.ath.find(x=>x.n===n);if(!a||a.off)return;const ag=escGroup(a,e);const key=`${EV[e].label} ${genderLab[a.g].toLowerCase()} ${AG[ag]}`;const x=ev.ind.get(k);(byE[key]=byE[key]||[]).push(`${NM[n]}${x?` (est. ${x.pl}º)`:''}`)});
+  const ev=escEval();const lines=[`*Escalação ${ES.mod} · ${DL[ES.del]} · ONJF ${NEXTY}*`,`Estimativa: ${ev.tot} pontos (${ev.totI} individuais + ${ev.totR} revezamentos) · medalhas ${ev.med[0]}/${ev.med[1]}/${ev.med[2]}`,`_Base: elenco das edições ${ES_FROM}–${LASTY}; marca de cada atleta tirada das suas três últimas participações; adversários pela edição mais recente de cada prova._`,''];
+  const byE={};ES.ind.forEach(k=>{const[n,e]=k.split('|').map(Number);const a=ES.ath.find(x=>x.n===n);if(!a||a.off)return;const ag=escGroup(a,e);const key=`${EV[e].label} ${genderLab[a.g].toLowerCase()} ${AG[ag]}`;const x=ev.ind.get(k);const mk=escMarks(n)[e];(byE[key]=byE[key]||[]).push(`${NM[n]}${mk?` – ${fmt(e,mk.v)} em ${mk.y}`:''}${x?` (est. ${x.pl}º)`:''}`)});
   Object.keys(byE).sort((a,b)=>a.localeCompare(b,'pt',{numeric:true})).forEach(k=>lines.push(`• ${k}: ${byE[k].join(', ')}`));
   lines.push('','*Revezamentos*');
   PROG[ES.mod].forEach(p=>{const s=ES.rel[pid(p)];if(!s||!s.on)return;const x=ev.rel[pid(p)];lines.push(`• ${progLab(p)}: ${s.mem.map((n,i)=>(p[0]==='rev_4x50_medley'?MEDLEY_LAB[i]+' ':'')+(n!=null?NM[n]:'?')).join(', ')}${x&&x.pl?` (est. ${x.pl}º)`:''}`)});
