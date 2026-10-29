@@ -278,6 +278,30 @@ dialog.card .top{display:flex;justify-content:space-between;align-items:center;g
 .es-toast{color:var(--warn)!important;font-size:14px!important}
 #m-table td:nth-child(2){white-space:normal;min-width:200px}
 #m-table .linkbtn{background:none;border:0;cursor:pointer;font:600 15px var(--f-body)}
+/* computador: aproveita a largura da tela (celular inalterado, regras abaixo só valem acima de 1200 px) */
+@media (min-width:1200px){
+  .wrap{max-width:min(1560px,calc(100vw - 96px));padding-left:24px;padding-right:24px}
+  body{font-size:16px}
+  .lede,.note{max-width:none}
+  header.band .wrap{padding-block:30px 0}
+  h1{font-size:64px}
+  .brand .mark{width:68px;height:68px}
+  .board b{font-size:38px}
+  .controls{grid-template-columns:repeat(auto-fit,minmax(190px,1fr));padding:18px;gap:14px}
+  .grid2{gap:24px}
+  .panel{padding:20px}
+  .shortcuts{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  .grid3{gap:20px}
+  .es-grid{grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:14px}
+  .evo{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+  th,td{padding:9px 12px}
+  table{font-size:15px}
+  .chart svg{max-height:420px}
+}
+@media (min-width:1600px){
+  .shortcuts{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .sc{padding:16px 40px 16px 16px}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
